@@ -5,6 +5,6 @@ import 'package:pharnacy_trust/pharmacy_entry_point.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]).then(
-    (_) => runApp(PharmacyEntryPoint()),
+    (_) => runApp(const PharmacyEntryPoint()),
   );
 }

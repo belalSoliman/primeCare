@@ -5,7 +5,7 @@ import 'package:pharnacy_trust/screens/home_page.dart';
 import 'package:provider/provider.dart';
 
 class PharmacyEntryPoint extends StatefulWidget {
-  PharmacyEntryPoint({super.key});
+  const PharmacyEntryPoint({super.key});
 
   @override
   State<PharmacyEntryPoint> createState() => _PharmacyEntryPointState();
@@ -20,23 +20,24 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
 
   @override
   void initState() {
-    super.initState();
     getCurrentAppTheme();
+    super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
           ChangeNotifierProvider(
-            create: (_) => darkThemeProvider,
+            create: (_) => DarkThemeProvider(),
           ),
         ],
-        child: Consumer<DarkThemeProvider>(builder: (context, value, child) {
-          final isDark = darkThemeProvider.darkTheme;
+        child: Consumer<DarkThemeProvider>(
+            builder: (context, darkThemeProvider, child) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             title: 'prime Care',
-            theme: Styles.themeData(isDark, context),
+            theme: Styles.themeData(darkThemeProvider.darkTheme, context),
             home: const HomeScreen(),
           );
         }));
