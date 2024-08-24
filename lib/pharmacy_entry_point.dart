@@ -7,7 +7,7 @@ class PharmacyEntryPoint extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isDark = true;
+    bool isDark = false;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'prime Care',
