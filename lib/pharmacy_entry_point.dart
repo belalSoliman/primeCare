@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/consts/theme_Data.dart';
+import 'package:pharnacy_trust/screens/home_page.dart';
 
 class PharmacyEntryPoint extends StatelessWidget {
   const PharmacyEntryPoint({super.key});
 
   @override
   Widget build(BuildContext context) {
+    bool isDark = true;
     return MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Pharmacy Entry Point'),
-        ),
-      ),
+      debugShowCheckedModeBanner: false,
+      title: 'prime Care',
+      theme: Styles.themeData(isDark, context),
+      home: const HomeScreen(),
     );
   }
 }
