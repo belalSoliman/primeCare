@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:pharnacy_trust/consts/theme_Data.dart';
+
+import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/screens/cart_view.dart';
 import 'package:pharnacy_trust/screens/category_screen.dart';
 import 'package:pharnacy_trust/screens/shop_view.dart';
 import 'package:pharnacy_trust/screens/user_info.dart';
+import 'package:pharnacy_trust/widget/btn_nav_bar_widgets/btn_nav_bar.dart';
+
+import 'package:provider/provider.dart';
 
 class BtnNavBar extends StatefulWidget {
   const BtnNavBar({super.key});
@@ -30,57 +34,14 @@ class _BtnNavBarState extends State<BtnNavBar> {
 
   @override
   Widget build(BuildContext context) {
+    final darkThemeProvider = Provider.of<DarkThemeProvider>(context);
+
     return Scaffold(
       body: _pages[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: CustomBottomNavBar(
         currentIndex: currentIndex,
         onTap: _onItemTapped,
-        selectedItemColor: Styles.themeData(false, context).primaryColor,
-        unselectedItemColor: Colors.grey[400],
-        type: BottomNavigationBarType.shifting,
-        showSelectedLabels: false,
-        showUnselectedLabels: true,
-        iconSize: 40,
-        unselectedFontSize: 14,
-        elevation: 100,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home,
-              color: currentIndex == 0
-                  ? Styles.themeData(false, context).primaryColor
-                  : Colors.grey[500],
-            ),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.category_outlined,
-              color: currentIndex == 1
-                  ? Styles.themeData(false, context).primaryColor
-                  : Colors.grey[500],
-            ),
-            label: 'Category',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.shopping_cart_outlined,
-              color: currentIndex == 2
-                  ? Styles.themeData(false, context).primaryColor
-                  : Colors.grey[500],
-            ),
-            label: 'Cart',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person_outline,
-              color: currentIndex == 3
-                  ? Styles.themeData(false, context).primaryColor
-                  : Colors.grey[500],
-            ),
-            label: 'Profile',
-          ),
-        ],
+        isDarkTheme: darkThemeProvider.darkTheme,
       ),
     );
   }

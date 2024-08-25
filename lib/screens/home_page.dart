@@ -14,8 +14,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final darkThemeProvider = Provider.of<DarkThemeProvider>(context);
 
-    return Scaffold(
-        body: Center(
+    return Center(
       child: Switch(
           value: darkThemeProvider.darkTheme,
           onChanged: (value) {
@@ -23,6 +22,6 @@ class _HomeScreenState extends State<HomeScreen> {
               darkThemeProvider.darkTheme = value;
             });
           }),
-    ));
+    );
   }
 }
