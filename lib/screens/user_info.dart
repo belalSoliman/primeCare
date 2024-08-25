@@ -11,32 +11,33 @@ class UserInfo extends StatefulWidget {
 }
 
 class _UserInfoState extends State<UserInfo> {
+  final List<Map<String, dynamic>> _userDetails = [
+    {
+      'title': 'Home',
+      'subtitle': 'Home Page',
+      'icona': const Icon(
+        Icons.home_outlined,
+        color: Colors.blue,
+        size: 30,
+      ),
+      'onTap': () {
+        print('Home');
+      },
+    }
+  ];
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-        UserInfoDisplay(),
-        Divider(
-          thickness: 1,
-          color: Colors.grey,
-        ),
+        const UserInfoDisplay(),
         HomeScreen(),
         UserInfoListItem(
-          icona: Icon(
+          onTap: () => print('Home'),
+          icona: const Icon(
             Icons.home_outlined,
             color: Colors.blue,
             size: 30,
           ),
-          title: 'Home',
-          subtitle: 'Home Page',
-        ),
-        UserInfoListItem(
-          icona: Icon(Icons.abc_outlined),
-          title: 'Home',
-          subtitle: 'Home Page',
-        ),
-        UserInfoListItem(
-          icona: Icon(Icons.abc_outlined),
           title: 'Home',
           subtitle: 'Home Page',
         ),
