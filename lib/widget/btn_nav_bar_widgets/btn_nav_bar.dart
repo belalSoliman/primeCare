@@ -20,7 +20,9 @@ class CustomBottomNavBar extends StatelessWidget {
           isDarkTheme ? Theme.of(context).canvasColor : Colors.white,
       currentIndex: currentIndex,
       onTap: onTap,
-      selectedItemColor: Styles.themeData(false, context).primaryColor,
+      selectedItemColor: isDarkTheme
+          ? Colors.lightBlue.shade200
+          : Theme.of(context).primaryColor,
       unselectedItemColor: Colors.grey[400],
       type: BottomNavigationBarType.shifting,
       showSelectedLabels: false,
@@ -31,7 +33,7 @@ class CustomBottomNavBar extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.home,
+            Icons.home_outlined,
             color: currentIndex == 0
                 ? Styles.themeData(false, context).primaryColor
                 : Colors.grey[500],
