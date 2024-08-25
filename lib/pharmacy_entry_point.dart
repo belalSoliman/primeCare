@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/consts/theme_Data.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
-import 'package:pharnacy_trust/screens/home_page.dart';
+
 import 'package:provider/provider.dart';
+
+import 'screens/btn_nav_bar.dart';
 
 class PharmacyEntryPoint extends StatefulWidget {
   const PharmacyEntryPoint({super.key});
@@ -38,7 +40,7 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
             debugShowCheckedModeBanner: false,
             title: 'prime Care',
             theme: Styles.themeData(darkThemeProvider.darkTheme, context),
-            home: const HomeScreen(),
+            home: const BtnNavBar(),
           );
         }));
   }
