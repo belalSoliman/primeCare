@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
+import 'package:pharnacy_trust/screens/home_page.dart';
 import 'package:provider/provider.dart';
 
 class UserInfoDisplay extends StatefulWidget {
@@ -19,22 +20,35 @@ class _UserInfoDisplayState extends State<UserInfoDisplay> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('Hi,',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24,
-                      color: darkthem.darkTheme
-                          ? Colors.white
-                          : Theme.of(context).primaryColor)),
-              Text(
-                ' Belal Soliman',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w300,
-                    color:
-                        darkthem.darkTheme ? Colors.white : Colors.grey[600]),
+              RichText(
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Hi, ',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24,
+                        color: darkthem.darkTheme
+                            ? Colors.white
+                            : Theme.of(context).primaryColor,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'Belal Soliman',
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w300,
+                        color: darkthem.darkTheme
+                            ? Colors.white
+                            : Colors.grey[600],
+                      ),
+                    ),
+                  ],
+                ),
               ),
+              const HomeScreen(),
             ],
           ),
           Text(

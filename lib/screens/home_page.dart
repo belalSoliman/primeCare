@@ -15,13 +15,22 @@ class _HomeScreenState extends State<HomeScreen> {
     final darkThemeProvider = Provider.of<DarkThemeProvider>(context);
 
     return Center(
-      child: Switch(
-          value: darkThemeProvider.darkTheme,
-          onChanged: (value) {
-            setState(() {
-              darkThemeProvider.darkTheme = value;
-            });
-          }),
+      child: Row(
+        children: [
+          Icon(
+            darkThemeProvider.darkTheme ? Icons.dark_mode : Icons.light_mode,
+            color: darkThemeProvider.darkTheme ? Colors.white : Colors.black,
+          ),
+          Switch(
+            value: darkThemeProvider.darkTheme,
+            onChanged: (value) {
+              setState(() {
+                darkThemeProvider.darkTheme = value;
+              });
+            },
+          ),
+        ],
+      ),
     );
   }
 }

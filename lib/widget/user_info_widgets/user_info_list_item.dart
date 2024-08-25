@@ -4,14 +4,10 @@ import 'package:provider/provider.dart';
 
 class UserInfoListItem extends StatefulWidget {
   const UserInfoListItem(
-      {super.key,
-      required this.icona,
-      required this.title,
-      required this.subtitle,
-      this.onTap});
+      {super.key, required this.icona, required this.title, this.onTap});
   final Icon icona;
   final String title;
-  final String subtitle;
+
   final void Function()? onTap;
 
   @override
@@ -23,7 +19,7 @@ class _UserInfoListItemState extends State<UserInfoListItem> {
   Widget build(BuildContext context) {
     final darkthem = Provider.of<DarkThemeProvider>(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      padding: const EdgeInsets.symmetric(horizontal: 4.0, vertical: 4.0),
       child: GestureDetector(
         onTap: () {},
         child: ListTile(
@@ -33,13 +29,8 @@ class _UserInfoListItemState extends State<UserInfoListItem> {
             style: TextStyle(
                 color: darkthem.darkTheme ? Colors.white : Colors.grey[600],
                 fontWeight: FontWeight.bold,
-                fontSize: 16),
+                fontSize: 18),
           ),
-          subtitle: Text(widget.subtitle,
-              style: TextStyle(
-                  color: darkthem.darkTheme ? Colors.white : Colors.grey[600],
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14)),
           trailing: const Icon(
             Icons.chevron_right,
           ),
