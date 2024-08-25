@@ -16,37 +16,23 @@ class UserInfoListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final darkthem = Provider.of<DarkThemeProvider>(context);
     return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: const Color(0xffF5F7FF),
-          boxShadow: const [
-            BoxShadow(
-              color: Color(0xffA3B4FF),
-              offset: Offset(0, 1),
-              blurRadius: 4.0,
-            ),
-          ],
+      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      child: ListTile(
+        leading: icona,
+        title: Text(
+          title,
+          style: TextStyle(
+              color: darkthem.darkTheme ? Colors.grey[800] : Colors.grey[600],
+              fontWeight: FontWeight.bold,
+              fontSize: 16),
         ),
-        child: ListTile(
-          leading: icona,
-          title: Text(
-            title,
+        subtitle: Text(subtitle,
             style: TextStyle(
                 color: darkthem.darkTheme ? Colors.grey[800] : Colors.grey[600],
-                fontWeight: FontWeight.bold,
-                fontSize: 16),
-          ),
-          subtitle: Text(subtitle,
-              style: TextStyle(
-                  color:
-                      darkthem.darkTheme ? Colors.grey[800] : Colors.grey[600],
-                  fontWeight: FontWeight.w600,
-                  fontSize: 14)),
-          trailing: Icon(
-            Icons.chevron_right,
-          ),
+                fontWeight: FontWeight.w600,
+                fontSize: 14)),
+        trailing: Icon(
+          Icons.chevron_right,
         ),
       ),
     );
