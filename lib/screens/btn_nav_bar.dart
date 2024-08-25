@@ -19,11 +19,23 @@ class BtnNavBar extends StatefulWidget {
 class _BtnNavBarState extends State<BtnNavBar> {
   int currentIndex = 0;
 
-  final List<Widget> _pages = [
-    const ShopView(),
-    const CategoryScreen(),
-    const CartView(),
-    const UserInfo(),
+  final List<Map<String, dynamic>> _pages = [
+    {
+      "page": const ShopView(),
+      "title": "Shop",
+    },
+    {
+      "page": const CategoryScreen(),
+      "title": "Categories",
+    },
+    {
+      "page": const CartView(),
+      "title": "Cart",
+    },
+    {
+      "page": const UserInfo(),
+      "title": "User Info",
+    }
   ];
 
   void _onItemTapped(int index) {
@@ -37,7 +49,20 @@ class _BtnNavBarState extends State<BtnNavBar> {
     final darkThemeProvider = Provider.of<DarkThemeProvider>(context);
 
     return Scaffold(
-      body: _pages[currentIndex],
+      appBar: AppBar(
+        title: Text(
+          _pages[currentIndex]["title"],
+          style: TextStyle(
+              color: darkThemeProvider.darkTheme ? Colors.white : Colors.black,
+              fontWeight: FontWeight.bold),
+        ),
+        centerTitle: true,
+        elevation: 60,
+        backgroundColor: darkThemeProvider.darkTheme
+            ? Theme.of(context).canvasColor
+            : Colors.white,
+      ),
+      body: _pages[currentIndex]["page"],
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: currentIndex,
         onTap: _onItemTapped,
