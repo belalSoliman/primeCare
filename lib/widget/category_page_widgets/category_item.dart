@@ -1,35 +1,47 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/consts/theme_Data.dart';
+import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
+import 'package:provider/provider.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize
-          .min, // Ensure the column only takes up as much space as needed
-      children: [
-        Container(
-          margin: const EdgeInsets.all(10),
-          height: MediaQuery.of(context).size.width * 0.4,
-          width: MediaQuery.of(context).size.width * 0.4,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                "assets/category assets/sushi (1).png",
+    final darkthem = Provider.of<DarkThemeProvider>(context);
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Styles.themeData(false, context).primaryColor.withOpacity(0.02),
+      ),
+      child: Column(
+        mainAxisAlignment:
+            MainAxisAlignment.center, // Center the content vertically
+        children: [
+          Expanded(
+            child: Container(
+              margin: const EdgeInsets.all(4.0),
+              decoration: BoxDecoration(
+                image: const DecorationImage(
+                  image: AssetImage("assets/category assets/sushi (1).png"),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(16),
               ),
-              fit: BoxFit.fill,
             ),
           ),
-        ),
-        const Text(
-          "Sushi",
-          style: TextStyle(
-            fontSize: 16, // Adjust the font size as needed
-            fontWeight: FontWeight.bold, // Optional: Make the text bold
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              "Sushi",
+              style: TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.normal,
+                  color: darkthem.darkTheme ? Colors.white : Colors.black),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
