@@ -7,11 +7,11 @@ class CustomBottomNavBar extends StatelessWidget {
   final bool isDarkTheme;
 
   const CustomBottomNavBar({
-    Key? key,
+    super.key,
     required this.currentIndex,
     required this.onTap,
     required this.isDarkTheme,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

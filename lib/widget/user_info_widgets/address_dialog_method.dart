@@ -66,7 +66,7 @@ class AddressDialog extends StatelessWidget {
               // Handle save action here
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Color(0xff4157FF),
+              backgroundColor: const Color(0xff4157FF),
               padding:
                   const EdgeInsets.symmetric(vertical: 12.0, horizontal: 20.0),
               shape: RoundedRectangleBorder(
