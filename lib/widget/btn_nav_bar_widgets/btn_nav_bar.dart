@@ -23,7 +23,7 @@ class CustomBottomNavBar extends StatelessWidget {
       selectedItemColor: isDarkTheme
           ? Colors.lightBlue.shade200
           : Theme.of(context).primaryColor,
-      unselectedItemColor: Colors.grey[400],
+      unselectedItemColor: isDarkTheme ? Colors.white : Colors.grey[400],
       type: BottomNavigationBarType.shifting,
       showSelectedLabels: false,
       showUnselectedLabels: true,

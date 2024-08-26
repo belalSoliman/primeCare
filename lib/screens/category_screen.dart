@@ -2,7 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/widget/category_page_widgets/category_view_body.dart';
 
 class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({super.key});
+  CategoryScreen({super.key});
+  List<Map<String, dynamic>> categoryList = [
+    {
+      "imageUrl": "assets/category_assets/cat-1.png",
+      "title": "Category Title 1",
+      "color": Colors.blue,
+    },
+    {
+      "imageUrl": "assets/category_assets/cat-2.png",
+      "title": "Category Title 2",
+      "color": Colors.red,
+    },
+    {
+      "imageUrl": "assets/category_assets/cat-3.png",
+      "title": "Category Title 3",
+      "color": Colors.green,
+    },
+    {
+      "imageUrl": "assets/category_assets/cat-4.png",
+      "title": "Category Title 4",
+      "color": Colors.purple,
+    },
+    {
+      "imageUrl": "assets/category_assets/cat-5.png",
+      "title": "Category Title 5",
+      "color": Colors.orange,
+    },
+    {
+      "imageUrl": "assets/category_assets/cat-6.png",
+      "title": "Category Title 6",
+      "color": Colors.pink,
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +56,16 @@ class CategoryScreen extends StatelessWidget {
               crossAxisCount: crossAxisCount,
               crossAxisSpacing: 10,
               mainAxisSpacing: 10,
-              childAspectRatio: 0.75, // Adjust as needed to control item shape
+              childAspectRatio: 1, // Adjust as needed to control item shape
             ),
-            itemCount: 10, // Example: Number of items
+            itemCount: 6, // Example: Number of items
             itemBuilder: (BuildContext context, int index) {
-              return const CategoryViewItem(
-                imageUrl:
-                    'assets/category assets/sushi (1).png', // Replace with actual image paths
-                title: 'Category Title ',
-                subtitle: 'Category Subtitle ',
+              return CategoryViewItem(
+                // Replace with actual image paths
+                color: Colors.primaries[index % Colors.primaries.length],
+                imageUrl: categoryList[index]['imageUrl'],
+                // Replace with actual image paths
+                title: categoryList[index]['title'],
               );
             },
           );

@@ -25,7 +25,7 @@ class _BtnNavBarState extends State<BtnNavBar> {
       "title": "Shop",
     },
     {
-      "page": const CategoryScreen(),
+      "page": CategoryScreen(),
       "title": "Categories",
     },
     {
