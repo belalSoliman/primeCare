@@ -12,7 +12,7 @@ class _ShopViewState extends State<ShopView> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: SwiperView(),
+      child: const SwiperView(),
     );
   }
 }
