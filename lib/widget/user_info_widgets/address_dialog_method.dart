@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 class AddressDialog extends StatelessWidget {
   final BuildContext context;
-
-  const AddressDialog({Key? key, required this.context}) : super(key: key);
+  const AddressDialog({
+    super.key,
+    required this.context,
+  });
 
   @override
   Widget build(BuildContext context) {

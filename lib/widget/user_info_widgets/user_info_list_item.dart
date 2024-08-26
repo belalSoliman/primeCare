@@ -28,6 +28,8 @@ class _UserInfoListItemState extends State<UserInfoListItem> {
       _isPressed = false;
       if (widget.onTap != null) {
         widget.onTap!();
+      } else {
+        return null;
       }
     });
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/widget/user_info_widgets/address_dialog_method.dart';
+import 'package:pharnacy_trust/widget/user_info_widgets/log_out_method.dart';
 
 import 'package:pharnacy_trust/widget/user_info_widgets/user_info_display.dart';
 import 'package:pharnacy_trust/widget/user_info_widgets/user_info_list_item.dart';
@@ -29,7 +30,9 @@ class _UserInfoState extends State<UserInfo> {
         ),
         "onTap": (context) => showDialog(
               context: context,
-              builder: (context) => AddressDialog(context: context),
+              builder: (context) => AddressDialog(
+                context: context,
+              ),
             ),
       },
       {
@@ -71,6 +74,12 @@ class _UserInfoState extends State<UserInfo> {
           color: Colors.blue,
           size: 30,
         ),
+        "onTap": (context) => showDialog(
+              context: context,
+              builder: (context) => LogOutMethod(
+                context: context,
+              ),
+            ),
       },
     ];
   }
@@ -92,7 +101,9 @@ class _UserInfoState extends State<UserInfo> {
               return UserInfoListItem(
                 title: _userDetails[index]['title'],
                 icona: _userDetails[index]['icona'],
-                onTap: () => _userDetails[index]['onTap'](context),
+                onTap: _userDetails[index]['onTap'] != null
+                    ? () => _userDetails[index]['onTap'](context)
+                    : null, // Handle the null case here,
               );
             },
           ),
