@@ -53,7 +53,8 @@ class _BtnNavBarState extends State<BtnNavBar> {
         title: Text(
           _pages[currentIndex]["title"],
           style: TextStyle(
-              color: darkThemeProvider.darkTheme ? Colors.white : Colors.black,
+              color:
+                  darkThemeProvider.darkTheme ? Colors.white : Colors.grey[600],
               fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
