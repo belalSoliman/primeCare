@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
-import 'package:pharnacy_trust/screens/home_page.dart';
+import 'package:pharnacy_trust/widget/dark_theme_switch.dart';
 import 'package:provider/provider.dart';
 
 class UserInfoDisplay extends StatefulWidget {
