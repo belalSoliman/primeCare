@@ -18,7 +18,7 @@ class _SwiperViewState extends State<SwiperView> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.2,
+      height: MediaQuery.of(context).size.height * 0.25,
       child: Swiper(
         itemBuilder: (BuildContext context, int index) {
           return Image.asset(images[index], fit: BoxFit.contain);
