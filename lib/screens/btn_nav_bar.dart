@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/consts/theme_Data.dart';
 
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/screens/cart_view.dart';
@@ -49,6 +50,8 @@ class _BtnNavBarState extends State<BtnNavBar> {
     final darkThemeProvider = Provider.of<DarkThemeProvider>(context);
 
     return Scaffold(
+      backgroundColor:
+          darkThemeProvider.darkTheme ? Color(0xff00001a) : Colors.grey[200],
       appBar: AppBar(
         title: Text(
           _pages[currentIndex]["title"],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/consts/theme_Data.dart';
+import 'package:pharnacy_trust/inner_screens/on_sale_screens.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'screens/btn_nav_bar.dart';
@@ -38,6 +39,9 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
             title: 'Prime Care',
             theme: Styles.themeData(darkThemeProvider.darkTheme, context),
             home: const BtnNavBar(),
+            routes: {
+              OnSaleScreens.routeName: (ctx) => const OnSaleScreens(),
+            },
           );
         },
       ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/custom_btn.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/item_counter.dart';
+import 'package:provider/provider.dart';
 
 class FeedItems extends StatefulWidget {
   const FeedItems({super.key});
@@ -14,8 +16,9 @@ class _FeedItemsState extends State<FeedItems> {
   @override
   Widget build(BuildContext context) {
     return Material(
+      elevation: 2,
       borderRadius: BorderRadius.circular(12),
-      color: Colors.grey.shade300,
+      color: Colors.white,
       child: InkWell(
         onTap: () {},
         borderRadius: BorderRadius.circular(12),
@@ -31,7 +34,7 @@ class _FeedItemsState extends State<FeedItems> {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(12),
-                      image: DecorationImage(
+                      image: const DecorationImage(
                         image: AssetImage("assets/category_assets/cat-6.png"),
                         fit: BoxFit.contain,
                       ),
@@ -41,14 +44,6 @@ class _FeedItemsState extends State<FeedItems> {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(16),
-                      gradient: LinearGradient(
-                        colors: [
-                          Colors.black.withOpacity(0.1),
-                          Colors.transparent,
-                        ],
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                      ),
                     ),
                   ),
                   // The title and heart icon
@@ -58,44 +53,38 @@ class _FeedItemsState extends State<FeedItems> {
                     right: 12,
                     child: Row(
                       children: [
-                        const Text(
-                          "Product 1",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.white,
-                          ),
-                        ),
+                        Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Product 1",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                ),
+                              ),
+                              Text(
+                                "\$10.00",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: Colors.blueGrey,
+                                ),
+                              ),
+                            ]),
                         Spacer(),
-                        const HeartWidget(),
+                        CustomBtn(),
                       ],
                     ),
                   ),
-                  // The price
                   const Positioned(
-                    top: 0,
-                    left: 5,
-                    child: const Text(
-                      "\$10.00",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 20,
-                        color: Colors.blueGrey,
-                      ),
-                    ),
+                    top: 10,
+                    right: 7,
+                    child: HeartWidget(),
                   ),
+                  // The price
                 ],
-              ),
-            ),
-            // The item counter
-            const Expanded(
-              flex: 2,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.0),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: CustomBtn(),
-                ),
               ),
             ),
           ],
