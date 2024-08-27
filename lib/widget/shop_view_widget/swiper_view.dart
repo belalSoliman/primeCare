@@ -30,8 +30,8 @@ class _SwiperViewState extends State<SwiperView> {
           builder: DotSwiperPaginationBuilder(
             color: Colors.grey,
             activeSize: 10.0,
-            space: 5.0,
-            size: 10.0,
+            space: 2.0,
+            size: 5.0,
             activeColor: Colors.lightBlue,
           ),
         ),

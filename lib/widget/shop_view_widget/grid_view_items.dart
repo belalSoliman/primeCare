@@ -16,6 +16,8 @@ class _GridViewItemsState extends State<GridViewItems> {
         physics: const NeverScrollableScrollPhysics(),
         crossAxisCount: 2,
         childAspectRatio: 1,
+        crossAxisSpacing: 6,
+        mainAxisSpacing: 6,
         children: List.generate(10, (index) {
           return const FeedItems();
         }));

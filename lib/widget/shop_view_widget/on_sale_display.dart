@@ -14,7 +14,7 @@ class _OnSaleListViewState extends State<OnSaleListView> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 180, // Adjust height based on your content
+      height: 200, // Adjust height based on your content
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: widget.onSaleItems.length,

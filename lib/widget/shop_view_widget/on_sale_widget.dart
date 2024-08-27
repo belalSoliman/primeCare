@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/widget/shop_view_widget/card_icon.dart';
+import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
 
 class OnSaleWidget extends StatelessWidget {
   final String imageUrl;
@@ -17,22 +19,33 @@ class OnSaleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 5,
+      elevation: 2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
             child: Image.asset(imageUrl, fit: BoxFit.cover),
           ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              title,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          Container(
+            width: MediaQuery.of(context).size.width * 0.4,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    title,
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+                ),
+                const Spacer(),
+                const CardIcon(),
+                const HeartWidget(),
+              ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             child: Row(
               children: [
                 Text(
