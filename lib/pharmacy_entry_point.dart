@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharnacy_trust/consts/theme_Data.dart';
+import 'package:pharnacy_trust/consts/theme_data.dart';
 import 'package:pharnacy_trust/inner_screens/on_sale_screens.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:provider/provider.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharnacy_trust/consts/theme_Data.dart';
+import 'package:pharnacy_trust/consts/theme_data.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   final int currentIndex;
