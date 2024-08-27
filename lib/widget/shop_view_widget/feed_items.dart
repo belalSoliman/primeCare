@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
+import 'package:pharnacy_trust/widget/shop_view_widget/item_counter.dart';
 
 class FeedItems extends StatefulWidget {
   const FeedItems({super.key});
@@ -14,56 +15,66 @@ class _FeedItemsState extends State<FeedItems> {
     return Padding(
       padding: const EdgeInsets.all(4.0),
       child: Material(
+        borderRadius: BorderRadius.circular(12),
+        color: Colors.grey.shade300,
+        child: InkWell(
+          onTap: () {},
           borderRadius: BorderRadius.circular(12),
-          color: Colors.grey.shade300,
-          child: InkWell(
-            onTap: () {},
-            borderRadius: BorderRadius.circular(12),
-            child: Column(children: [
-              Image.asset(
-                "assets/category_assets/cat-6.png",
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.cover,
-              ),
-              const Flexible(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.all(4.0),
-                      child: Text(
-                        "Product 1",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.black),
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 4.0),
-                      child: HeartWidget(),
-                    ),
-                  ],
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 6,
+                child: Image.asset(
+                  "assets/category_assets/cat-6.png",
+                  width: MediaQuery.of(context).size.width,
+                  fit: BoxFit.cover,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(4.0),
-                child: Flexible(
+              const Expanded(
+                flex: 2,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        "\$10.00",
+                      const Text(
+                        "Product 1",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                            color: Colors.green),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.black,
+                        ),
                       ),
+                      const HeartWidget(),
                     ],
                   ),
                 ),
-              )
-            ]),
-          )),
+              ),
+              const Expanded(
+                flex: 5,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "\$10.00",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.green,
+                        ),
+                      ),
+                      ItemCounter(),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

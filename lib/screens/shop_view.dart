@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharnacy_trust/widget/shop_view_widget/feed_items.dart';
+
 import 'package:pharnacy_trust/widget/shop_view_widget/grid_view_items.dart';
 
 import 'package:pharnacy_trust/widget/shop_view_widget/shop_product_view.dart';
