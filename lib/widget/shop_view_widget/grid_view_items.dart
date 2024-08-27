@@ -15,7 +15,7 @@ class _GridViewItemsState extends State<GridViewItems> {
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         crossAxisCount: 2,
-        childAspectRatio: 1,
+        childAspectRatio: .7,
         crossAxisSpacing: 6,
         mainAxisSpacing: 6,
         children: List.generate(10, (index) {
