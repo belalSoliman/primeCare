@@ -22,7 +22,7 @@ class CategoryViewItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
           BoxShadow(
-            color: Color(0xff4157FF).withOpacity(0.2),
+            color: const Color(0xff4157FF).withOpacity(0.2),
             blurRadius: 5,
             offset: const Offset(0, 2),
           ),
@@ -46,10 +46,8 @@ class CategoryViewItem extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
           ),
-          Container(
-            child: Image(
-              image: AssetImage(imageUrl),
-            ),
+          Image(
+            image: AssetImage(imageUrl),
           ),
         ],
       ),

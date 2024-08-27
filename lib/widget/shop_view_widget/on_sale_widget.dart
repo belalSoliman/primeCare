@@ -7,12 +7,12 @@ class OnSaleWidget extends StatelessWidget {
   final double salePrice;
 
   const OnSaleWidget({
-    Key? key,
+    super.key,
     required this.imageUrl,
     required this.title,
     required this.originalPrice,
     required this.salePrice,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class OnSaleWidget extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               title,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
           ),
           Padding(
@@ -36,16 +36,17 @@ class OnSaleWidget extends StatelessWidget {
               children: [
                 Text(
                   '\$$originalPrice',
-                  style: TextStyle(
+                  style: const TextStyle(
                     decoration: TextDecoration.lineThrough,
                     color: Colors.red,
+                    fontSize: 16,
                   ),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 Text(
                   '\$$salePrice',
-                  style: TextStyle(
-                    fontSize: 16,
+                  style: const TextStyle(
+                    fontSize: 20,
                     color: Colors.green,
                   ),
                 ),

@@ -4,7 +4,7 @@ import 'package:pharnacy_trust/widget/shop_view_widget/on_sale_widget.dart';
 class OnSaleListView extends StatefulWidget {
   final List<Map<String, dynamic>> onSaleItems;
 
-  const OnSaleListView({Key? key, required this.onSaleItems}) : super(key: key);
+  const OnSaleListView({super.key, required this.onSaleItems});
 
   @override
   State<OnSaleListView> createState() => _OnSaleListViewState();
