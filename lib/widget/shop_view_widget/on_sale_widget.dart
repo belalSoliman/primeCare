@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/inner_screens/on_sale_screens.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
-import 'package:pharnacy_trust/widget/shop_view_widget/card_icon.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
 
 class OnSaleWidget extends StatelessWidget {
@@ -34,7 +33,7 @@ class OnSaleWidget extends StatelessWidget {
             Expanded(
               child: Image.asset(imageUrl, fit: BoxFit.cover),
             ),
-            Container(
+            SizedBox(
               width: MediaQuery.of(context).size.width * 0.4,
               child: Row(
                 children: [

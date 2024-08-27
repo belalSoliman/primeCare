@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/custom_btn.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
-import 'package:pharnacy_trust/widget/shop_view_widget/item_counter.dart';
-import 'package:provider/provider.dart';
 
 class FeedItems extends StatefulWidget {
   const FeedItems({super.key});

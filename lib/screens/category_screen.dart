@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/widget/category_page_widgets/category_view_body.dart';
 
-class CategoryScreen extends StatelessWidget {
-  CategoryScreen({super.key});
+class CategoryScreen extends StatefulWidget {
+  const  CategoryScreen({super.key});
+
+  @override
+  State<CategoryScreen> createState() => _CategoryScreenState();
+}
+
+class _CategoryScreenState extends State<CategoryScreen> {
   List<Map<String, dynamic>> categoryList = [
     {
       "imageUrl": "assets/category_assets/cat-1.png",
