@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/feed_items.dart';
+import 'package:pharnacy_trust/widget/shop_view_widget/grid_view_items.dart';
 
 import 'package:pharnacy_trust/widget/shop_view_widget/shop_product_view.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/swiper_view.dart';
@@ -83,24 +84,7 @@ class _ShopViewState extends State<ShopView> {
           SizedBox(
             height: 10,
           ),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
-          FeedItems(),
+          GridViewItems(),
         ],
       ),
     );
