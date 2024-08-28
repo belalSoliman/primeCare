@@ -25,57 +25,54 @@ class OnSaleWidget extends StatelessWidget {
         globalMethods.navigateTo(
             ctx: context, routeName: OnSaleScreens.routeName);
       },
-      child: Card(
-        elevation: 2,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Image.asset(imageUrl, fit: BoxFit.cover),
-            ),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.4,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      title,
-                      style: const TextStyle(
-                          fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  const Spacer(),
-                  const HeartWidget(),
-                ],
-              ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-              child: Row(
-                children: [
-                  Text(
-                    '\$$salePrice',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Image.asset(imageUrl, fit: BoxFit.cover),
+          ),
+          Container(
+            color: Colors.white,
+            width: MediaQuery.of(context).size.width * 0.478,
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    title,
                     style: const TextStyle(
-                      fontSize: 20,
-                      color: Colors.green,
-                    ),
+                        fontSize: 18, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(width: 8),
-                  Text(
-                    '\$$originalPrice',
-                    style: const TextStyle(
-                      decoration: TextDecoration.lineThrough,
-                      color: Colors.red,
-                      fontSize: 16,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+                const Spacer(),
+                const HeartWidget(),
+              ],
             ),
-          ],
-        ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+            child: Row(
+              children: [
+                Text(
+                  '\$$salePrice',
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.green,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  '\$$originalPrice',
+                  style: const TextStyle(
+                    decoration: TextDecoration.lineThrough,
+                    color: Colors.red,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }
