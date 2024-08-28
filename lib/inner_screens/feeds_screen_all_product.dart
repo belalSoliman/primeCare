@@ -1,34 +1,57 @@
 import 'package:flutter/material.dart';
 // TODO: add flutter_svg package to pubspec.yaml
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:pharnacy_trust/widget/inner_screens_widegts/feeds_screen_widgets/search_widget.dart';
+import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
+import 'package:provider/provider.dart';
 
-class ProductsScreen extends StatelessWidget {
+class ProductsScreen extends StatefulWidget {
   const ProductsScreen({super.key});
   static const routeName = '/all-products';
 
   @override
+  State<ProductsScreen> createState() => _ProductsScreenState();
+}
+
+class _ProductsScreenState extends State<ProductsScreen> {
+  @override
   Widget build(BuildContext context) {
+    DarkThemeProvider darkThemeProvider =
+        Provider.of<DarkThemeProvider>(context);
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor:
+          darkThemeProvider.darkTheme ? Color(0xff00001a) : Colors.white,
       appBar: AppBar(
-        title: const Text("Products"),
+        title: const Text(
+          'All Products',
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16),
-          child: GridView.builder(
-            itemCount: demoProducts.length,
-            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200,
-              childAspectRatio: 0.7,
-              mainAxisSpacing: 20,
-              crossAxisSpacing: 16,
-            ),
-            itemBuilder: (context, index) => ProductCard(
-              product: demoProducts[index],
-              onPress: () {},
-            ),
+          child: Column(
+            children: [
+              const SizedBox(height: 16),
+              const SearchField(),
+              const SizedBox(height: 16),
+              Expanded(
+                child: GridView.builder(
+                  itemCount: demoProducts.length,
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 200,
+                    childAspectRatio: 0.7,
+                    mainAxisSpacing: 20,
+                    crossAxisSpacing: 16,
+                  ),
+                  itemBuilder: (context, index) => ProductCard(
+                    product: demoProducts[index],
+                    onPress: () {},
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
       ),
@@ -51,7 +74,11 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    DarkThemeProvider darkThemeProvider =
+        Provider.of<DarkThemeProvider>(context);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 4),
+      color: darkThemeProvider.darkTheme ? Colors.grey[300] : Colors.white,
       width: width,
       child: GestureDetector(
         onTap: onPress,
@@ -63,17 +90,23 @@ class ProductCard extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  color: const Color(0xFF979797).withOpacity(0.1),
+                  color: darkThemeProvider.darkTheme
+                      ? Colors.grey[300]
+                      : const Color(0xFF979797).withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Image.asset(product.images[0]),
               ),
             ),
             const SizedBox(height: 8),
-            Text(
-              product.title,
-              style: Theme.of(context).textTheme.bodyMedium,
-              maxLines: 2,
+            Container(
+              color:
+                  darkThemeProvider.darkTheme ? Colors.grey[300] : Colors.white,
+              child: Text(
+                product.title,
+                style: Theme.of(context).textTheme.bodyMedium,
+                maxLines: 2,
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
