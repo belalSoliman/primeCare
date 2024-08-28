@@ -23,15 +23,15 @@ class OnSaleWidget extends StatelessWidget {
     GlobalMethods globalMethods = GlobalMethods();
     return Container(
       width: MediaQuery.of(context).size.width * 0.5,
-      margin: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
+      margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(8.0),
+        borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 3,
-            blurRadius: 5,
+            spreadRadius: 1,
+            blurRadius: 3,
             offset: const Offset(0, 3),
           ),
         ],
