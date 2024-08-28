@@ -11,9 +11,11 @@ class SearchField extends StatefulWidget {
 
 class _SearchFieldState extends State<SearchField> {
   final TextEditingController? _textController = TextEditingController();
+  final FocusNode _focusNode = FocusNode();
   @override
   void dispose() {
     _textController!.dispose();
+    _focusNode.dispose();
     super.dispose();
   }
 
@@ -23,10 +25,11 @@ class _SearchFieldState extends State<SearchField> {
     return Container(
       color: darkThemeProvider.darkTheme ? Colors.grey[200] : Colors.white,
       height: MediaQuery.of(context).size.height * 0.06,
-      width: MediaQuery.of(context).size.width * 0.8,
+      width: MediaQuery.of(context).size.width,
       child: Form(
         child: TextFormField(
           controller: _textController,
+          focusNode: _focusNode,
           onChanged: (value) {
             setState(() {});
           },
@@ -38,18 +41,26 @@ class _SearchFieldState extends State<SearchField> {
                 const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(14)),
-              borderSide: BorderSide.none,
             ),
             focusedBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(14)),
-              borderSide: BorderSide.none,
+              borderSide: BorderSide(color: Colors.green),
             ),
             enabledBorder: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(12)),
-              borderSide: BorderSide.none,
+              borderSide: BorderSide(color: Color(0xFF979797)),
             ),
             hintText: "Search product",
             prefixIcon: const Icon(Icons.search),
+            suffixIcon: _textController!.text.isEmpty
+                ? null
+                : IconButton(
+                    icon: const Icon(Icons.close),
+                    onPressed: () {
+                      _textController.clear();
+                      _focusNode.unfocus();
+                    },
+                  ),
           ),
         ),
       ),
