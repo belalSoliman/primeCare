@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/inner_screens/on_sale_screens.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
+import 'package:pharnacy_trust/widget/shop_view_widget/card_icon.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
 
 class OnSaleWidget extends StatelessWidget {
@@ -20,29 +21,35 @@ class OnSaleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GlobalMethods globalMethods = GlobalMethods();
-    return GestureDetector(
-      onTap: () {
-        globalMethods.navigateTo(
-            ctx: context, routeName: OnSaleScreens.routeName);
-      },
+    return Container(
+      width: MediaQuery.of(context).size.width * 0.5,
+      margin: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 8.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 3,
+            blurRadius: 5,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-            child: Image.asset(imageUrl, fit: BoxFit.cover),
+            child: Image.asset(imageUrl, fit: BoxFit.contain),
           ),
-          Container(
-            color: Colors.white,
-            width: MediaQuery.of(context).size.width * 0.478,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
             child: Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text(
-                    title,
-                    style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
+                Text(
+                  title,
+                  style: const TextStyle(
+                      fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const Spacer(),
                 const HeartWidget(),
@@ -56,7 +63,7 @@ class OnSaleWidget extends StatelessWidget {
                 Text(
                   '\$$salePrice',
                   style: const TextStyle(
-                    fontSize: 20,
+                    fontSize: 18,
                     color: Colors.green,
                   ),
                 ),
@@ -69,6 +76,8 @@ class OnSaleWidget extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
+                Spacer(),
+                CardIcon(),
               ],
             ),
           ),
