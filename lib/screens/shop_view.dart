@@ -26,8 +26,8 @@ class _ShopViewState extends State<ShopView> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SwiperView(),
-            SizedBox(height: 10),
+            const SwiperView(),
+            const SizedBox(height: 10),
             isOnSale
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -108,12 +108,12 @@ class _ShopViewState extends State<ShopView> {
                       ),
                     ],
                   )
-                : SizedBox.shrink(),
-            ShopProductView(),
-            SizedBox(
+                : const SizedBox.shrink(),
+            const ShopProductView(),
+            const SizedBox(
               height: 10,
             ),
-            GridViewItems(),
+            const GridViewItems(),
           ],
         ),
       ),

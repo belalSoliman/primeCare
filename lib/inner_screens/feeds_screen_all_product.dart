@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-// TODO: add flutter_svg package to pubspec.yaml
-import 'package:flutter_svg/flutter_svg.dart';
+
 import 'package:pharnacy_trust/widget/inner_screens_widegts/feeds_screen_widgets/search_widget.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
@@ -21,7 +20,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
         Provider.of<DarkThemeProvider>(context);
     return Scaffold(
       backgroundColor:
-          darkThemeProvider.darkTheme ? Color(0xff00001a) : Colors.white,
+          darkThemeProvider.darkTheme ? const Color(0xff00001a) : Colors.white,
       appBar: AppBar(
         title: const Text(
           'All Products',
@@ -61,12 +60,12 @@ class _ProductsScreenState extends State<ProductsScreen> {
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
-    Key? key,
+    super.key,
     this.width = 140,
     this.aspectRetio = 1.02,
     required this.product,
     required this.onPress,
-  }) : super(key: key);
+  });
 
   final double width, aspectRetio;
   final Product product;
@@ -125,10 +124,10 @@ class ProductCard extends StatelessWidget {
                   child: Container(
                       height: 24,
                       width: 24,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                       ),
-                      child: HeartWidget()),
+                      child: const HeartWidget()),
                 ),
               ],
             )

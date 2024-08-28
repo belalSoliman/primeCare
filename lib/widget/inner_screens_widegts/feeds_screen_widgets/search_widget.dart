@@ -10,15 +10,16 @@ class SearchField extends StatefulWidget {
 }
 
 class _SearchFieldState extends State<SearchField> {
-  final TextEditingController? _textController = TextEditingController();
+  final TextEditingController _textController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
   @override
   void dispose() {
-    _textController!.dispose();
+    _textController.dispose();
     _focusNode.dispose();
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     DarkThemeProvider darkThemeProvider =
         Provider.of<DarkThemeProvider>(context);
@@ -52,7 +53,7 @@ class _SearchFieldState extends State<SearchField> {
             ),
             hintText: "Search product",
             prefixIcon: const Icon(Icons.search),
-            suffixIcon: _textController!.text.isEmpty
+            suffixIcon: _textController.text.isEmpty
                 ? null
                 : IconButton(
                     icon: const Icon(Icons.close),

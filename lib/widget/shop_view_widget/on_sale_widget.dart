@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pharnacy_trust/inner_screens/on_sale_screens.dart';
-import 'package:pharnacy_trust/service/global_methods.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/card_icon.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
 
@@ -20,7 +18,6 @@ class OnSaleWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    GlobalMethods globalMethods = GlobalMethods();
     return Container(
       width: MediaQuery.of(context).size.width * 0.5,
       margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 6.0),
@@ -76,8 +73,8 @@ class OnSaleWidget extends StatelessWidget {
                     fontSize: 16,
                   ),
                 ),
-                Spacer(),
-                CardIcon(),
+                const Spacer(),
+                const CardIcon(),
               ],
             ),
           ),

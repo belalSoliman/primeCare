@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharnacy_trust/inner_screens/no_product_onsale.dart';
+
 import 'package:pharnacy_trust/widget/shop_view_widget/on_sale_widget.dart';
 
 class OnSaleScreens extends StatelessWidget {
