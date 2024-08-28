@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/consts/theme_data.dart';
+import 'package:pharnacy_trust/inner_screens/feeds_screen_all_product.dart';
 import 'package:pharnacy_trust/inner_screens/on_sale_screens.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -41,6 +42,7 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
             home: const BtnNavBar(),
             routes: {
               OnSaleScreens.routeName: (ctx) => const OnSaleScreens(),
+              ProductsScreen.routeName: (ctx) => const ProductsScreen(),
             },
           );
         },

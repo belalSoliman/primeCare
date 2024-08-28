@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/inner_screens/feeds_screen_all_product.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
+import 'package:pharnacy_trust/service/global_methods.dart';
 import 'package:provider/provider.dart';
 
 class ShopProductView extends StatelessWidget {
@@ -7,6 +9,7 @@ class ShopProductView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    GlobalMethods globalMethods = GlobalMethods();
     final darkThemeProvider = Provider.of<DarkThemeProvider>(context);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -22,7 +25,12 @@ class ShopProductView extends StatelessWidget {
             ),
           ),
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              globalMethods.navigateTo(
+                ctx: context,
+                routeName: ProductsScreen.routeName,
+              );
+            },
             child: const Text(
               "View All",
               style: TextStyle(

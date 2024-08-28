@@ -64,7 +64,7 @@ class OnSaleWidget extends StatelessWidget {
                   '\$$salePrice',
                   style: const TextStyle(
                     fontSize: 18,
-                    color: Colors.green,
+                    color: Color(0xFFFF7643),
                   ),
                 ),
                 const SizedBox(width: 8),
