@@ -59,6 +59,7 @@ class _SearchFieldState extends State<SearchField> {
                     onPressed: () {
                       _textController.clear();
                       _focusNode.unfocus();
+                      setState(() {});
                     },
                   ),
           ),
