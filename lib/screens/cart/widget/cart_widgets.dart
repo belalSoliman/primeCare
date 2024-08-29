@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/screens/cart/widget/counter_widget_cart.dart';
+import 'package:pharnacy_trust/screens/cart/widget/product_details.dart';
+import 'package:pharnacy_trust/service/global_methods.dart';
 
 class CartWidgets extends StatefulWidget {
   const CartWidgets({super.key});
@@ -30,6 +32,7 @@ class _CartWidgetsState extends State<CartWidgets> {
 
   @override
   Widget build(BuildContext context) {
+    GlobalMethods globalMethods = GlobalMethods();
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
       width: MediaQuery.of(context).size.width * 0.9,
@@ -40,53 +43,61 @@ class _CartWidgetsState extends State<CartWidgets> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Row(
-            children: [
-              Container(
-                height: MediaQuery.of(context).size.height * 0.15,
-                width: MediaQuery.of(context).size.width * 0.3,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: const DecorationImage(
-                    image: AssetImage("assets/category_assets/cat-2.png"),
-                    fit: BoxFit.fill,
+          GestureDetector(
+            onTap: () {
+              globalMethods.navigateTo(
+                ctx: context,
+                routeName: ProductDetails.routeName,
+              );
+            },
+            child: Row(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.15,
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    image: const DecorationImage(
+                      image: AssetImage("assets/category_assets/cat-2.png"),
+                      fit: BoxFit.fill,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(width: 10),
-              SizedBox(
-                height: MediaQuery.of(context).size.width * 0.3,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Sugar free gold",
-                      style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                const SizedBox(width: 10),
+                SizedBox(
+                  height: MediaQuery.of(context).size.width * 0.3,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        "Sugar free gold",
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    const Text(
-                      "bottle of 500 pellets",
-                      style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12,
+                      const Text(
+                        "bottle of 500 pellets",
+                        style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 12,
+                        ),
                       ),
-                    ),
-                    const Spacer(),
-                    Text(
-                      "\$${price * count}",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: Colors.purple.shade700,
-                        fontWeight: FontWeight.bold,
+                      const Spacer(),
+                      Text(
+                        "\$${price * count}",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Colors.purple.shade700,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                  ],
+                      const SizedBox(height: 10),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.end,
