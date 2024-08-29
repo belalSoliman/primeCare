@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
-import 'package:pharnacy_trust/screens/cart_view.dart';
+import 'package:pharnacy_trust/screens/cart/widget/card_screen.dart';
+
 import 'package:pharnacy_trust/screens/category_screen.dart';
 import 'package:pharnacy_trust/screens/shop_view.dart';
 import 'package:pharnacy_trust/screens/user_info.dart';
