@@ -22,7 +22,7 @@ class _ShopViewState extends State<ShopView> {
   Widget build(BuildContext context) {
     bool? isOnSale = false;
     return Padding(
-      padding: EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(12.0),
       child: SingleChildScrollView(
         child: Column(
           children: [

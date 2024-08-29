@@ -4,6 +4,7 @@ import 'package:pharnacy_trust/inner_screens/feeds_screen_all_product.dart';
 import 'package:pharnacy_trust/inner_screens/on_sale_screens.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
+import 'package:pharnacy_trust/screens/cart/widget/card_screen.dart';
 import 'package:provider/provider.dart';
 import 'screens/btn_nav_bar.dart';
 
@@ -45,6 +46,7 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
               OnSaleScreens.routeName: (ctx) => const OnSaleScreens(),
               ProductsScreen.routeName: (ctx) => const ProductsScreen(),
               ProductDetails.routeName: (ctx) => const ProductDetails(),
+              CartView.routeName: (ctx) => const CartView(),
             },
           );
         },
