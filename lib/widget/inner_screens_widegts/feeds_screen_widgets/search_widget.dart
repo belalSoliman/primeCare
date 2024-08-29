@@ -3,7 +3,7 @@ import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 
 class SearchField extends StatefulWidget {
-  const SearchField({Key? key}) : super(key: key);
+  const SearchField({super.key});
 
   @override
   State<SearchField> createState() => _SearchFieldState();

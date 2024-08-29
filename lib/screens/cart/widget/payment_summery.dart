@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class PaymentSummary extends StatelessWidget {
-  const PaymentSummary({Key? key}) : super(key: key);
+  const PaymentSummary({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -30,12 +30,12 @@ class PaymentSummary extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          PaymentRow(label: 'Order Total', value: '228.80'),
-          PaymentRow(label: 'Items Discount', value: '- 28.80'),
-          PaymentRow(label: 'Coupon Discount', value: '- 15.80'),
-          PaymentRow(label: 'Shipping', value: 'Free'),
+          const PaymentRow(label: 'Order Total', value: '228.80'),
+          const PaymentRow(label: 'Items Discount', value: '- 28.80'),
+          const PaymentRow(label: 'Coupon Discount', value: '- 15.80'),
+          const PaymentRow(label: 'Shipping', value: 'Free'),
           const Divider(),
-          PaymentRow(
+          const PaymentRow(
             label: 'Total',
             value: 'Rs.185.00',
             isTotal: true,
@@ -76,11 +76,11 @@ class PaymentRow extends StatelessWidget {
   final bool isTotal;
 
   const PaymentRow({
-    Key? key,
+    super.key,
     required this.label,
     required this.value,
     this.isTotal = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

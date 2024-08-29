@@ -23,7 +23,7 @@ class _CounterWidgetCartState extends State<CounterWidgetCart> {
       decoration: BoxDecoration(
         shape: BoxShape.rectangle,
         borderRadius: BorderRadius.circular(30),
-        color: Color(0xffF2F4FF),
+        color: const Color(0xffF2F4FF),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -34,7 +34,7 @@ class _CounterWidgetCartState extends State<CounterWidgetCart> {
               border: Border.all(
                 color: Colors.grey.shade200,
               ),
-              color: Color(0xffDFE3FF),
+              color: const Color(0xffDFE3FF),
             ),
             child: IconButton(
               onPressed: widget.onDecrement,
@@ -59,7 +59,7 @@ class _CounterWidgetCartState extends State<CounterWidgetCart> {
               border: Border.all(
                 color: Colors.grey.shade200,
               ),
-              color: Color(0xffA0ABFF),
+              color: const Color(0xffA0ABFF),
             ),
             child: IconButton(
               onPressed: widget.onIncrement,

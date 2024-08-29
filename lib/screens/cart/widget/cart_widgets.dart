@@ -32,7 +32,7 @@ class _CartWidgetsState extends State<CartWidgets> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+      margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
       width: MediaQuery.of(context).size.width * 0.9,
       height: MediaQuery.of(context).size.height * 0.15,
       decoration: BoxDecoration(
@@ -55,7 +55,7 @@ class _CartWidgetsState extends State<CartWidgets> {
                 ),
               ),
               const SizedBox(width: 10),
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.width * 0.3,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -74,7 +74,7 @@ class _CartWidgetsState extends State<CartWidgets> {
                         fontSize: 12,
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     Text(
                       "\$${price * count}",
                       style: TextStyle(
@@ -83,42 +83,40 @@ class _CartWidgetsState extends State<CartWidgets> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                   ],
                 ),
               ),
             ],
           ),
-          Container(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(right: 8, top: 8),
-                  child: GestureDetector(
-                    onTap: () {
-                      // Add action to remove item
-                    },
-                    child: const Icon(
-                      Icons.close,
-                      color: Colors.grey,
-                      size: 18,
-                    ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 8, top: 8),
+                child: GestureDetector(
+                  onTap: () {
+                    // Add action to remove item
+                  },
+                  child: const Icon(
+                    Icons.close,
+                    color: Colors.grey,
+                    size: 18,
                   ),
                 ),
-                const Spacer(),
-                CounterWidgetCart(
-                  count: count,
-                  onIncrement: incrementCounter,
-                  onDecrement: decrementCounter,
-                ),
-                SizedBox(
-                  height: 5,
-                )
-              ],
-            ),
+              ),
+              const Spacer(),
+              CounterWidgetCart(
+                count: count,
+                onIncrement: incrementCounter,
+                onDecrement: decrementCounter,
+              ),
+              const SizedBox(
+                height: 5,
+              )
+            ],
           ),
-          SizedBox(width: 5),
+          const SizedBox(width: 5),
         ],
       ),
     );
