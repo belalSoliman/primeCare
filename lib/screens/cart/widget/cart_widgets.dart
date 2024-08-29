@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/screens/cart/widget/counter_widget_cart.dart';
-import 'package:pharnacy_trust/screens/cart/widget/product_details.dart';
+import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
 
 class CartWidgets extends StatefulWidget {
