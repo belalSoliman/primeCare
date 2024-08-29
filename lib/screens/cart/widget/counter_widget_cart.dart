@@ -21,10 +21,12 @@ class _CounterWidgetCartState extends State<CounterWidgetCart> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(10),
+        shape: BoxShape.rectangle,
+        borderRadius: BorderRadius.circular(30),
+        color: Color(0xffF2F4FF),
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
             decoration: BoxDecoration(

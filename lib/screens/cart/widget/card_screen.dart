@@ -7,11 +7,14 @@ class CartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 4,
-      itemBuilder: (BuildContext context, int index) {
-        return const CartWidgets();
-      },
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: ListView.builder(
+        itemCount: 4,
+        itemBuilder: (BuildContext context, int index) {
+          return const CartWidgets();
+        },
+      ),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:pharnacy_trust/consts/theme_data.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
@@ -33,7 +34,7 @@ class CustomBottomNavBar extends StatelessWidget {
       items: [
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.home_outlined,
+            IconlyLight.home,
             color: currentIndex == 0
                 ? Styles.themeData(false, context).primaryColor
                 : Colors.grey[500],
@@ -42,7 +43,7 @@ class CustomBottomNavBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.category_outlined,
+            IconlyLight.category,
             color: currentIndex == 1
                 ? Styles.themeData(false, context).primaryColor
                 : Colors.grey[500],
@@ -60,7 +61,7 @@ class CustomBottomNavBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: Icon(
-            Icons.person_outline,
+            IconlyLight.user,
             color: currentIndex == 3
                 ? Styles.themeData(false, context).primaryColor
                 : Colors.grey[500],

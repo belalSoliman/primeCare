@@ -32,13 +32,11 @@ class _CartWidgetsState extends State<CartWidgets> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(5),
+      margin: EdgeInsets.symmetric(vertical: 6, horizontal: 8),
       width: MediaQuery.of(context).size.width * 0.9,
-      height: MediaQuery.of(context).size.width * 0.28,
+      height: MediaQuery.of(context).size.height * 0.15,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: Colors.lightBlue,
-      ),
+          borderRadius: BorderRadius.circular(20), color: Colors.white),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -46,7 +44,7 @@ class _CartWidgetsState extends State<CartWidgets> {
           Row(
             children: [
               Container(
-                height: MediaQuery.of(context).size.width * 0.28,
+                height: MediaQuery.of(context).size.height * 0.15,
                 width: MediaQuery.of(context).size.width * 0.3,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -61,7 +59,6 @@ class _CartWidgetsState extends State<CartWidgets> {
                 height: MediaQuery.of(context).size.width * 0.3,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     const Text(
                       "Sugar free gold",
@@ -77,6 +74,7 @@ class _CartWidgetsState extends State<CartWidgets> {
                         fontSize: 12,
                       ),
                     ),
+                    Spacer(),
                     Text(
                       "\$${price * count}",
                       style: TextStyle(
@@ -85,43 +83,42 @@ class _CartWidgetsState extends State<CartWidgets> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    SizedBox(height: 10),
                   ],
                 ),
               ),
             ],
           ),
-          Flexible(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: MediaQuery.of(context).size.width * 0.3,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(right: 8),
-                      child: GestureDetector(
-                        onTap: () {
-                          // Add action to remove item
-                        },
-                        child: const Icon(
-                          Icons.close,
-                          color: Colors.grey,
-                          size: 18,
-                        ),
-                      ),
+          Container(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 8, top: 8),
+                  child: GestureDetector(
+                    onTap: () {
+                      // Add action to remove item
+                    },
+                    child: const Icon(
+                      Icons.close,
+                      color: Colors.grey,
+                      size: 18,
                     ),
-                    CounterWidgetCart(
-                      count: count,
-                      onIncrement: incrementCounter,
-                      onDecrement: decrementCounter,
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+                const Spacer(),
+                CounterWidgetCart(
+                  count: count,
+                  onIncrement: incrementCounter,
+                  onDecrement: decrementCounter,
+                ),
+                SizedBox(
+                  height: 5,
+                )
+              ],
             ),
           ),
+          SizedBox(width: 5),
         ],
       ),
     );
