@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/screens/cart/widget/cart_widgets.dart';
+import 'package:pharnacy_trust/screens/cart/widget/payment_btn.dart';
 import 'package:pharnacy_trust/screens/cart/widget/payment_summery.dart';
 
 class CartView extends StatelessWidget {
@@ -20,7 +21,7 @@ class CartView extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          const PaymentSummary(),
+          const PaymentBtn(),
         ],
       ),
     );
