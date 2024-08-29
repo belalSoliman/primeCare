@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pharnacy_trust/consts/theme_data.dart';
 import 'package:pharnacy_trust/screens/cart/widget/counter_widget_cart.dart';
 
 class CartWidgets extends StatefulWidget {
