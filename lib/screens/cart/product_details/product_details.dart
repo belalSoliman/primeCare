@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:pharnacy_trust/screens/cart/widget/card_screen.dart';
+
 import 'package:pharnacy_trust/service/global_methods.dart';
 
 class ProductDetails extends StatefulWidget {

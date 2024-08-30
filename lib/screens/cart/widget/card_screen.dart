@@ -18,9 +18,9 @@ class CartView extends StatelessWidget {
             },
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: const PaymentBtn(),
+       const  Padding(
+          padding:  EdgeInsets.all(8.0),
+          child:  PaymentBtn(),
         ),
         const SizedBox(height: 10),
       ],

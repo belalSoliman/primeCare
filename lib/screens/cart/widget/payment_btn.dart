@@ -17,9 +17,9 @@ class PaymentBtn extends StatelessWidget {
                 top: Radius.circular(20),
               ),
             ),
-            builder: (context) => Wrap(
+            builder: (context) => const Wrap(
               children: [
-                const PaymentSummary(),
+                PaymentSummary(),
               ],
             ),
           );
