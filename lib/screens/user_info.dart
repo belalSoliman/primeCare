@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/inner_screens/wishList_screen/wish_list.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
+import 'package:pharnacy_trust/service/global_methods.dart';
 import 'package:pharnacy_trust/widget/user_info_widgets/address_dialog_method.dart';
 import 'package:pharnacy_trust/widget/user_info_widgets/log_out_method.dart';
 
@@ -16,6 +18,7 @@ class UserInfo extends StatefulWidget {
 
 class _UserInfoState extends State<UserInfo> {
   List<Map<String, dynamic>> _userDetails = [];
+  GlobalMethods globalMethods = GlobalMethods();
 
   @override
   void initState() {
@@ -50,6 +53,12 @@ class _UserInfoState extends State<UserInfo> {
           color: Colors.blue,
           size: 30,
         ),
+        "onTap": (context) {
+          globalMethods.navigateTo(
+            ctx: context,
+            routeName: WishList.routeName,
+          );
+        }
       },
       {
         'title': 'viewed products',
@@ -95,19 +104,16 @@ class _UserInfoState extends State<UserInfo> {
           color: darkthem.darkTheme ? Colors.white : Colors.grey,
         ),
         Expanded(
-          child: ListView.builder(
-            itemCount: _userDetails.length,
-            itemBuilder: (BuildContext context, int index) {
-              return UserInfoListItem(
-                title: _userDetails[index]['title'],
-                icona: _userDetails[index]['icona'],
-                onTap: _userDetails[index]['onTap'] != null
-                    ? () => _userDetails[index]['onTap'](context)
-                    : null, // Handle the null case here,
-              );
-            },
-          ),
-        )
+            child: ListView.builder(
+          itemCount: _userDetails.length,
+          itemBuilder: (BuildContext context, int index) {
+            return UserInfoListItem(
+              title: _userDetails[index]['title'],
+              icona: _userDetails[index]['icona'],
+              onTap: _userDetails[index]['onTap'], // Handle the null case here
+            );
+          },
+        ))
       ],
     );
   }

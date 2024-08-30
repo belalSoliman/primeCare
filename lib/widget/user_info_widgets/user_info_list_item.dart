@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -8,7 +7,7 @@ class UserInfoListItem extends StatefulWidget {
       {super.key, required this.icona, required this.title, this.onTap});
   final Icon icona;
   final String title;
-  final void Function()? onTap;
+  final void Function(BuildContext context)? onTap;
 
   @override
   State<UserInfoListItem> createState() => _UserInfoListItemState();
@@ -27,8 +26,8 @@ class _UserInfoListItemState extends State<UserInfoListItem> {
     setState(() {
       _isPressed = false;
       if (widget.onTap != null) {
-        widget.onTap!();
-      } else {}
+        widget.onTap!(context);
+      }
     });
   }
 
