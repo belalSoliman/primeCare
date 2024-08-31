@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:pharnacy_trust/consts/theme_data.dart';
+import 'package:badges/badges.dart' as badges;
 
 class CustomBottomNavBar extends StatelessWidget {
   final int currentIndex;
@@ -51,11 +52,34 @@ class CustomBottomNavBar extends StatelessWidget {
           label: 'Category',
         ),
         BottomNavigationBarItem(
-          icon: Icon(
-            Icons.shopping_cart_outlined,
-            color: currentIndex == 2
-                ? Styles.themeData(false, context).primaryColor
-                : Colors.grey[500],
+          icon: badges.Badge(
+            badgeAnimation: const badges.BadgeAnimation.rotation(
+              curve: Curves.easeInCubic,
+              toAnimate: true,
+              animationDuration: Duration(milliseconds: 1000),
+              loopAnimation: true,
+            ),
+            position: badges.BadgePosition.topEnd(
+              top: -14,
+              end: -10,
+            ),
+            badgeContent: Text(
+              '10'.toString(),
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold),
+            ),
+            badgeStyle: const badges.BadgeStyle(
+                shape: badges.BadgeShape.circle,
+                badgeColor: Colors.lightBlue,
+                elevation: 10),
+            child: Icon(
+              Icons.shopping_cart_outlined,
+              color: currentIndex == 2
+                  ? Theme.of(context).primaryColor
+                  : Colors.grey[500],
+            ),
           ),
           label: 'Cart',
         ),
