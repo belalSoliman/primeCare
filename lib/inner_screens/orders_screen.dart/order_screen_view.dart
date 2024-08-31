@@ -10,7 +10,11 @@ class OrderScreenView extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Orders'),
       ),
-      body: const OrderItem(),
+      body: ListView.builder(
+          itemCount: 10,
+          itemBuilder: (context, index) {
+            return const OrderItem();
+          }),
     );
   }
 }
