@@ -106,8 +106,6 @@ class _ProductDetailsState extends State<ProductDetails> {
             ),
             const SizedBox(height: 24),
 
-            // Ingredients, Expiry Date, Brand Name
-
             const SizedBox(height: 8),
             const Text(
               'Expiry Date: 25/12/2023',
@@ -120,11 +118,8 @@ class _ProductDetailsState extends State<ProductDetails> {
             ),
             const SizedBox(height: 24),
 
-            // Ratings and Reviews
-
             const SizedBox(height: 24),
 
-            // Go to Cart Button
             Center(
               child: ElevatedButton(
                 onPressed: () {
