@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pharnacy_trust/inner_screens/orders_screen.dart/oder_item.dart';
+import 'package:pharnacy_trust/inner_screens/orders_screen/oder_item.dart';
 
 class OrderScreenView extends StatelessWidget {
   const OrderScreenView({super.key});
