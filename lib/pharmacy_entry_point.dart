@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/consts/theme_data.dart';
 import 'package:pharnacy_trust/inner_screens/feeds_screen_all_product.dart';
 import 'package:pharnacy_trust/inner_screens/on_sale_screens.dart';
+import 'package:pharnacy_trust/inner_screens/orders_screen.dart/order_screen_view.dart';
 import 'package:pharnacy_trust/inner_screens/wishList_screen/wish_list.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
@@ -49,6 +50,7 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
               ProductDetails.routeName: (ctx) => const ProductDetails(),
               CartView.routeName: (ctx) => const CartView(),
               WishList.routeName: (ctx) => WishList(),
+              OrderScreenView.routeName: (ctx) => const OrderScreenView(),
             },
           );
         },

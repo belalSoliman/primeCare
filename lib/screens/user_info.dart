@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/inner_screens/orders_screen.dart/order_screen_view.dart';
 import 'package:pharnacy_trust/inner_screens/wishList_screen/wish_list.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
@@ -45,6 +46,12 @@ class _UserInfoState extends State<UserInfo> {
           color: Colors.blue,
           size: 30,
         ),
+        "onTap": (context) {
+          globalMethods.navigateTo(
+            ctx: context,
+            routeName: OrderScreenView.routeName,
+          );
+        }
       },
       {
         'title': 'Wishlist',

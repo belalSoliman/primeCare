@@ -3,6 +3,7 @@ import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/card_icon.dart';
+import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
 
 class WishListItem extends StatelessWidget {
   const WishListItem({super.key});
@@ -61,7 +62,7 @@ class WishListItem extends StatelessWidget {
                 const Text(
                   "\$20",
                   style: TextStyle(
-                    fontSize: 14,
+                    fontSize: 18,
                     fontWeight: FontWeight.w600,
                     color: Color(0xFFFF7643),
                   ),
@@ -69,17 +70,16 @@ class WishListItem extends StatelessWidget {
                 InkWell(
                   borderRadius: BorderRadius.circular(50),
                   onTap: () {},
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.04,
-                    width: MediaQuery.of(context).size.height * 0.04,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    child: const CardIcon(),
+                  child: const Row(
+                    children: [
+                      CardIcon(),
+                      SizedBox(width: 8),
+                      const HeartWidget()
+                    ],
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

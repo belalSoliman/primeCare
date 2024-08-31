@@ -34,7 +34,33 @@ class _WishListState extends State<WishList> {
           actions: [
             IconButton(
               tooltip: 'Delete all',
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                          backgroundColor: Colors.white,
+                          title: const Text(
+                              'Are you sure you want to delete all?'),
+                          elevation: 20,
+                          actions: [
+                            TextButton(
+                              onPressed: () {},
+                              child: const Text(
+                                'Yes',
+                                style: TextStyle(color: Colors.green),
+                              ),
+                            ),
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                child: const Text(
+                                  'No',
+                                  style: TextStyle(color: Colors.red),
+                                ))
+                          ],
+                        ));
+              },
               icon: const Icon(
                 IconlyLight.delete,
                 color: Colors.red,
