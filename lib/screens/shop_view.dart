@@ -11,6 +11,7 @@ import '../widget/shop_view_widget/on_sale_display.dart';
 
 class ShopView extends StatefulWidget {
   const ShopView({super.key});
+  static const routeName = '/ShopView';
 
   @override
   State<ShopView> createState() => _ShopViewState();

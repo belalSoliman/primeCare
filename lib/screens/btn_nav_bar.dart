@@ -12,7 +12,7 @@ import 'package:provider/provider.dart';
 
 class BtnNavBar extends StatefulWidget {
   const BtnNavBar({super.key});
-
+  static const routeName = "/BtnNavBar";
   @override
   State<BtnNavBar> createState() => _BtnNavBarState();
 }
@@ -54,6 +54,7 @@ class _BtnNavBarState extends State<BtnNavBar> {
           ? const Color(0xff00001a)
           : Colors.grey[200],
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           _pages[currentIndex]["title"],
           style: TextStyle(
