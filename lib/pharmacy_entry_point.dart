@@ -5,7 +5,9 @@ import 'package:pharnacy_trust/inner_screens/on_sale_screens.dart';
 import 'package:pharnacy_trust/inner_screens/orders_screen/order_screen_view.dart';
 import 'package:pharnacy_trust/inner_screens/wishList_screen/wish_list.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
+import 'package:pharnacy_trust/screens/Auth/forget_password.dart';
 import 'package:pharnacy_trust/screens/Auth/log_in.dart';
+import 'package:pharnacy_trust/screens/Auth/sign_up.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 import 'package:pharnacy_trust/screens/cart/widget/card_screen.dart';
 
@@ -56,6 +58,8 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
               OrderScreenView.routeName: (ctx) => const OrderScreenView(),
               ViewdScreenBody.routeName: (ctx) => const ViewdScreenBody(),
               BtnNavBar.routeName: (ctx) => const BtnNavBar(),
+              SignUp.routeName: (ctx) => const SignUp(),
+              ForgetPassword.routeName: (ctx) => const ForgetPassword(),
             },
           );
         },

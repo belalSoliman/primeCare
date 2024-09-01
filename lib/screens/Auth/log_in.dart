@@ -4,10 +4,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pharnacy_trust/consts/consts.dart';
 import 'package:pharnacy_trust/screens/Auth/auth_btn.dart';
 import 'package:pharnacy_trust/screens/Auth/divider.dart';
+import 'package:pharnacy_trust/screens/Auth/forget_password.dart';
 import 'package:pharnacy_trust/screens/Auth/google.btn.dart';
 
 import 'package:pharnacy_trust/screens/Auth/log_in_swiper.dart';
 import 'package:pharnacy_trust/screens/Auth/login_form.dart';
+import 'package:pharnacy_trust/screens/Auth/sign_up.dart';
+import 'package:pharnacy_trust/service/global_methods.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
@@ -20,6 +23,8 @@ class _LogInState extends State<LogIn> {
   // ignore: unused_element
   @override
   Widget build(BuildContext context) {
+    GlobalMethods globalMethods = GlobalMethods();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -46,7 +51,12 @@ class _LogInState extends State<LogIn> {
                     Align(
                       alignment: Alignment.topRight,
                       child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            globalMethods.navigateTo(
+                              ctx: context,
+                              routeName: ForgetPassword.routeName,
+                            );
+                          },
                           child: const Text(
                             "Forgot Password?",
                             maxLines: 1,
@@ -100,7 +110,11 @@ class _LogInState extends State<LogIn> {
                             fontWeight: FontWeight.bold,
                             fontStyle: FontStyle.italic,
                           ),
-                          recognizer: TapGestureRecognizer()..onTap = () {},
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              globalMethods.navigateTo(
+                                  ctx: context, routeName: SignUp.routeName);
+                            },
                         )
                       ],
                     ))
