@@ -12,6 +12,7 @@ class ViewdScreenBody extends StatelessWidget {
     return Scaffold(
         appBar: isempty
             ? null
+            // ignore: dead_code
             : AppBar(
                 backgroundColor: Colors.transparent,
                 elevation: 0,
@@ -67,6 +68,7 @@ class ViewdScreenBody extends StatelessWidget {
                   ]),
         body: isempty
             ? const EmptyViewdScreen()
+            // ignore: dead_code
             : ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {

@@ -15,7 +15,8 @@ class Constss {
   static List<String> loginImages = [
     'assets/login_photos/pexels-anntarazevich-5910953.jpg',
     'assets/login_photos/pexels-polina-tankilevitch-3873135.jpg',
-    'assets/login_photos/pexels-thirdman-5327648.jpg',
+    'assets/login_photos/pexels-mart-production-7230183.jpg',
+    'assets/login_photos/pexels-pixabay-139398.jpg'
   ];
   static List<Map<String, dynamic>> pages = [
     {
