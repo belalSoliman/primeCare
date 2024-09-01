@@ -14,7 +14,10 @@ class _LogInState extends State<LogIn> {
   final _passwordController = TextEditingController();
   final _passwordFoucNode = FocusNode();
   final _formKey = GlobalKey<FormState>();
-  final _obscureText = true;
+  bool _obscureText = true;
+  IconData _iconShow = Icons.visibility;
+  IconData _iconHide = Icons.visibility_off;
+
   @override
   void dispose() {
     _emailController.dispose();
@@ -85,6 +88,9 @@ class _LogInState extends State<LogIn> {
                             ),
                             const SizedBox(height: 20),
                             TextFormField(
+                              onEditingComplete: () {
+                                _submit();
+                              },
                               obscureText: _obscureText,
                               controller: _passwordController,
                               textInputAction: TextInputAction.done,
@@ -98,10 +104,20 @@ class _LogInState extends State<LogIn> {
                                 }
                               },
                               style: const TextStyle(color: Colors.white),
-                              decoration: const InputDecoration(
+                              decoration: InputDecoration(
                                 labelText: "Password",
-                                suffixIcon: Icon(Icons.visibility_off,
-                                    color: Colors.white, size: 20),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    setState(() {
+                                      _obscureText = !_obscureText;
+                                      _iconShow = _obscureText
+                                          ? Icons.visibility
+                                          : Icons.visibility_off;
+                                    });
+                                  },
+                                  child: Icon(_iconShow,
+                                      color: Colors.white, size: 20),
+                                ),
                                 labelStyle: TextStyle(color: Colors.white),
                                 enabledBorder: UnderlineInputBorder(
                                     borderSide:
