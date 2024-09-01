@@ -7,13 +7,14 @@ class OrderScreenView extends StatelessWidget {
   static const routeName = '/OrderScreenView';
   @override
   Widget build(BuildContext context) {
-    bool _isempty = true;
+    bool isempty = true;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Orders'),
       ),
-      body: _isempty
+      body: isempty
           ? const EmptyOrderScreen()
+          // ignore: dead_code
           : ListView.builder(
               itemCount: 10,
               itemBuilder: (context, index) {

@@ -8,9 +8,10 @@ class ViewdScreenBody extends StatelessWidget {
   static const routeName = '/ViewdScreenBody';
   @override
   Widget build(BuildContext context) {
-    bool _isempty = true;
-    return _isempty
+    bool isempty = true;
+    return isempty
         ? const EmptyViewdScreen()
+        // ignore: dead_code
         : Scaffold(
             appBar: AppBar(
                 backgroundColor: Colors.transparent,

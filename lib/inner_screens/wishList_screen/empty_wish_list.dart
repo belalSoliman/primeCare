@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:pharnacy_trust/screens/btn_nav_bar.dart';
 
-import 'package:pharnacy_trust/screens/shop_view.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
 
 class EmptyWishlist extends StatelessWidget {

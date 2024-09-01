@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pharnacy_trust/inner_screens/feeds_screen_all_product.dart';
+
 import 'package:pharnacy_trust/screens/btn_nav_bar.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
 

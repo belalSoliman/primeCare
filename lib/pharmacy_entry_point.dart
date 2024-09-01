@@ -7,7 +7,7 @@ import 'package:pharnacy_trust/inner_screens/wishList_screen/wish_list.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 import 'package:pharnacy_trust/screens/cart/widget/card_screen.dart';
-import 'package:pharnacy_trust/screens/shop_view.dart';
+
 import 'package:provider/provider.dart';
 import 'inner_screens/viewd_screen/viewd_screen_body.dart';
 import 'screens/btn_nav_bar.dart';
@@ -51,7 +51,7 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
               ProductsScreen.routeName: (ctx) => const ProductsScreen(),
               ProductDetails.routeName: (ctx) => const ProductDetails(),
               CartView.routeName: (ctx) => const CartView(),
-              WishList.routeName: (ctx) => WishList(),
+              WishList.routeName: (ctx) => const WishList(),
               OrderScreenView.routeName: (ctx) => const OrderScreenView(),
               ViewdScreenBody.routeName: (ctx) => const ViewdScreenBody(),
               BtnNavBar.routeName: (ctx) => const BtnNavBar(),

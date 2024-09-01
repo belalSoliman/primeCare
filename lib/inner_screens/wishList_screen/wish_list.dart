@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:pharnacy_trust/inner_screens/wishList_screen/empty_wishList.dart';
+import 'package:pharnacy_trust/inner_screens/wishList_screen/empty_wish_list.dart';
 import 'package:pharnacy_trust/inner_screens/wishList_screen/wish_list_item.dart';
 
 class WishList extends StatefulWidget {
-  WishList({
+  const WishList({
     super.key,
   });
 
@@ -17,10 +17,11 @@ class WishList extends StatefulWidget {
 class _WishListState extends State<WishList> {
   @override
   Widget build(BuildContext context) {
-    bool _isempty = true;
+    bool isempty = true;
     return Scaffold(
-        appBar: _isempty
+        appBar: isempty
             ? null
+            // ignore: dead_code
             : AppBar(
                 backgroundColor: Theme.of(context).scaffoldBackgroundColor,
                 leading: const BackButton(
@@ -73,8 +74,9 @@ class _WishListState extends State<WishList> {
                   ),
                 ],
               ),
-        body: _isempty
+        body: isempty
             ? const EmptyWishlist()
+            // ignore: dead_code
             : Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: GridView.builder(

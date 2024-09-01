@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:iconly/iconly.dart';
+
 import 'package:pharnacy_trust/widget/shop_view_widget/card_icon.dart';
 
 class CustomBtn extends StatelessWidget {

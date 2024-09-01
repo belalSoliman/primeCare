@@ -52,8 +52,8 @@ class ViewdItem extends StatelessWidget {
               ],
             ),
           ),
-          Spacer(),
-          CardIcon(),
+          const Spacer(),
+          const CardIcon(),
         ],
       ),
     );

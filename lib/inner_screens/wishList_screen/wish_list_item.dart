@@ -71,11 +71,7 @@ class WishListItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                   onTap: () {},
                   child: const Row(
-                    children: [
-                      CardIcon(),
-                      SizedBox(width: 8),
-                      const HeartWidget()
-                    ],
+                    children: [CardIcon(), SizedBox(width: 8), HeartWidget()],
                   ),
                 ),
               ],

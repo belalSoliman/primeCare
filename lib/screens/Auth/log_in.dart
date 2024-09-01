@@ -13,7 +13,6 @@ class _LogInState extends State<LogIn> {
   final _passwordFoucNode = FocusNode();
   @override
   void dispose() {
-    // TODO: implement dispose
     _emailController.dispose();
     _passwordController.dispose();
     _passwordFoucNode.dispose();

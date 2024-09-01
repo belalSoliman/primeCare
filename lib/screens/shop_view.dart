@@ -30,6 +30,7 @@ class _ShopViewState extends State<ShopView> {
             const SwiperView(),
             const SizedBox(height: 10),
             isOnSale
+                // ignore: dead_code
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -50,7 +51,8 @@ class _ShopViewState extends State<ShopView> {
                   )
                 : const SizedBox.shrink(),
             isOnSale
-                ? Row(
+                // ignore: dead_code
+                ? const Row(
                     children: [
                       RotatedBox(
                         quarterTurns: -1,
