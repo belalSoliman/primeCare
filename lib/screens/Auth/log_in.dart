@@ -19,8 +19,15 @@ class _LogInState extends State<LogIn> {
     super.dispose();
   }
 
+  // ignore: unused_element
+  void _submit() {}
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const Scaffold(
+      body: Stack(
+        children: [],
+      ),
+    );
   }
 }

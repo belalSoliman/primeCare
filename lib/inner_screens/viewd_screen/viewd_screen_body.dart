@@ -9,11 +9,10 @@ class ViewdScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isempty = true;
-    return isempty
-        ? const EmptyViewdScreen()
-        // ignore: dead_code
-        : Scaffold(
-            appBar: AppBar(
+    return Scaffold(
+        appBar: isempty
+            ? null
+            : AppBar(
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 title: const Text(
@@ -30,43 +29,45 @@ class ViewdScreenBody extends StatelessWidget {
                   ),
                 ),
                 actions: [
-                  IconButton(
-                    tooltip: 'Delete all',
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                                backgroundColor: Colors.white,
-                                title: const Text(
-                                    'Are you sure you want to delete all?'),
-                                elevation: 20,
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {},
-                                    child: const Text(
-                                      'Yes',
-                                      style: TextStyle(color: Colors.green),
-                                    ),
-                                  ),
-                                  TextButton(
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
+                    IconButton(
+                      tooltip: 'Delete all',
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  backgroundColor: Colors.white,
+                                  title: const Text(
+                                      'Are you sure you want to delete all?'),
+                                  elevation: 20,
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {},
                                       child: const Text(
-                                        'No',
-                                        style: TextStyle(color: Colors.red),
-                                      ))
-                                ],
-                              ));
-                    },
-                    icon: const Icon(
-                      IconlyLight.delete,
-                      color: Colors.red,
-                      size: 26,
+                                        'Yes',
+                                        style: TextStyle(color: Colors.green),
+                                      ),
+                                    ),
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text(
+                                          'No',
+                                          style: TextStyle(color: Colors.red),
+                                        ))
+                                  ],
+                                ));
+                      },
+                      icon: const Icon(
+                        IconlyLight.delete,
+                        color: Colors.red,
+                        size: 26,
+                      ),
                     ),
-                  ),
-                ]),
-            body: ListView.builder(
+                  ]),
+        body: isempty
+            ? const EmptyViewdScreen()
+            : ListView.builder(
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return const ViewdItem();

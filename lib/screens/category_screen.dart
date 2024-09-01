@@ -1,47 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/consts/consts.dart';
 import 'package:pharnacy_trust/widget/category_page_widgets/category_view_body.dart';
 
 class CategoryScreen extends StatefulWidget {
-  const  CategoryScreen({super.key});
+  const CategoryScreen({super.key});
 
   @override
   State<CategoryScreen> createState() => _CategoryScreenState();
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-  List<Map<String, dynamic>> categoryList = [
-    {
-      "imageUrl": "assets/category_assets/cat-1.png",
-      "title": "Category Title 1",
-      "color": Colors.blue,
-    },
-    {
-      "imageUrl": "assets/category_assets/cat-2.png",
-      "title": "Category Title 2",
-      "color": Colors.red,
-    },
-    {
-      "imageUrl": "assets/category_assets/cat-3.png",
-      "title": "Category Title 3",
-      "color": Colors.green,
-    },
-    {
-      "imageUrl": "assets/category_assets/cat-4.png",
-      "title": "Category Title 4",
-      "color": Colors.purple,
-    },
-    {
-      "imageUrl": "assets/category_assets/cat-5.png",
-      "title": "Category Title 5",
-      "color": Colors.orange,
-    },
-    {
-      "imageUrl": "assets/category_assets/cat-6.png",
-      "title": "Category Title 6",
-      "color": Colors.pink,
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,9 +37,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
               return CategoryViewItem(
                 // Replace with actual image paths
                 color: Colors.primaries[index % Colors.primaries.length],
-                imageUrl: categoryList[index]['imageUrl'],
+                imageUrl: Constss.categoryList[index]['imageUrl'],
                 // Replace with actual image paths
-                title: categoryList[index]['title'],
+                title: Constss.categoryList[index]['title'],
               );
             },
           );
