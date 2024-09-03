@@ -28,7 +28,7 @@ class _GridViewItemsState extends State<GridViewItems> {
                 : 4, (index) {
           return ChangeNotifierProvider.value(
             value: productProvider.getProducts[index],
-            child: ProductCard(onPress: () {}),
+            child: ProductCard(),
           );
         }));
   }

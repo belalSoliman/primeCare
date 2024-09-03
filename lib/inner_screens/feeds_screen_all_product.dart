@@ -52,9 +52,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                   ),
                   itemBuilder: (context, index) => ChangeNotifierProvider.value(
                     value: productProvider.getProducts[index],
-                    child: ProductCard(
-                      onPress: () {},
-                    ),
+                    child: const ProductCard(),
                   ),
                 ),
               ),

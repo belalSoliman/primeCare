@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/models/product_model.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
+import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 
 import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
 import 'package:provider/provider.dart';
@@ -10,12 +11,9 @@ class ProductCard extends StatelessWidget {
     super.key,
     this.width = 140,
     this.aspectRetio = 1.02,
-    required this.onPress,
   });
 
   final double width, aspectRetio;
-
-  final VoidCallback onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +25,10 @@ class ProductCard extends StatelessWidget {
       color: darkThemeProvider.darkTheme ? Colors.grey[300] : Colors.white,
       width: width,
       child: GestureDetector(
-        onTap: onPress,
+        onTap: () {
+          Navigator.pushNamed(context, ProductDetails.routeName,
+              arguments: productModel.id);
+        },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

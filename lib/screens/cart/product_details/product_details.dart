@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:pharnacy_trust/provider/product_provider.dart';
 
 import 'package:pharnacy_trust/service/global_methods.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetails extends StatefulWidget {
   const ProductDetails({super.key});
@@ -15,6 +17,9 @@ class _ProductDetailsState extends State<ProductDetails> {
   GlobalMethods globalMethods = GlobalMethods();
   @override
   Widget build(BuildContext context) {
+    final productList = Provider.of<ProductProvider>(context);
+    final productId = ModalRoute.of(context)!.settings.arguments as int;
+    final getCurrentProduct = productList.findProductById(productId);
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -38,13 +43,13 @@ class _ProductDetailsState extends State<ProductDetails> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Product Title and Subtitle
-            const Text(
-              'Sugar Free Gold Low Calories',
+            Text(
+              getCurrentProduct.title,
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
             const Text(
-              'Etiam mollis metus non purus',
+              "qwdqweqweqw",
               style: TextStyle(color: Colors.grey),
             ),
             const SizedBox(height: 16),
@@ -52,7 +57,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             // Product Image
             Center(
               child: Image.asset(
-                "assets/category_assets/cat-5.png",
+                getCurrentProduct.images,
                 height: MediaQuery.of(context).size.height * 0.3,
               ),
             ),
@@ -60,12 +65,12 @@ class _ProductDetailsState extends State<ProductDetails> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Column(
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Rs.56',
-                      style: TextStyle(
+                      '\$${getCurrentProduct.price}',
+                      style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                         color: Colors.blue,
@@ -100,8 +105,8 @@ class _ProductDetailsState extends State<ProductDetails> {
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            const Text(
-              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla facilisi. Praesent feugiat diam et sem pulvinar finibus.',
+            Text(
+              getCurrentProduct.description,
               style: TextStyle(color: Colors.grey),
             ),
             const SizedBox(height: 24),
