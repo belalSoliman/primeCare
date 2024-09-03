@@ -13,6 +13,7 @@ class OrderScreenView extends StatelessWidget {
         title: const Text('Orders'),
       ),
       body: isempty
+          // ignore: dead_code
           ? const EmptyOrderScreen()
           // ignore: dead_code
           : ListView.builder(

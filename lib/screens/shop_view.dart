@@ -49,6 +49,7 @@ class _ShopViewState extends State<ShopView> {
                       ),
                     ],
                   )
+                // ignore: dead_code
                 : const SizedBox.shrink(),
             isOnSale
                 // ignore: dead_code
@@ -111,6 +112,7 @@ class _ShopViewState extends State<ShopView> {
                       ),
                     ],
                   )
+                // ignore: dead_code
                 : const SizedBox.shrink(),
             const ShopProductView(),
             const SizedBox(

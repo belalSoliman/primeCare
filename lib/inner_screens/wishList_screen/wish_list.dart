@@ -20,6 +20,7 @@ class _WishListState extends State<WishList> {
     bool isempty = false;
     return Scaffold(
         appBar: isempty
+            // ignore: dead_code
             ? null
             // ignore: dead_code
             : AppBar(
@@ -75,6 +76,7 @@ class _WishListState extends State<WishList> {
                 ],
               ),
         body: isempty
+            // ignore: dead_code
             ? const EmptyWishlist()
             // ignore: dead_code
             : Padding(

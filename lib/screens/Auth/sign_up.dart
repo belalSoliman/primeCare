@@ -1,14 +1,10 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:pharnacy_trust/consts/consts.dart';
+
 import 'package:pharnacy_trust/screens/Auth/auth_btn.dart';
-import 'package:pharnacy_trust/screens/Auth/divider.dart';
-import 'package:pharnacy_trust/screens/Auth/google.btn.dart';
+
 import 'package:pharnacy_trust/screens/Auth/log_in_swiper.dart';
 import 'package:pharnacy_trust/screens/Auth/sign_up_form.dart';
-
-import 'package:pharnacy_trust/service/global_methods.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});

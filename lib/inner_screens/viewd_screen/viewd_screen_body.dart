@@ -11,6 +11,7 @@ class ViewdScreenBody extends StatelessWidget {
     bool isempty = false;
     return Scaffold(
         appBar: isempty
+            // ignore: dead_code
             ? null
             // ignore: dead_code
             : AppBar(
@@ -67,6 +68,7 @@ class ViewdScreenBody extends StatelessWidget {
                     ),
                   ]),
         body: isempty
+            // ignore: dead_code
             ? const EmptyViewdScreen()
             // ignore: dead_code
             : ListView.builder(

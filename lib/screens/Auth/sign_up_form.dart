@@ -106,7 +106,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   return null;
                 }
               },
-              style: TextStyle(color: Colors.white),
+              style: const  TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: "Password",
                 labelStyle: TextStyle(color: Colors.white),

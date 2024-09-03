@@ -19,10 +19,11 @@ class _ForgetPasswordState extends State<ForgetPassword> {
     super.dispose();
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: [
-        LogInSwiper(),
+        const LogInSwiper(),
         Container(
           color: Colors.black.withOpacity(0.7),
         ),

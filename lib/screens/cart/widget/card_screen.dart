@@ -11,6 +11,7 @@ class CartView extends StatelessWidget {
   Widget build(BuildContext context) {
     bool isempty = false;
     return isempty
+        // ignore: dead_code
         ? const EmptyCart()
         // ignore: dead_code
         : Column(
