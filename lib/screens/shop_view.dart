@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/inner_screens/on_sale_screens.dart';
+
+import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
 
 import 'package:pharnacy_trust/widget/shop_view_widget/grid_view_items.dart';
 
 import 'package:pharnacy_trust/widget/shop_view_widget/shop_product_view.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/swiper_view.dart';
+import 'package:provider/provider.dart';
 
 import '../widget/shop_view_widget/on_sale_display.dart';
 
@@ -21,7 +24,8 @@ class _ShopViewState extends State<ShopView> {
   final GlobalMethods globalMethods = GlobalMethods();
   @override
   Widget build(BuildContext context) {
-    bool? isOnSale = true;
+    final onsaleProduct = Provider.of<ProductProvider>(context);
+
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: SingleChildScrollView(
@@ -29,9 +33,10 @@ class _ShopViewState extends State<ShopView> {
           children: [
             const SwiperView(),
             const SizedBox(height: 10),
-            isOnSale
-                // ignore: dead_code
-                ? Row(
+
+            onsaleProduct.getOnSaleProducts.isEmpty
+                ? const SizedBox.shrink()
+                : Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       TextButton(
@@ -48,12 +53,12 @@ class _ShopViewState extends State<ShopView> {
                         ),
                       ),
                     ],
-                  )
+                  ),
+
+            onsaleProduct.getOnSaleProducts.isEmpty
+                ? const SizedBox.shrink()
                 // ignore: dead_code
-                : const SizedBox.shrink(),
-            isOnSale
-                // ignore: dead_code
-                ? const Row(
+                : const Row(
                     children: [
                       RotatedBox(
                         quarterTurns: -1,
@@ -69,51 +74,12 @@ class _ShopViewState extends State<ShopView> {
                         ),
                       ),
                       Flexible(
-                        child: OnSaleListView(
-                          onSaleItems: [
-                            {
-                              'imageUrl': 'assets/category_assets/cat-1.png',
-                              'title': 'Product 1',
-                              'originalPrice': 99.99,
-                              'salePrice': 79.99,
-                            },
-                            {
-                              'imageUrl': 'assets/category_assets/cat-1.png',
-                              'title': 'Product 2',
-                              'originalPrice': 99.99,
-                              'salePrice': 79.99,
-                            },
-                            {
-                              'imageUrl': 'assets/category_assets/cat-1.png',
-                              'title': 'Product 3',
-                              'originalPrice': 99.99,
-                              'salePrice': 79.99,
-                            },
-                            {
-                              'imageUrl': 'assets/category_assets/cat-1.png',
-                              'title': 'Product 1',
-                              'originalPrice': 99.99,
-                              'salePrice': 79.99,
-                            },
-                            {
-                              'imageUrl': 'assets/category_assets/cat-1.png',
-                              'title': 'Product 1',
-                              'originalPrice': 99.99,
-                              'salePrice': 79.99,
-                            },
-                            {
-                              'imageUrl': 'assets/category_assets/cat-1.png',
-                              'title': 'Product 1',
-                              'originalPrice': 99.99,
-                              'salePrice': 79.99,
-                            },
-                          ],
-                        ),
+                        child: OnSaleListView(),
                       ),
                     ],
-                  )
-                // ignore: dead_code
-                : const SizedBox.shrink(),
+                  ),
+            // ignore: dead_code
+
             const ShopProductView(),
             const SizedBox(
               height: 10,

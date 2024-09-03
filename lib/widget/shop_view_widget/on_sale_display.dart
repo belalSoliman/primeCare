@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/on_sale_widget.dart';
+import 'package:provider/provider.dart';
 
 class OnSaleListView extends StatefulWidget {
-  final List<Map<String, dynamic>> onSaleItems;
-
-  const OnSaleListView({super.key, required this.onSaleItems});
+  const OnSaleListView({
+    super.key,
+  });
 
   @override
   State<OnSaleListView> createState() => _OnSaleListViewState();
@@ -13,24 +15,24 @@ class OnSaleListView extends StatefulWidget {
 class _OnSaleListViewState extends State<OnSaleListView> {
   @override
   Widget build(BuildContext context) {
+    final salePorductProvider = Provider.of<ProductProvider>(context);
     return SizedBox(
       height: 200, // Adjust height based on your content
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: widget.onSaleItems.length,
-        itemBuilder: (context, index) {
-          final item = widget.onSaleItems[index];
-          return Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: OnSaleWidget(
-              imageUrl: item['imageUrl'],
-              title: item['title'],
-              originalPrice: item['originalPrice'],
-              salePrice: item['salePrice'],
+      child: salePorductProvider.getOnSaleProducts.isEmpty
+          ? const SizedBox()
+          : ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: salePorductProvider.getOnSaleProducts.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ChangeNotifierProvider.value(
+                    value: salePorductProvider.getOnSaleProducts[index],
+                    child: const OnSaleWidget(),
+                  ),
+                );
+              },
             ),
-          );
-        },
-      ),
     );
   }
 }

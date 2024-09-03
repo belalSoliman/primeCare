@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/models/product_model.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
-import 'package:pharnacy_trust/provider/product_provider.dart';
+
 import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -41,7 +41,9 @@ class ProductCard extends StatelessWidget {
                       : const Color(0xFF979797).withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Image.asset(productModel.images),
+                child: Image.asset(
+                  productModel.images,
+                ),
               ),
             ),
             const SizedBox(height: 8),
@@ -78,15 +80,25 @@ class ProductCard extends StatelessWidget {
                 ),
               ],
             ),
-            Text("\$${productModel.discountPercentage}",
-                style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: Colors.red,
-                      fontSize: 14,
-                      fontWeight: FontWeight.w600,
-                      decoration: TextDecoration.lineThrough,
-                      decorationThickness: 2,
-                      decorationColor: Colors.red,
-                    )),
+            Row(children: [
+              Text("\$${productModel.discountPercentage}",
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color: Colors.red,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w600,
+                        decoration: TextDecoration.lineThrough,
+                        decorationThickness: 2,
+                        decorationColor: Colors.red,
+                      )),
+              const Spacer(),
+              Text(
+                productModel.isStrip ? "strip" : "Box",
+                style: const TextStyle(
+                    color: Color(0xFF979797),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w600),
+              )
+            ]),
           ],
         ),
       ),

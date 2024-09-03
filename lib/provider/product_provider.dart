@@ -6,6 +6,10 @@ class ProductProvider with ChangeNotifier {
     return _products;
   }
 
+  List<ProductModel> get getOnSaleProducts {
+    return _products.where((element) => element.isonsale == true).toList();
+  }
+
   static final List<ProductModel> _products = [
     ProductModel(
         id: 1,
@@ -27,13 +31,13 @@ class ProductProvider with ChangeNotifier {
         description:
             " vitamin D  Cold and Flu All in One Caplets 24s for women ",
         isonsale: true,
-        isStrip: false),
+        isStrip: true),
     ProductModel(
         id: 3,
         title: "belal",
         images: "assets/samples/vitamin-d-5-5000.png",
         category: "antibacterial",
-        price: 5.99,
+        price: 521.99,
         discountPercentage: 2.3,
         description: "pandol  Cold and Flu All in One Caplets 24s for women ",
         isonsale: true,
@@ -47,17 +51,17 @@ class ProductProvider with ChangeNotifier {
         discountPercentage: 21212.3,
         description: "kos om akrm  ",
         isonsale: true,
-        isStrip: false),
+        isStrip: true),
     ProductModel(
         id: 1,
         title: "pandol",
         images: "assets/samples/PanadolColdandFluAllinOneCaplets24s__79972.jpg",
         category: "antibacterial",
-        price: 5.99,
+        price: 0101.99,
         discountPercentage: 2.3,
         description: "pandol  Cold and Flu All in One Caplets 24s for women ",
         isonsale: true,
-        isStrip: false),
+        isStrip: true),
     ProductModel(
         id: 1,
         title: "pandol",
