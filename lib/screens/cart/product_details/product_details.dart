@@ -47,11 +47,7 @@ class _ProductDetailsState extends State<ProductDetails> {
               getCurrentProduct.title,
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 8),
-            const Text(
-              "qwdqweqweqw",
-              style: TextStyle(color: Colors.grey),
-            ),
+
             const SizedBox(height: 16),
 
             // Product Image
@@ -76,6 +72,16 @@ class _ProductDetailsState extends State<ProductDetails> {
                         color: Colors.blue,
                       ),
                     ),
+                    getCurrentProduct.isonsale
+                        ? Text(
+                            '\$${getCurrentProduct.discountPercentage}',
+                            style: const TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red,
+                                decoration: TextDecoration.lineThrough),
+                          )
+                        : const SizedBox.shrink(),
                   ],
                 ),
                 ElevatedButton.icon(
@@ -107,23 +113,16 @@ class _ProductDetailsState extends State<ProductDetails> {
             const SizedBox(height: 8),
             Text(
               getCurrentProduct.description,
-              style: TextStyle(color: Colors.grey),
+              style: const TextStyle(color: Colors.grey),
             ),
             const SizedBox(height: 24),
 
-            const SizedBox(height: 8),
-            const Text(
-              'Expiry Date: 25/12/2023',
-              style: TextStyle(fontWeight: FontWeight.bold),
+            Text(
+              'Category: ${getCurrentProduct.category}',
+              style: const TextStyle(fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 8),
-            const Text(
-              'Brand Name: Belal',
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 24),
 
-            const SizedBox(height: 24),
+            const SizedBox(height: 16),
 
             Center(
               child: ElevatedButton(

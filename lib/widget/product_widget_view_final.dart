@@ -82,15 +82,17 @@ class ProductCard extends StatelessWidget {
               ],
             ),
             Row(children: [
-              Text("\$${productModel.discountPercentage}",
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: Colors.red,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        decoration: TextDecoration.lineThrough,
-                        decorationThickness: 2,
-                        decorationColor: Colors.red,
-                      )),
+              productModel.isonsale
+                  ? Text("\$${productModel.discountPercentage}",
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                            color: Colors.red,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                            decoration: TextDecoration.lineThrough,
+                            decorationThickness: 2,
+                            decorationColor: Colors.red,
+                          ))
+                  : const SizedBox.shrink(),
               const Spacer(),
               Text(
                 productModel.isStrip ? "strip" : "Box",
