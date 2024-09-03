@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/consts/consts.dart';
+import 'package:pharnacy_trust/models/product_model.dart';
+import 'package:pharnacy_trust/provider/product_provider.dart';
 
 import 'package:pharnacy_trust/widget/inner_screens_widegts/feeds_screen_widgets/search_widget.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
+import 'package:pharnacy_trust/widget/product_widget_view_final.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -18,6 +22,8 @@ class _ProductsScreenState extends State<ProductsScreen> {
   Widget build(BuildContext context) {
     DarkThemeProvider darkThemeProvider =
         Provider.of<DarkThemeProvider>(context);
+
+    final productProvider = Provider.of<ProductProvider>(context);
     return Scaffold(
       backgroundColor:
           darkThemeProvider.darkTheme ? const Color(0xff00001a) : Colors.white,
@@ -37,7 +43,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
               const SizedBox(height: 16),
               Expanded(
                 child: GridView.builder(
-                  itemCount: demoProducts.length,
+                  itemCount: productProvider.getProducts.length,
                   gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                     maxCrossAxisExtent: 200,
                     childAspectRatio: 0.7,
@@ -45,7 +51,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     crossAxisSpacing: 16,
                   ),
                   itemBuilder: (context, index) => ProductCard(
-                    product: demoProducts[index],
+                    product: productProvider.getProducts[index],
                     onPress: () {},
                   ),
                 ),
@@ -57,236 +63,6 @@ class _ProductsScreenState extends State<ProductsScreen> {
     );
   }
 }
-
-class ProductCard extends StatelessWidget {
-  const ProductCard({
-    super.key,
-    this.width = 140,
-    this.aspectRetio = 1.02,
-    required this.product,
-    required this.onPress,
-  });
-
-  final double width, aspectRetio;
-  final Product product;
-  final VoidCallback onPress;
-
-  @override
-  Widget build(BuildContext context) {
-    DarkThemeProvider darkThemeProvider =
-        Provider.of<DarkThemeProvider>(context);
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      color: darkThemeProvider.darkTheme ? Colors.grey[300] : Colors.white,
-      width: width,
-      child: GestureDetector(
-        onTap: onPress,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            AspectRatio(
-              aspectRatio: 1.02,
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: darkThemeProvider.darkTheme
-                      ? Colors.grey[300]
-                      : const Color(0xFF979797).withOpacity(0.1),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Image.asset(product.images[0]),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Container(
-              color:
-                  darkThemeProvider.darkTheme ? Colors.grey[300] : Colors.white,
-              child: Text(
-                product.title,
-                style: Theme.of(context).textTheme.bodyMedium,
-                maxLines: 2,
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "\$${product.price}",
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w600,
-                    color: Color(0xFFFF7643),
-                  ),
-                ),
-                InkWell(
-                  borderRadius: BorderRadius.circular(50),
-                  onTap: () {},
-                  child: Container(
-                      height: 24,
-                      width: 24,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: const HeartWidget()),
-                ),
-              ],
-            )
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class Product {
-  final int id;
-  final String title, description;
-  final List<String> images;
-
-  final double rating, price;
-  final bool isFavourite, isPopular;
-
-  Product({
-    required this.id,
-    required this.images,
-    this.rating = 0.0,
-    this.isFavourite = false,
-    this.isPopular = false,
-    required this.title,
-    required this.price,
-    required this.description,
-  });
-}
-
-// Our demo Products
-
-List<Product> demoProducts = [
-  Product(
-    id: 1,
-    images: ["assets/category_assets/cat-1.png"],
-    title: "Wireless Controller for PS4™",
-    price: 64.99,
-    description: description,
-    rating: 4.8,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 2,
-    images: [
-      "assets/category_assets/cat-2.png",
-    ],
-    title: "Nike Sport White - Man Pant",
-    price: 50.5,
-    description: description,
-    rating: 4.1,
-    isPopular: true,
-  ),
-  Product(
-    id: 3,
-    images: [
-      "assets/category_assets/cat-5.png",
-    ],
-    title: "Gloves XC Omega - Polygon",
-    price: 36.55,
-    description: description,
-    rating: 4.1,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 4,
-    images: [
-      "assets/category_assets/cat-5.png",
-    ],
-    title: "Gloves XC Omega - Polygon",
-    price: 36.55,
-    description: description,
-    rating: 4.1,
-    isFavourite: false,
-    isPopular: true,
-  ),
-  Product(
-    id: 1,
-    images: ["assets/category_assets/cat-1.png"],
-    title: "Wireless Controller for PS4™",
-    price: 64.99,
-    description: description,
-    rating: 4.8,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 1,
-    images: ["assets/category_assets/cat-1.png"],
-    title: "Wireless Controller for PS4™",
-    price: 64.99,
-    description: description,
-    rating: 4.8,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 1,
-    images: ["assets/category_assets/cat-1.png"],
-    title: "Wireless Controller for PS4™",
-    price: 64.99,
-    description: description,
-    rating: 4.8,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 1,
-    images: ["assets/category_assets/cat-1.png"],
-    title: "Wireless Controller for PS4™",
-    price: 64.99,
-    description: description,
-    rating: 4.8,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 1,
-    images: ["assets/category_assets/cat-1.png"],
-    title: "Wireless Controller for PS4™",
-    price: 64.99,
-    description: description,
-    rating: 4.8,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 1,
-    images: ["assets/category_assets/cat-1.png"],
-    title: "Wireless Controller for PS4™",
-    price: 64.99,
-    description: description,
-    rating: 4.8,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 1,
-    images: ["assets/category_assets/cat-1.png"],
-    title: "Wireless Controller for PS4™",
-    price: 64.99,
-    description: description,
-    rating: 4.8,
-    isFavourite: true,
-    isPopular: true,
-  ),
-  Product(
-    id: 1,
-    images: ["assets/category_assets/cat-1.png"],
-    title: "Wireless Controller for PS4™",
-    price: 64.99,
-    description: description,
-    rating: 4.8,
-    isFavourite: true,
-    isPopular: true,
-  ),
-];
 
 const heartIcon =
     '''<svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">

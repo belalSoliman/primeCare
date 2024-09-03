@@ -73,6 +73,8 @@ flutter:
     - assets/login_photos/
     - assets/login_photos/pexels-mart-production-7230183.jpg
     - assets/login_photos/pexels-pixabay-139398.jpg
+    - assets/samples/
+    - assets/samples/PanadolColdandFluAllinOneCaplets24s__79972.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

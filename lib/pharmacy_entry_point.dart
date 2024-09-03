@@ -5,6 +5,7 @@ import 'package:pharnacy_trust/inner_screens/on_sale_screens.dart';
 import 'package:pharnacy_trust/inner_screens/orders_screen/order_screen_view.dart';
 import 'package:pharnacy_trust/inner_screens/wishList_screen/wish_list.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
+import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/screens/Auth/forget_password.dart';
 
 import 'package:pharnacy_trust/screens/Auth/sign_up.dart';
@@ -38,10 +39,11 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<DarkThemeProvider>(
-      create: (_) {
-        return darkThemeProvider;
-      },
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => darkThemeProvider),
+        ChangeNotifierProvider(create: (_) => ProductProvider()),
+      ],
       child: Consumer<DarkThemeProvider>(
         builder: (context, darkThemeProvider, child) {
           return MaterialApp(
