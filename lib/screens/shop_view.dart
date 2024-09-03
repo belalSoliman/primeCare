@@ -21,7 +21,7 @@ class _ShopViewState extends State<ShopView> {
   final GlobalMethods globalMethods = GlobalMethods();
   @override
   Widget build(BuildContext context) {
-    bool? isOnSale = false;
+    bool? isOnSale = true;
     return Padding(
       padding: const EdgeInsets.all(12.0),
       child: SingleChildScrollView(

@@ -17,7 +17,7 @@ class WishList extends StatefulWidget {
 class _WishListState extends State<WishList> {
   @override
   Widget build(BuildContext context) {
-    bool isempty = true;
+    bool isempty = false;
     return Scaffold(
         appBar: isempty
             ? null

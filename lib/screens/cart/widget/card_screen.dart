@@ -9,7 +9,7 @@ class CartView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isempty = true;
+    bool isempty = false;
     return isempty
         ? const EmptyCart()
         // ignore: dead_code

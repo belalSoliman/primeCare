@@ -48,7 +48,7 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
             debugShowCheckedModeBanner: false,
             title: 'Prime Care',
             theme: Styles.themeData(darkThemeProvider.darkTheme, context),
-            home: const LogIn(),
+            home: const BtnNavBar(),
             routes: {
               OnSaleScreens.routeName: (ctx) => const OnSaleScreens(),
               ProductsScreen.routeName: (ctx) => const ProductsScreen(),
