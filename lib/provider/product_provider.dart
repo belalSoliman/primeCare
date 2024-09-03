@@ -57,7 +57,7 @@ class ProductProvider with ChangeNotifier {
         isonsale: true,
         isStrip: true),
     ProductModel(
-        id: 1,
+        id: 6,
         title: "pandol",
         images: "assets/samples/PanadolColdandFluAllinOneCaplets24s__79972.jpg",
         category: "antibacterial",
@@ -67,7 +67,7 @@ class ProductProvider with ChangeNotifier {
         isonsale: true,
         isStrip: true),
     ProductModel(
-        id: 1,
+        id: 7,
         title: "pandol",
         images: "assets/samples/PanadolColdandFluAllinOneCaplets24s__79972.jpg",
         category: "antibacterial",
@@ -77,9 +77,9 @@ class ProductProvider with ChangeNotifier {
         isonsale: true,
         isStrip: false),
     ProductModel(
-        id: 1,
+        id: 8,
         title: "erqwerqweqwe",
-        images: "assets/category_assets/cat-5.png",
+        images: "assets/category_assets/sushi (1).png",
         category: "antibacterial",
         price: 5.99,
         discountPercentage: 2.3,
