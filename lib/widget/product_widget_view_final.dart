@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/models/product_model.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
+import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
 import 'package:provider/provider.dart';
 
@@ -9,18 +10,18 @@ class ProductCard extends StatelessWidget {
     super.key,
     this.width = 140,
     this.aspectRetio = 1.02,
-    required this.product,
     required this.onPress,
   });
 
   final double width, aspectRetio;
-  final ProductModel product;
+
   final VoidCallback onPress;
 
   @override
   Widget build(BuildContext context) {
     DarkThemeProvider darkThemeProvider =
         Provider.of<DarkThemeProvider>(context);
+    final productModel = Provider.of<ProductModel>(context);
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       color: darkThemeProvider.darkTheme ? Colors.grey[300] : Colors.white,
@@ -40,7 +41,7 @@ class ProductCard extends StatelessWidget {
                       : const Color(0xFF979797).withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Image.asset(product.images),
+                child: Image.asset(productModel.images),
               ),
             ),
             const SizedBox(height: 8),
@@ -48,7 +49,7 @@ class ProductCard extends StatelessWidget {
               color:
                   darkThemeProvider.darkTheme ? Colors.grey[300] : Colors.white,
               child: Text(
-                product.title,
+                productModel.title,
                 style: Theme.of(context).textTheme.bodyMedium,
                 maxLines: 2,
               ),
@@ -57,7 +58,7 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "\$${product.price}",
+                  "\$${productModel.price}",
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -77,7 +78,7 @@ class ProductCard extends StatelessWidget {
                 ),
               ],
             ),
-            Text("\$${product.discountPercentage}",
+            Text("\$${productModel.discountPercentage}",
                 style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       color: Colors.red,
                       fontSize: 14,

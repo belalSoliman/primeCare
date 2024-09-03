@@ -50,9 +50,11 @@ class _ProductsScreenState extends State<ProductsScreen> {
                     mainAxisSpacing: 20,
                     crossAxisSpacing: 16,
                   ),
-                  itemBuilder: (context, index) => ProductCard(
-                    product: productProvider.getProducts[index],
-                    onPress: () {},
+                  itemBuilder: (context, index) => ChangeNotifierProvider.value(
+                    value: productProvider.getProducts[index],
+                    child: ProductCard(
+                      onPress: () {},
+                    ),
                   ),
                 ),
               ),
