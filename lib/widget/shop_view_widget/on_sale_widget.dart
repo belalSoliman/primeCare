@@ -13,7 +13,6 @@ class OnSaleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<ProductModel>(context);
-    final darkThemeProvider = Provider.of<DarkThemeProvider>(context);
 
     return Container(
       width: MediaQuery.of(context).size.width * 0.5,
