@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/models/product_model.dart';
 
@@ -10,6 +11,14 @@ class ProductProvider with ChangeNotifier {
     return _products.where((element) => element.isonsale == true).toList();
   }
 
+  List<ProductModel> findByCategory(String categoryName) {
+    List<ProductModel> categoryList = _products
+        .where((element) =>
+            element.category.toLowerCase().contains(categoryName.toLowerCase()))
+        .toList();
+    return categoryList;
+  }
+
   ProductModel findProductById(int id) {
     return _products.firstWhere((element) => element.id == id);
   }
@@ -19,7 +28,7 @@ class ProductProvider with ChangeNotifier {
         id: 1,
         title: "pandol",
         images: "assets/samples/PanadolColdandFluAllinOneCaplets24s__79972.jpg",
-        category: "antibacterial",
+        category: "vitamin",
         price: 5.99,
         discountPercentage: 2.3,
         description: "pandol  Cold and Flu All in One Caplets 24s for women ",
@@ -27,7 +36,7 @@ class ProductProvider with ChangeNotifier {
         isStrip: false),
     ProductModel(
         id: 2,
-        title: "hossam",
+        title: "insulin",
         images: "assets/samples/PanadolColdandFluAllinOneCaplets24s__79972.jpg",
         category: "vitamin D",
         price: 55.99,
@@ -38,9 +47,9 @@ class ProductProvider with ChangeNotifier {
         isStrip: true),
     ProductModel(
         id: 3,
-        title: "belal",
+        title: "anti flow",
         images: "assets/samples/vitamin-d-5-5000.png",
-        category: "antibacterial",
+        category: "cosmatics",
         price: 521.99,
         discountPercentage: 2.3,
         description: "pandol  Cold and Flu All in One Caplets 24s for women ",
@@ -50,7 +59,7 @@ class ProductProvider with ChangeNotifier {
         id: 5,
         title: "pandol",
         images: "assets/samples/news-insulin-1440px.jpg",
-        category: "antibacterial",
+        category: "belal",
         price: 212.99,
         discountPercentage: 21212.3,
         description: "kos om akrm  ",
@@ -60,7 +69,7 @@ class ProductProvider with ChangeNotifier {
         id: 6,
         title: "pandol",
         images: "assets/samples/PanadolColdandFluAllinOneCaplets24s__79972.jpg",
-        category: "antibacterial",
+        category: "7amada",
         price: 0101.99,
         discountPercentage: 2.3,
         description: "pandol  Cold and Flu All in One Caplets 24s for women ",
@@ -70,7 +79,7 @@ class ProductProvider with ChangeNotifier {
         id: 7,
         title: "pandol",
         images: "assets/samples/PanadolColdandFluAllinOneCaplets24s__79972.jpg",
-        category: "antibacterial",
+        category: "7amada",
         price: 5.99,
         discountPercentage: 2.3,
         description: "pandol  Cold and Flu All in One Caplets 24s for women ",
@@ -80,7 +89,7 @@ class ProductProvider with ChangeNotifier {
         id: 8,
         title: "erqwerqweqwe",
         images: "assets/category_assets/sushi (1).png",
-        category: "antibacterial",
+        category: "insulin",
         price: 5.99,
         discountPercentage: 2.3,
         description: "pandol  Cold and Flu All in One Caplets 24s for women ",

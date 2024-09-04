@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/consts/theme_data.dart';
+import 'package:pharnacy_trust/inner_screens/category_filterd_Screen.dart/category_filter_screen.dart';
 import 'package:pharnacy_trust/inner_screens/feeds_screen_all_product.dart';
 import 'package:pharnacy_trust/inner_screens/on_sale_screens.dart';
 import 'package:pharnacy_trust/inner_screens/orders_screen/order_screen_view.dart';
@@ -62,6 +63,8 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
               BtnNavBar.routeName: (ctx) => const BtnNavBar(),
               SignUp.routeName: (ctx) => const SignUp(),
               ForgetPassword.routeName: (ctx) => const ForgetPassword(),
+              CategoryFilterScreen.routeName: (ctx) =>
+                  const CategoryFilterScreen(),
             },
           );
         },
