@@ -15,6 +15,7 @@ class EmptyNotificationsScreen extends StatelessWidget {
           isPortrait = true;
 
           return Padding(
+            // ignore: dead_code
             padding: EdgeInsets.all(isPortrait ? 16 : 24),
             child: Column(
               children: [

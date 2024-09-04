@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/models/product_model.dart';
-import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
+
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/card_icon.dart';
 import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
@@ -103,7 +103,7 @@ class OnSaleWidget extends StatelessWidget {
               bottom: 10,
               left: 10,
               child: Row(
-                children: const [
+                children: [
                   HeartWidget(),
                   SizedBox(width: 10),
                   CardIcon(),

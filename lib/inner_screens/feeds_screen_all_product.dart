@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:pharnacy_trust/consts/consts.dart';
-import 'package:pharnacy_trust/models/product_model.dart';
+
 import 'package:pharnacy_trust/provider/product_provider.dart';
 
 import 'package:pharnacy_trust/widget/inner_screens_widegts/feeds_screen_widgets/search_widget.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/widget/product_widget_view_final.dart';
-import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
+
 import 'package:provider/provider.dart';
 
 class ProductsScreen extends StatefulWidget {

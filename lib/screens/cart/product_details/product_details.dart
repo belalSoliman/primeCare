@@ -45,7 +45,7 @@ class _ProductDetailsState extends State<ProductDetails> {
             // Product Title and Subtitle
             Text(
               getCurrentProduct.title,
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
 
             const SizedBox(height: 16),

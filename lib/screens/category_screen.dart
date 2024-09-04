@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/consts/consts.dart';
-import 'package:pharnacy_trust/models/product_model.dart';
-import 'package:pharnacy_trust/provider/product_provider.dart';
+
 import 'package:pharnacy_trust/widget/category_page_widgets/category_view_body.dart';
-import 'package:provider/provider.dart';
 
 class CategoryScreen extends StatefulWidget {
   const CategoryScreen({super.key});
@@ -15,8 +13,6 @@ class CategoryScreen extends StatefulWidget {
 class _CategoryScreenState extends State<CategoryScreen> {
   @override
   Widget build(BuildContext context) {
-    final categoryList = Provider.of<ProductProvider>(context);
-
     return Scaffold(
       body: LayoutBuilder(
         builder: (context, constraints) {
