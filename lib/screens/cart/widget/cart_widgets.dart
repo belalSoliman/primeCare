@@ -6,7 +6,7 @@ import 'package:pharnacy_trust/provider/product_provider.dart';
 
 import 'package:pharnacy_trust/screens/cart/widget/counter_widget_cart.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
-import 'package:pharnacy_trust/service/global_methods.dart';
+
 import 'package:provider/provider.dart';
 
 class CartWidgets extends StatefulWidget {
@@ -37,11 +37,11 @@ class _CartWidgetsState extends State<CartWidgets> {
 
   @override
   Widget build(BuildContext context) {
-    GlobalMethods globalMethods = GlobalMethods();
     final cartProvider = Provider.of<CartModel>(context);
     final productItems = Provider.of<ProductProvider>(context);
     final getcurrentProduct =
         productItems.findProductById(cartProvider.productid);
+    final cartProvider2 = Provider.of<CartProvider>(context);
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
@@ -149,12 +149,15 @@ class _CartWidgetsState extends State<CartWidgets> {
                 padding: const EdgeInsets.only(right: 8, top: 8),
                 child: GestureDetector(
                   onTap: () {
-                    // Add action to remove item
+                    setState(() {
+                      cartProvider2.removeProductFromCart(
+                          productId: getcurrentProduct.id.toString());
+                    });
                   },
                   child: const Icon(
                     Icons.close,
                     color: Colors.grey,
-                    size: 18,
+                    size: 20,
                   ),
                 ),
               ),

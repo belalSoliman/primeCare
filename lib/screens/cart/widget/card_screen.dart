@@ -12,31 +12,75 @@ class CartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
-    final cartItems = cartProvider.getCartItems.values.toList();
+    final cartItems =
+        cartProvider.getCartItems.values.toList().reversed.toList();
 
-    print(cartItems);
-
-    return cartItems.isEmpty
-        // ignore: dead_code
-        ? const EmptyCart()
-        // ignore: dead_code
-        : Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: cartItems.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return ChangeNotifierProvider.value(
-                        value: cartItems[index], child: CartWidgets());
-                  },
+    return Scaffold(
+      body: cartItems.isEmpty
+          ? const EmptyCart()
+          : Column(
+              children: [
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Tooltip(
+                    message: 'Clear all items from the cart',
+                    child: IconButton(
+                      onPressed: () async {
+                        final shouldClear = await showDialog<bool>(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                            title: const Text(
+                              'Clear Cart',
+                              style: TextStyle(color: Colors.red),
+                            ),
+                            content: const Text(
+                                'Are you sure you want to clear all items from the cart?'),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.of(context).pop(false),
+                                child: const Text(
+                                  'Cancel',
+                                  style: TextStyle(color: Colors.grey),
+                                ),
+                              ),
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.of(context).pop(true),
+                                child: const Text(
+                                  'Clear',
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                        if (shouldClear == true) {
+                          cartProvider.clearCart();
+                        }
+                      },
+                      icon: const Icon(
+                        Icons.delete_outline,
+                        color: Colors.red,
+                        size: 30,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: PaymentBtn(),
-              ),
-              const SizedBox(height: 10),
-            ],
-          );
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: cartItems.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ChangeNotifierProvider.value(
+                        value: cartItems[index],
+                        child: CartWidgets(),
+                      );
+                    },
+                  ),
+                ),
+                PaymentBtn(),
+              ],
+            ),
+    );
   }
 }
