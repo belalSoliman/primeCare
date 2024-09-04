@@ -113,8 +113,9 @@ class _ProductDetailsState extends State<ProductDetails> {
                         color: Colors.white),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        isAddedToCart ? Colors.green : Colors.lightBlue,
+                    backgroundColor: isAddedToCart
+                        ? Colors.blueAccent
+                        : Colors.green.shade400,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
                     ),
