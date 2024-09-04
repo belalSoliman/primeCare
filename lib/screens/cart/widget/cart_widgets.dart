@@ -18,7 +18,6 @@ class CartWidgets extends StatefulWidget {
 
 class _CartWidgetsState extends State<CartWidgets> {
   int count = 0;
-  // Start with 1 as default
 
   void incrementCounter() {
     setState(() {
@@ -33,6 +32,11 @@ class _CartWidgetsState extends State<CartWidgets> {
         count--;
       }
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
   }
 
   @override

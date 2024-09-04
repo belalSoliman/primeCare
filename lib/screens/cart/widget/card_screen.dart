@@ -78,7 +78,8 @@ class CartView extends StatelessWidget {
                     },
                   ),
                 ),
-                PaymentBtn(),
+                const PaymentBtn(),
+                const SizedBox(height: 20),
               ],
             ),
     );

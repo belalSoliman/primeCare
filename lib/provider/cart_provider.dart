@@ -17,6 +17,7 @@ class CartProvider with ChangeNotifier {
         (value) => CartModel(
           id: DateTime.now().toString(),
           productid: productId,
+
           // Assuming you want to increment quantity
         ),
       );

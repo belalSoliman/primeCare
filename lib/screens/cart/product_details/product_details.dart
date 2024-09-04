@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:pharnacy_trust/provider/cart_provider.dart';
 import 'package:pharnacy_trust/provider/product_provider.dart';
-
 import 'package:pharnacy_trust/service/global_methods.dart';
+
 import 'package:provider/provider.dart';
 
 class ProductDetails extends StatefulWidget {
@@ -16,12 +16,15 @@ class ProductDetails extends StatefulWidget {
 
 class _ProductDetailsState extends State<ProductDetails> {
   GlobalMethods globalMethods = GlobalMethods();
+  bool isAddedToCart = false;
+
   @override
   Widget build(BuildContext context) {
     final productList = Provider.of<ProductProvider>(context);
     final productId = ModalRoute.of(context)!.settings.arguments as int;
     final getCurrentProduct = productList.findProductById(productId);
     final addToCartProvider = Provider.of<CartProvider>(context);
+
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -87,22 +90,31 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ],
                 ),
                 ElevatedButton.icon(
-                  onPressed: () {
-                    addToCartProvider.addProductToCart(
-                      productId: getCurrentProduct.id,
-                    );
-                  },
-                  icon: const Icon(IconlyLight.buy,
-                      size: 18, color: Colors.white),
-                  label: const Text(
-                    'Add to cart',
-                    style: TextStyle(
+                  onPressed: isAddedToCart
+                      ? null
+                      : () {
+                          addToCartProvider.addProductToCart(
+                            productId: getCurrentProduct.id,
+                          );
+                          setState(() {
+                            isAddedToCart = true;
+                          });
+                        },
+                  icon: isAddedToCart
+                      ? const Icon(IconlyLight.tick_square,
+                          size: 18, color: Colors.white)
+                      : const Icon(IconlyLight.buy,
+                          size: 18, color: Colors.white),
+                  label: Text(
+                    isAddedToCart ? 'Added' : 'Add to cart',
+                    style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
                         color: Colors.white),
                   ),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.lightBlue,
+                    backgroundColor:
+                        isAddedToCart ? Colors.green : Colors.lightBlue,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(14),
                     ),
