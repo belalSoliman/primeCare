@@ -17,15 +17,15 @@ class _OnSaleListViewState extends State<OnSaleListView> {
   @override
   Widget build(BuildContext context) {
     final salePorductProvider = Provider.of<ProductProvider>(context);
-    List<ProductModel> firstThreeItems =
-        salePorductProvider.getOnSaleProducts.take(3).toList();
+    // List<ProductModel> firstThreeItems =
+    //     salePorductProvider.getOnSaleProducts.take(3).toList();
     return SizedBox(
       height: 200, // Adjust height based on your content
       child: salePorductProvider.getOnSaleProducts.isEmpty
           ? const SizedBox()
           : ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: firstThreeItems.length,
+              itemCount: salePorductProvider.getOnSaleProducts.length,
               itemBuilder: (context, index) {
                 return Padding(
                   padding: const EdgeInsets.all(8.0),

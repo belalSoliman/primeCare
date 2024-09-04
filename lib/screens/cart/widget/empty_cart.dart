@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-
 import 'package:pharnacy_trust/screens/btn_nav_bar.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
 
@@ -10,72 +9,89 @@ class EmptyCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GlobalMethods globalMethods = GlobalMethods();
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Spacer(flex: 1),
-            SizedBox(
-              width: MediaQuery.of(context).size.width * 0.7,
-              child: AspectRatio(
-                aspectRatio: 1,
-                child: SvgPicture.string(
-                  mySvgImage,
-                  fit: BoxFit.contain,
+    final screenWidth = MediaQuery.of(context).size.width;
+    final screenHeight = MediaQuery.of(context).size.height;
+
+    return Padding(
+      padding: EdgeInsets.symmetric(
+          horizontal: screenWidth *
+              0.1), // Adjust horizontal padding based on screen width
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            width: screenWidth *
+                0.7, // Scale SVG image width based on screen width
+            height: screenHeight *
+                0.3, // Scale SVG image height based on screen height
+            child: AspectRatio(
+              aspectRatio: 1,
+              child: SvgPicture.string(
+                mySvgImage,
+                fit: BoxFit.contain,
+              ),
+            ),
+          ),
+          SizedBox(height: screenHeight * 0.03), // Dynamic vertical spacing
+          Text(
+            "Your Cart is Empty!",
+            style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueAccent,
+                  fontSize: screenWidth *
+                      0.06, // Dynamic text size based on screen width
+                ),
+            textAlign: TextAlign.center,
+          ),
+          SizedBox(height: screenHeight * 0.02), // Dynamic vertical spacing
+          Text(
+            "It seems like you haven't added anything to your cart yet. Let's find some great items to fill it up!",
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                  color: Colors.grey[700],
+                  fontSize: screenWidth *
+                      0.045, // Dynamic text size based on screen width
+                  height: 1.5,
+                ),
+          ),
+          SizedBox(height: screenHeight * 0.02), // Dynamic vertical spacing
+          Padding(
+            padding: EdgeInsets.symmetric(
+                horizontal: screenWidth *
+                    0.1), // Adjust button padding based on screen width
+            child: ElevatedButton.icon(
+              onPressed: () {
+                globalMethods.navigateTo(
+                  ctx: context,
+                  routeName: BtnNavBar.routeName,
+                );
+              },
+              icon: const Icon(Icons.shopping_cart_outlined, size: 24),
+              label: Text(
+                "Discover Products".toUpperCase(),
+                style: TextStyle(
+                  fontSize: screenWidth *
+                      0.045, // Dynamic text size for button based on screen width
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                minimumSize: Size(
+                    double.infinity,
+                    screenHeight *
+                        0.02), // Dynamic button height based on screen height
+                padding: EdgeInsets.symmetric(
+                    vertical: screenHeight *
+                        0.02), // Adjust button padding based on screen height
+                backgroundColor: Colors.blueAccent,
+                foregroundColor: Colors.white,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(12)),
                 ),
               ),
             ),
-            const SizedBox(height: 24),
-            Text(
-              "Your Cart is Empty!",
-              style: Theme.of(context).textTheme.headlineMedium!.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.blueAccent,
-                  ),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              "It seems like you haven't added anything to your cart yet. Let's find some great items to fill it up!",
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                    color: Colors.grey[700],
-                    height: 1.5,
-                  ),
-            ),
-            const Spacer(flex: 2),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40.0),
-              child: ElevatedButton.icon(
-                onPressed: () {
-                  globalMethods.navigateTo(
-                    ctx: context,
-                    routeName: BtnNavBar.routeName,
-                  );
-                },
-                icon: const Icon(Icons.shopping_cart_outlined, size: 24),
-                label: Text(
-                  "Discover Products".toUpperCase(),
-                  style: const TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-                style: ElevatedButton.styleFrom(
-                  minimumSize: const Size(double.infinity, 50),
-                  padding: const EdgeInsets.symmetric(vertical: 16),
-                  backgroundColor: Colors.blueAccent,
-                  foregroundColor: Colors.white,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(12)),
-                  ),
-                ),
-              ),
-            ),
-            const Spacer(flex: 1),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

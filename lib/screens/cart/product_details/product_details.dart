@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:pharnacy_trust/provider/cart_provider.dart';
 import 'package:pharnacy_trust/provider/product_provider.dart';
 
 import 'package:pharnacy_trust/service/global_methods.dart';
@@ -20,6 +21,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     final productList = Provider.of<ProductProvider>(context);
     final productId = ModalRoute.of(context)!.settings.arguments as int;
     final getCurrentProduct = productList.findProductById(productId);
+    final addToCartProvider = Provider.of<CartProvider>(context);
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -85,7 +87,11 @@ class _ProductDetailsState extends State<ProductDetails> {
                   ],
                 ),
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    addToCartProvider.addProductToCart(
+                      productId: getCurrentProduct.id,
+                    );
+                  },
                   icon: const Icon(IconlyLight.buy,
                       size: 18, color: Colors.white),
                   label: const Text(

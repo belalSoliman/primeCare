@@ -63,7 +63,7 @@ class ProductProvider with ChangeNotifier {
         price: 212.99,
         discountPercentage: 21212.3,
         description: "kos om akrm  ",
-        isonsale: false,
+        isonsale: true,
         isStrip: true),
     ProductModel(
         id: 6,
@@ -73,7 +73,7 @@ class ProductProvider with ChangeNotifier {
         price: 0101.99,
         discountPercentage: 2.3,
         description: "pandol  Cold and Flu All in One Caplets 24s for women ",
-        isonsale: false,
+        isonsale: true,
         isStrip: true),
     ProductModel(
         id: 7,
@@ -93,7 +93,7 @@ class ProductProvider with ChangeNotifier {
         price: 5.99,
         discountPercentage: 2.3,
         description: "pandol  Cold and Flu All in One Caplets 24s for women ",
-        isonsale: true,
+        isonsale: false,
         isStrip: false),
   ];
 }
