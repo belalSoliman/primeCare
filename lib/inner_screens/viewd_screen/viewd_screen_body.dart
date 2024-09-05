@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:pharnacy_trust/inner_screens/viewd_screen/empty_viewd_screen.dart';
 import 'package:pharnacy_trust/inner_screens/viewd_screen/viewd_item.dart';
+import 'package:pharnacy_trust/provider/view_product.dart';
+
+import 'package:provider/provider.dart';
 
 class ViewdScreenBody extends StatelessWidget {
   const ViewdScreenBody({super.key});
   static const routeName = '/ViewdScreenBody';
   @override
   Widget build(BuildContext context) {
-    bool isempty = false;
+    final viewdList = Provider.of<ViewProduct1>(context);
+    final viewd = viewdList.viewProduct1.values.toList().reversed.toList();
+    bool isempty = viewd.isEmpty;
     return Scaffold(
         appBar: isempty
             // ignore: dead_code
@@ -43,7 +48,10 @@ class ViewdScreenBody extends StatelessWidget {
                                   elevation: 20,
                                   actions: [
                                     TextButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        viewdList.clearViewProduct1();
+                                        Navigator.pop(context);
+                                      },
                                       child: const Text(
                                         'Yes',
                                         style: TextStyle(color: Colors.green),
@@ -60,7 +68,7 @@ class ViewdScreenBody extends StatelessWidget {
                                   ],
                                 ));
                       },
-                      icon: const Icon(
+                      icon: Icon(
                         IconlyLight.delete,
                         color: Colors.red,
                         size: 26,
@@ -69,12 +77,13 @@ class ViewdScreenBody extends StatelessWidget {
                   ]),
         body: isempty
             // ignore: dead_code
-            ? const EmptyViewdScreen()
+            ? EmptyViewdScreen()
             // ignore: dead_code
             : ListView.builder(
-                itemCount: 10,
+                itemCount: viewd.length,
                 itemBuilder: (context, index) {
-                  return const ViewdItem();
+                  return ChangeNotifierProvider.value(
+                      value: viewd[index], child: const ViewdItem());
                 }));
   }
 }

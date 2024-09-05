@@ -3,6 +3,7 @@ import 'package:iconly/iconly.dart';
 
 import 'package:pharnacy_trust/provider/cart_provider.dart';
 import 'package:pharnacy_trust/provider/product_provider.dart';
+import 'package:pharnacy_trust/provider/view_product.dart';
 
 import 'package:pharnacy_trust/service/global_methods.dart';
 
@@ -26,6 +27,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     final productId = ModalRoute.of(context)!.settings.arguments as int;
     final getCurrentProduct = productList.findProductById(productId);
     final addToCartProvider = Provider.of<CartProvider>(context);
+    final viewProductModel = Provider.of<ViewProduct1>(context);
 
     return Scaffold(
       appBar: AppBar(
@@ -34,6 +36,9 @@ class _ProductDetailsState extends State<ProductDetails> {
         leading: IconButton(
           icon: const Icon(IconlyBold.arrow_left, color: Colors.black),
           onPressed: () {
+            viewProductModel.addRemoveProductToView(
+                productId: getCurrentProduct.id.toString());
+
             Navigator.pop(context);
           },
         ),

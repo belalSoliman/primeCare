@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:pharnacy_trust/models/product_model.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
+import 'package:pharnacy_trust/provider/view_product.dart';
 import 'package:pharnacy_trust/provider/whist_list_provider.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 
@@ -24,6 +25,7 @@ class ProductCard extends StatelessWidget {
     final wishListProvider = Provider.of<WhistListProvider>(context);
     bool? _isInWishList =
         wishListProvider.whistList.containsKey(productModel.id.toString());
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       color: darkThemeProvider.darkTheme ? Colors.grey[300] : Colors.white,

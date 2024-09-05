@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:pharnacy_trust/inner_screens/wishList_screen/empty_wish_list.dart';
 import 'package:pharnacy_trust/inner_screens/wishList_screen/wish_list_item.dart';
-import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/provider/whist_list_provider.dart';
 
 import 'package:provider/provider.dart';
@@ -22,7 +21,6 @@ class _WishListState extends State<WishList> {
   @override
   Widget build(BuildContext context) {
     final whistListProvider = Provider.of<WhistListProvider>(context);
-    final productProvider = Provider.of<ProductProvider>(context);
     final wishList =
         whistListProvider.whistList.values.toList().reversed.toList();
 

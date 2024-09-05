@@ -7,8 +7,7 @@ import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/provider/whist_list_provider.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
-import 'package:pharnacy_trust/widget/shop_view_widget/card_icon.dart';
-import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
+
 import 'package:provider/provider.dart';
 
 class WishListItem extends StatelessWidget {

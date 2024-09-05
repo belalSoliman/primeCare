@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/consts/consts.dart';
 
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
+import 'package:pharnacy_trust/provider/view_product.dart';
 
 import 'package:pharnacy_trust/widget/btn_nav_bar_widgets/btn_nav_bar.dart';
 
