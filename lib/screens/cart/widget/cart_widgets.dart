@@ -48,9 +48,9 @@ class _CartWidgetsState extends State<CartWidgets> {
     final cartProvider2 = Provider.of<CartProvider>(context);
 
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 8),
+      margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 2),
       width: MediaQuery.of(context).size.width * 0.9,
-      height: MediaQuery.of(context).size.height * 0.15,
+      height: MediaQuery.of(context).size.height * 0.2,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20), color: Colors.white),
       child: Row(
@@ -65,83 +65,81 @@ class _CartWidgetsState extends State<CartWidgets> {
             child: Row(
               children: [
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.15,
+                  height: MediaQuery.of(context).size.height * 0.17,
                   width: MediaQuery.of(context).size.width * 0.3,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
                       image: AssetImage(getcurrentProduct.images),
-                      fit: BoxFit.fill,
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
                 const SizedBox(width: 10),
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.3,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        getcurrentProduct.title,
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Text(
+                      getcurrentProduct.title,
+                      style: const TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      child: Text(
+                        getcurrentProduct.description,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
+                          color: Colors.grey,
+                          fontSize: 12,
                         ),
                       ),
-                      Container(
-                        width: MediaQuery.of(context).size.width * 0.3,
-                        child: Text(
-                          getcurrentProduct.description,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 12,
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      getcurrentProduct.isonsale
-                          ? Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "\$${getcurrentProduct.price.toStringAsFixed(2)}",
-                                  style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Colors
-                                        .grey, // Use a neutral color for the original price
-                                    fontWeight: FontWeight.bold,
-                                    decoration: TextDecoration
-                                        .lineThrough, // Strikethrough for original price
-                                  ),
+                    ),
+                    const SizedBox(height: 10),
+                    getcurrentProduct.isonsale
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "\$${getcurrentProduct.price.toStringAsFixed(2)}",
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors
+                                      .grey, // Use a neutral color for the original price
+                                  fontWeight: FontWeight.bold,
+                                  decoration: TextDecoration
+                                      .lineThrough, // Strikethrough for original price
                                 ),
-                                Text(
-                                  "\$${getcurrentProduct.discountPercentage}",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.red.shade700,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                              ],
-                            )
-                          : SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.3,
-                              child: Text(
-                                "\$${(getcurrentProduct.price * count).toStringAsFixed(2)}",
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
+                              ),
+                              Text(
+                                "\$${getcurrentProduct.discountPercentage}",
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: Colors.purple.shade700,
+                                  color: Colors.red.shade700,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
+                            ],
+                          )
+                        : SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            child: Text(
+                              "\$${(getcurrentProduct.price * count).toStringAsFixed(2)}",
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.purple.shade700,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
-                      const SizedBox(height: 10),
-                    ],
-                  ),
+                          ),
+                    const SizedBox(height: 10),
+                  ],
                 ),
               ],
             ),

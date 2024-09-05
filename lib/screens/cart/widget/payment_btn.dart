@@ -11,7 +11,7 @@ class PaymentBtn extends StatelessWidget {
 
     // Define responsive padding, font size, and border radius
     final double horizontalPadding = screenWidth * 0.1;
-    final double verticalPadding = 15.0;
+    const double verticalPadding = 15.0;
     final double fontSize =
         screenWidth * 0.045; // Adjust font size based on screen width
     final double borderRadius =

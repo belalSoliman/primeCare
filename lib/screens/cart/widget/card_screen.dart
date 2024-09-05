@@ -73,7 +73,7 @@ class CartView extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return ChangeNotifierProvider.value(
                         value: cartItems[index],
-                        child: CartWidgets(),
+                        child: const CartWidgets(),
                       );
                     },
                   ),
