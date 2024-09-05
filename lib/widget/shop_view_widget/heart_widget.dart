@@ -10,7 +10,7 @@ class HeartWidget extends StatelessWidget {
       onTap: () {},
       child: const Icon(
         IconlyLight.heart,
-        color: Colors.white,
+        color: Colors.black,
         size: 26,
       ),
     );

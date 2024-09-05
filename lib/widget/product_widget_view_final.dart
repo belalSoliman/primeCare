@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 import 'package:pharnacy_trust/models/product_model.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
@@ -51,10 +52,15 @@ class ProductCard extends StatelessWidget {
             Container(
               color:
                   darkThemeProvider.darkTheme ? Colors.grey[300] : Colors.white,
-              child: Text(
-                productModel.title,
-                style: Theme.of(context).textTheme.bodyMedium,
-                maxLines: 2,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    productModel.title,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    maxLines: 2,
+                  ),
+                ],
               ),
             ),
             Row(
@@ -68,17 +74,14 @@ class ProductCard extends StatelessWidget {
                     color: Color(0xFFFF7643),
                   ),
                 ),
-                InkWell(
-                  borderRadius: BorderRadius.circular(50),
+                GestureDetector(
                   onTap: () {},
-                  child: Container(
-                      height: 24,
-                      width: 24,
-                      decoration: const BoxDecoration(
-                        shape: BoxShape.circle,
-                      ),
-                      child: const HeartWidget()),
-                ),
+                  child: const Icon(
+                    IconlyLight.heart,
+                    color: Colors.black,
+                    size: 26,
+                  ),
+                )
               ],
             ),
             Row(children: [

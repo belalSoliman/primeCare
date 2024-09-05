@@ -8,8 +8,8 @@ import 'package:pharnacy_trust/inner_screens/wishList_screen/wish_list.dart';
 import 'package:pharnacy_trust/provider/cart_provider.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/provider/product_provider.dart';
+import 'package:pharnacy_trust/provider/whist_list_provider.dart';
 import 'package:pharnacy_trust/screens/Auth/forget_password.dart';
-
 
 import 'package:pharnacy_trust/screens/Auth/sign_up.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
@@ -47,6 +47,7 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
         ChangeNotifierProvider(create: (_) => darkThemeProvider),
         ChangeNotifierProvider(create: (_) => ProductProvider()),
         ChangeNotifierProvider(create: (_) => CartProvider()),
+        ChangeNotifierProvider(create: (_) => WhistListProvider()),
       ],
       child: Consumer<DarkThemeProvider>(
         builder: (context, darkThemeProvider, child) {
