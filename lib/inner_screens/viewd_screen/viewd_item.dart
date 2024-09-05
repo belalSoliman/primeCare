@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/models/viewd_product_model.dart';
 import 'package:pharnacy_trust/provider/product_provider.dart';
+import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,8 @@ class ViewdItem extends StatelessWidget {
         productProvider.findProductById(int.parse(viewdItem.productid));
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/product_details', arguments: product.id);
+        Navigator.pushNamed(context, ProductDetails.routeName,
+            arguments: product.id);
       },
       child: Container(
         padding: const EdgeInsets.all(8),
