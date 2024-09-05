@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-import 'package:pharnacy_trust/models/product_model.dart';
+
 import 'package:pharnacy_trust/provider/cart_provider.dart';
 import 'package:pharnacy_trust/provider/product_provider.dart';
-import 'package:pharnacy_trust/screens/cart/widget/card_screen.dart';
+
 import 'package:pharnacy_trust/service/global_methods.dart';
 
 import 'package:provider/provider.dart';

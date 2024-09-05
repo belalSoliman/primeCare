@@ -71,7 +71,7 @@ class _CartWidgetsState extends State<CartWidgets> {
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
                       image: AssetImage(getcurrentProduct.images),
-                      fit: BoxFit.cover,
+                      fit: BoxFit.contain,
                     ),
                   ),
                 ),

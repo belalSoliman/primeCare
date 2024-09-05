@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:pharnacy_trust/models/product_model.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
+import 'package:pharnacy_trust/provider/whist_list_provider.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 
-import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
 import 'package:provider/provider.dart';
 
 class ProductCard extends StatelessWidget {
@@ -21,6 +21,9 @@ class ProductCard extends StatelessWidget {
     DarkThemeProvider darkThemeProvider =
         Provider.of<DarkThemeProvider>(context);
     final productModel = Provider.of<ProductModel>(context);
+    final wishListProvider = Provider.of<WhistListProvider>(context);
+    bool? _isInWishList =
+        wishListProvider.whistList.containsKey(productModel.id.toString());
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       color: darkThemeProvider.darkTheme ? Colors.grey[300] : Colors.white,
@@ -75,10 +78,13 @@ class ProductCard extends StatelessWidget {
                   ),
                 ),
                 GestureDetector(
-                  onTap: () {},
-                  child: const Icon(
-                    IconlyLight.heart,
-                    color: Colors.black,
+                  onTap: () {
+                    wishListProvider.addProductToWhistList(
+                        productId: productModel.id.toString());
+                  },
+                  child: Icon(
+                    _isInWishList ? IconlyBold.heart : IconlyLight.heart,
+                    color: _isInWishList ? Colors.green : Colors.black,
                     size: 26,
                   ),
                 )
