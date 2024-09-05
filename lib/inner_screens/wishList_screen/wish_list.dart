@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:pharnacy_trust/inner_screens/wishList_screen/empty_wish_list.dart';
 import 'package:pharnacy_trust/inner_screens/wishList_screen/wish_list_item.dart';
+import 'package:pharnacy_trust/provider/product_provider.dart';
+import 'package:pharnacy_trust/provider/whist_list_provider.dart';
+
+import 'package:provider/provider.dart';
 
 class WishList extends StatefulWidget {
   const WishList({
@@ -17,7 +21,13 @@ class WishList extends StatefulWidget {
 class _WishListState extends State<WishList> {
   @override
   Widget build(BuildContext context) {
-    bool isempty = false;
+    final whistListProvider = Provider.of<WhistListProvider>(context);
+    final productProvider = Provider.of<ProductProvider>(context);
+    final wishList =
+        whistListProvider.whistList.values.toList().reversed.toList();
+
+    bool? isempty = whistListProvider.whistList.isEmpty;
+
     return Scaffold(
         appBar: isempty
             // ignore: dead_code
@@ -79,19 +89,16 @@ class _WishListState extends State<WishList> {
             // ignore: dead_code
             ? const EmptyWishlist()
             // ignore: dead_code
-            : Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: GridView.builder(
-                    itemCount: 4,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                            childAspectRatio: 0.9,
-                            mainAxisSpacing: 10,
-                            crossAxisSpacing: 10,
-                            crossAxisCount: 2),
-                    itemBuilder: (context, index) {
-                      return const WishListItem();
-                    }),
-              ));
+            : GridView.builder(
+                itemCount: wishList.length,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 0.65,
+                    mainAxisSpacing: 10,
+                    crossAxisSpacing: 10,
+                    crossAxisCount: 2),
+                itemBuilder: (context, index) {
+                  return ChangeNotifierProvider.value(
+                      value: wishList[index], child: WishListItem());
+                }));
   }
 }

@@ -32,4 +32,10 @@ class WhistListProvider with ChangeNotifier {
     _whistList.clear();
     notifyListeners();
   }
+
+  void containsProductInWhistList({required String productId}) {
+    _whistList.containsKey(productId);
+
+    notifyListeners();
+  }
 }
