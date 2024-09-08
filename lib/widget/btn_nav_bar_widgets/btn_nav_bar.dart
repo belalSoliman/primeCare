@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:pharnacy_trust/consts/theme_data.dart';
 import 'package:badges/badges.dart' as badges;
-import 'package:pharnacy_trust/models/cart_model.dart';
+
 import 'package:pharnacy_trust/provider/cart_provider.dart';
 import 'package:provider/provider.dart';
 
