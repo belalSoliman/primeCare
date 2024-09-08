@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1035210024290",
+    "project_id": "primecare-13cfb",
+    "storage_bucket": "primecare-13cfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1035210024290:android:59f9035bb75c7a2ec9f83b",
+        "android_client_info": {
+          "package_name": "com.example.pharnacy_trust"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2H6RFaNmQW9ncenn1sWXdBtqNlUrk8kI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
