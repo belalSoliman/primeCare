@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/consts/theme_data.dart';
 import 'package:pharnacy_trust/inner_screens/category_filterd_Screen.dart/category_filter_screen.dart';
@@ -43,38 +44,53 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => darkThemeProvider),
-        ChangeNotifierProvider(create: (_) => ProductProvider()),
-        ChangeNotifierProvider(create: (_) => CartProvider()),
-        ChangeNotifierProvider(create: (_) => WhistListProvider()),
-        ChangeNotifierProvider(create: (_) => ViewProduct1()),
-      ],
-      child: Consumer<DarkThemeProvider>(
-        builder: (context, darkThemeProvider, child) {
-          return MaterialApp(
-            debugShowCheckedModeBanner: false,
-            title: 'Prime Care',
-            theme: Styles.themeData(darkThemeProvider.darkTheme, context),
-            home: const BtnNavBar(),
-            routes: {
-              OnSaleScreens.routeName: (ctx) => const OnSaleScreens(),
-              ProductsScreen.routeName: (ctx) => const ProductsScreen(),
-              ProductDetails.routeName: (ctx) => const ProductDetails(),
-              CartView.routeName: (ctx) => const CartView(),
-              WishList.routeName: (ctx) => const WishList(),
-              OrderScreenView.routeName: (ctx) => const OrderScreenView(),
-              ViewdScreenBody.routeName: (ctx) => const ViewdScreenBody(),
-              BtnNavBar.routeName: (ctx) => const BtnNavBar(),
-              SignUp.routeName: (ctx) => const SignUp(),
-              ForgetPassword.routeName: (ctx) => const ForgetPassword(),
-              CategoryFilterScreen.routeName: (ctx) =>
-                  const CategoryFilterScreen(),
-            },
+    final Future<FirebaseApp> firebaseiniti = Firebase.initializeApp();
+    return FutureBuilder(
+        future: firebaseiniti,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const MaterialApp(
+                home: Scaffold(
+                    body: Center(
+              child: CircularProgressIndicator(),
+            )));
+          } else if (snapshot.hasError) {
+            return const MaterialApp(
+                home: Scaffold(body: Center(child: Text('Error'))));
+          }
+          return MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (_) => darkThemeProvider),
+              ChangeNotifierProvider(create: (_) => ProductProvider()),
+              ChangeNotifierProvider(create: (_) => CartProvider()),
+              ChangeNotifierProvider(create: (_) => WhistListProvider()),
+              ChangeNotifierProvider(create: (_) => ViewProduct1()),
+            ],
+            child: Consumer<DarkThemeProvider>(
+              builder: (context, darkThemeProvider, child) {
+                return MaterialApp(
+                  debugShowCheckedModeBanner: false,
+                  title: 'Prime Care',
+                  theme: Styles.themeData(darkThemeProvider.darkTheme, context),
+                  home: const BtnNavBar(),
+                  routes: {
+                    OnSaleScreens.routeName: (ctx) => const OnSaleScreens(),
+                    ProductsScreen.routeName: (ctx) => const ProductsScreen(),
+                    ProductDetails.routeName: (ctx) => const ProductDetails(),
+                    CartView.routeName: (ctx) => const CartView(),
+                    WishList.routeName: (ctx) => const WishList(),
+                    OrderScreenView.routeName: (ctx) => const OrderScreenView(),
+                    ViewdScreenBody.routeName: (ctx) => const ViewdScreenBody(),
+                    BtnNavBar.routeName: (ctx) => const BtnNavBar(),
+                    SignUp.routeName: (ctx) => const SignUp(),
+                    ForgetPassword.routeName: (ctx) => const ForgetPassword(),
+                    CategoryFilterScreen.routeName: (ctx) =>
+                        const CategoryFilterScreen(),
+                  },
+                );
+              },
+            ),
           );
-        },
-      ),
-    );
+        });
   }
 }
