@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/models/viewd_product_model.dart';
 
 class ViewProduct1 with ChangeNotifier {
+  // ignore: prefer_final_fields
   Map<String, ViewdProductModel> _viewProduct1 = {};
 
   Map<String, ViewdProductModel> get viewProduct1 => _viewProduct1;

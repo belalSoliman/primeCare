@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:pharnacy_trust/models/product_model.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
-import 'package:pharnacy_trust/provider/view_product.dart';
+
 import 'package:pharnacy_trust/provider/whist_list_provider.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 
@@ -23,7 +23,7 @@ class ProductCard extends StatelessWidget {
         Provider.of<DarkThemeProvider>(context);
     final productModel = Provider.of<ProductModel>(context);
     final wishListProvider = Provider.of<WhistListProvider>(context);
-    bool? _isInWishList =
+    bool? isInWishList =
         wishListProvider.whistList.containsKey(productModel.id.toString());
 
     return Container(
@@ -85,8 +85,8 @@ class ProductCard extends StatelessWidget {
                         productId: productModel.id.toString());
                   },
                   child: Icon(
-                    _isInWishList ? IconlyBold.heart : IconlyLight.heart,
-                    color: _isInWishList ? Colors.green : Colors.black,
+                    isInWishList ? IconlyBold.heart : IconlyLight.heart,
+                    color: isInWishList ? Colors.green : Colors.black,
                     size: 26,
                   ),
                 )

@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:pharnacy_trust/consts/theme_data.dart';
 import 'package:badges/badges.dart' as badges;
+import 'package:pharnacy_trust/models/cart_model.dart';
+import 'package:pharnacy_trust/provider/cart_provider.dart';
+import 'package:provider/provider.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   final int currentIndex;
@@ -17,6 +20,7 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartItem = Provider.of<CartProvider>(context);
     return BottomNavigationBar(
       backgroundColor:
           isDarkTheme ? Theme.of(context).canvasColor : Colors.white,
@@ -53,21 +57,20 @@ class CustomBottomNavBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: badges.Badge(
-            badgeAnimation: const badges.BadgeAnimation.rotation(
-              curve: Curves.easeInCubic,
+            badgeAnimation: const badges.BadgeAnimation.size(
+              curve: Curves.easeInCirc,
               toAnimate: true,
-              animationDuration: Duration(milliseconds: 1000),
-              loopAnimation: true,
+              animationDuration: Duration(milliseconds: 5000),
             ),
             position: badges.BadgePosition.topEnd(
               top: -14,
               end: -10,
             ),
             badgeContent: Text(
-              '10'.toString(),
+              cartItem.cartItems.length.toString(),
               style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 18,
+                  fontSize: 22,
                   fontWeight: FontWeight.bold),
             ),
             badgeStyle: const badges.BadgeStyle(

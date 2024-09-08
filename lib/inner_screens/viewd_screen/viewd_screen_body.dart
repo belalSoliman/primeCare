@@ -68,7 +68,7 @@ class ViewdScreenBody extends StatelessWidget {
                                   ],
                                 ));
                       },
-                      icon: Icon(
+                      icon: const Icon(
                         IconlyLight.delete,
                         color: Colors.red,
                         size: 26,
@@ -77,7 +77,7 @@ class ViewdScreenBody extends StatelessWidget {
                   ]),
         body: isempty
             // ignore: dead_code
-            ? EmptyViewdScreen()
+            ? const EmptyViewdScreen()
             // ignore: dead_code
             : ListView.builder(
                 itemCount: viewd.length,

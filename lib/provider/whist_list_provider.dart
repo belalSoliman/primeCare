@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/models/wish_list_model.dart';
 
 class WhistListProvider with ChangeNotifier {
+  // ignore: prefer_final_fields
   Map<String, WishListModel> _whistList = {};
 
   Map<String, WishListModel> get whistList => _whistList;

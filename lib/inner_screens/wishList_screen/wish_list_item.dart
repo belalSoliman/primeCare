@@ -6,7 +6,6 @@ import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/provider/whist_list_provider.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
-import 'package:pharnacy_trust/service/global_methods.dart';
 
 import 'package:provider/provider.dart';
 
@@ -16,13 +15,12 @@ class WishListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DarkThemeProvider darkThemeProvider = DarkThemeProvider();
-    GlobalMethods globalMethods = GlobalMethods();
 
-    final _productModel = Provider.of<ProductProvider>(context);
-    final _whistListProvider = Provider.of<WhistListProvider>(context);
-    final _whistListModel = Provider.of<WishListModel>(context);
+    final productModel = Provider.of<ProductProvider>(context);
+    final whistListProvider = Provider.of<WhistListProvider>(context);
+    final whistListModel = Provider.of<WishListModel>(context);
     final getCurrentProduct =
-        _productModel.findProductById(int.parse(_whistListModel.productid));
+        productModel.findProductById(int.parse(whistListModel.productid));
 
     return GestureDetector(
       onTap: () {
@@ -76,10 +74,10 @@ class WishListItem extends StatelessWidget {
             const SizedBox(height: 8),
             GestureDetector(
               onTap: () {
-                _whistListProvider.addProductToWhistList(
+                whistListProvider.addProductToWhistList(
                     productId: getCurrentProduct.id.toString());
               },
-              child: Icon(
+              child: const  Icon(
                 IconlyBold.heart,
                 color: Colors.green,
                 size: 26,

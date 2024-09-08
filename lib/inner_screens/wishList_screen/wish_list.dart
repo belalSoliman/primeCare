@@ -96,7 +96,7 @@ class _WishListState extends State<WishList> {
                     crossAxisCount: 2),
                 itemBuilder: (context, index) {
                   return ChangeNotifierProvider.value(
-                      value: wishList[index], child: WishListItem());
+                      value: wishList[index], child: const WishListItem());
                 }));
   }
 }

@@ -2,17 +2,17 @@ import 'package:flutter/foundation.dart';
 import 'package:pharnacy_trust/models/cart_model.dart';
 
 class CartProvider with ChangeNotifier {
-  Map<String, CartModel> _cartItems = {};
+  Map<String, CartModel> cartItems = {};
 
   Map<String, CartModel> get getCartItems {
-    return _cartItems;
+    return cartItems;
   }
 
   void addProductToCart({required int productId}) {
     String productKey = productId.toString(); // Convert productId to String
 
-    if (_cartItems.containsKey(productKey)) {
-      _cartItems.update(
+    if (cartItems.containsKey(productKey)) {
+      cartItems.update(
         productKey,
         (value) => CartModel(
           id: DateTime.now().toString(),
@@ -22,7 +22,7 @@ class CartProvider with ChangeNotifier {
         ),
       );
     } else {
-      _cartItems.putIfAbsent(
+      cartItems.putIfAbsent(
         productKey,
         () => CartModel(
           id: DateTime.now().toString(),
@@ -34,12 +34,12 @@ class CartProvider with ChangeNotifier {
   }
 
   void clearCart() {
-    _cartItems.clear();
+    cartItems.clear();
     notifyListeners();
   }
 
   void removeProductFromCart({required String productId}) {
-    _cartItems.remove(productId);
+    cartItems.remove(productId);
     notifyListeners();
   }
 }
