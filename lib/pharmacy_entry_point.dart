@@ -12,12 +12,9 @@ import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/provider/view_product.dart';
 import 'package:pharnacy_trust/provider/whist_list_provider.dart';
 import 'package:pharnacy_trust/screens/Auth/forget_password.dart';
-import 'package:pharnacy_trust/screens/Auth/log_in.dart';
-
 import 'package:pharnacy_trust/screens/Auth/sign_up.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 import 'package:pharnacy_trust/screens/cart/widget/card_screen.dart';
-
 import 'package:provider/provider.dart';
 import 'inner_screens/viewd_screen/viewd_screen_body.dart';
 import 'screens/btn_nav_bar.dart';
@@ -30,7 +27,7 @@ class PharmacyEntryPoint extends StatefulWidget {
 }
 
 class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
-  DarkThemeProvider darkThemeProvider = DarkThemeProvider();
+  final DarkThemeProvider darkThemeProvider = DarkThemeProvider();
 
   @override
   void initState() {
@@ -48,17 +45,10 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
   }
 
   @override
-  void dispose() {
-    darkThemeProvider
-        .dispose(); // This should only be called if needed and safely
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final Future<FirebaseApp> firebaseiniti = Firebase.initializeApp();
+    final Future<FirebaseApp> firebaseInit = Firebase.initializeApp();
     return FutureBuilder(
-      future: firebaseiniti,
+      future: firebaseInit,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const MaterialApp(
@@ -80,7 +70,9 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
           // Firebase is initialized successfully, so build the main app
           return MultiProvider(
             providers: [
-              ChangeNotifierProvider(create: (_) => darkThemeProvider),
+              ChangeNotifierProvider<DarkThemeProvider>.value(
+                value: darkThemeProvider,
+              ),
               ChangeNotifierProvider(create: (_) => ProductProvider()),
               ChangeNotifierProvider(create: (_) => CartProvider()),
               ChangeNotifierProvider(create: (_) => WhistListProvider()),
@@ -92,7 +84,7 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
                   debugShowCheckedModeBanner: false,
                   title: 'Prime Care',
                   theme: Styles.themeData(darkThemeProvider.darkTheme, context),
-                  home: const LogIn(),
+                  home: const BtnNavBar(),
                   routes: {
                     OnSaleScreens.routeName: (ctx) => const OnSaleScreens(),
                     ProductsScreen.routeName: (ctx) => const ProductsScreen(),

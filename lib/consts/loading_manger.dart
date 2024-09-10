@@ -12,13 +12,13 @@ class LoadingManger extends StatelessWidget {
   Widget build(BuildContext context) {
     const spinkit = SpinKitSpinningLines(
       color: Colors.white,
-      size: 50.0,
+      size: 100.0,
     );
     return Stack(children: [
       child,
       isLoading
           ? Container(
-              color: Colors.black54.withOpacity(.5),
+              color: Colors.black54.withOpacity(.8),
             )
           : Container(),
       isLoading ? const Center(child: spinkit) : Container(),

@@ -52,15 +52,22 @@ class _SignUpFormState extends State<SignUpForm> {
       } on FirebaseAuthException catch (e) {
         GlobalMethods.errorDialog(
           subtitle: '${e.message}',
+          // ignore: use_build_context_synchronously
           ctx: context,
           title: "Error signing up",
         );
       } on Exception catch (e) {
         GlobalMethods.errorDialog(
-            subtitle: e.toString(), ctx: context, title: "Error signing up");
+            // ignore: use_build_context_synchronously
+            subtitle: e.toString(),
+            ctx: context,
+            title: "Error signing up");
       } finally {
         GlobalMethods.errorDialog(
-            ctx: context, subtitle: "Sign Up Successful", title: "Success");
+            // ignore: use_build_context_synchronously
+            ctx: context,
+            subtitle: "Sign Up Successful",
+            title: "Success");
         _formKey.currentState!.reset();
         _addressController.clear();
         _userNameController.clear();
