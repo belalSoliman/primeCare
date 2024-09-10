@@ -1,4 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/consts/firebase_auth.dart';
+import 'package:pharnacy_trust/screens/Auth/auth_btn.dart';
+import 'package:pharnacy_trust/screens/Auth/forget_password.dart';
+import 'package:pharnacy_trust/screens/btn_nav_bar.dart';
+import 'package:pharnacy_trust/service/global_methods.dart';
 
 class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
@@ -23,16 +29,62 @@ class _LoginFormState extends State<LoginForm> {
     super.dispose();
   }
 
-  void _submit() {
+  void _submit() async {
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
-    if (isValid) {
 
+    if (isValid) {
+      setState(() {});
+
+      try {
+        await authinstance.signInWithEmailAndPassword(
+          email: _emailController.text.toLowerCase().trim(),
+          password: _passwordController.text.toLowerCase().trim(),
+        );
+
+        // If successful, show success dialog and navigate to BtnNavBar
+
+        // ignore: use_build_context_synchronously
+        Navigator.of(context).pushReplacement(
+          MaterialPageRoute(builder: (context) {
+            return const BtnNavBar();
+          }),
+        );
+      } on FirebaseAuthException catch (e) {
+        GlobalMethods.errorDialog(
+          subtitle: e.message.toString(),
+          // ignore: use_build_context_synchronously
+          ctx: context,
+          title: "Error signing up",
+        );
+        setState(() {
+          // Stop loading after showing the error dialog
+        });
+      } on Exception catch (e) {
+        GlobalMethods.errorDialog(
+          subtitle: e.toString(),
+          // ignore: use_build_context_synchronously
+          ctx: context,
+          title: "Error signing up",
+        );
+        setState(() {
+          // Stop loading after showing the error dialog
+        });
+      } finally {
+        // Ensure loading is stopped in case of success
+        if (authinstance.currentUser != null) {
+          setState(() {});
+        }
+      }
+    } else {
+      // If form is not valid, stop loading immediately
+      setState(() {});
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    GlobalMethods globalMethods = GlobalMethods();
     return Form(
         key: _formKey,
         child: Column(
@@ -67,7 +119,6 @@ class _LoginFormState extends State<LoginForm> {
               },
               obscureText: _obscureText,
               controller: _passwordController,
-              textInputAction: TextInputAction.done,
               keyboardType: TextInputType.visiblePassword,
               focusNode: _passwordFoucNode,
               validator: (value) {
@@ -97,6 +148,33 @@ class _LoginFormState extends State<LoginForm> {
                 focusedBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.white)),
               ),
+            ),
+            Align(
+              alignment: Alignment.topRight,
+              child: TextButton(
+                  onPressed: () {
+                    globalMethods.navigateTo(
+                      ctx: context,
+                      routeName: ForgetPassword.routeName,
+                    );
+                  },
+                  child: const Text(
+                    "Forgot Password?",
+                    maxLines: 1,
+                    style: TextStyle(
+                        color: Colors.lightBlueAccent,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic),
+                  )),
+            ),
+            const SizedBox(height: 20),
+            AuthBtn(
+              btnText: "Sign In",
+              fct: () {
+                _submit();
+              },
+              color: Colors.white38,
             ),
           ],
         ));

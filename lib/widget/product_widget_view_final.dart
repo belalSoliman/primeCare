@@ -1,10 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:pharnacy_trust/consts/firebase_auth.dart';
 import 'package:pharnacy_trust/models/product_model.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 
 import 'package:pharnacy_trust/provider/whist_list_provider.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
+import 'package:pharnacy_trust/service/global_methods.dart';
 
 import 'package:provider/provider.dart';
 
@@ -81,6 +84,15 @@ class ProductCard extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
+                    final User? user = authinstance.currentUser;
+                    if (user == null) {
+                      GlobalMethods.errorDialog(
+                        ctx: context,
+                        subtitle: "Please login first",
+                        title: "Error",
+                      );
+                      return;
+                    }
                     wishListProvider.addProductToWhistList(
                         productId: productModel.id.toString());
                   },

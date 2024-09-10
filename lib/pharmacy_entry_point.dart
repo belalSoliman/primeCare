@@ -12,6 +12,7 @@ import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/provider/view_product.dart';
 import 'package:pharnacy_trust/provider/whist_list_provider.dart';
 import 'package:pharnacy_trust/screens/Auth/forget_password.dart';
+import 'package:pharnacy_trust/screens/Auth/log_in.dart';
 import 'package:pharnacy_trust/screens/Auth/sign_up.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 import 'package:pharnacy_trust/screens/cart/widget/card_screen.dart';
@@ -98,6 +99,7 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
                     ForgetPassword.routeName: (ctx) => const ForgetPassword(),
                     CategoryFilterScreen.routeName: (ctx) =>
                         const CategoryFilterScreen(),
+                    LogIn.routeName: (ctx) => const LogIn(),
                   },
                 );
               },

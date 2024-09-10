@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:pharnacy_trust/consts/firebase_auth.dart';
 import 'package:pharnacy_trust/consts/theme_data.dart';
 import 'package:badges/badges.dart' as badges;
 
 import 'package:pharnacy_trust/provider/cart_provider.dart';
+import 'package:pharnacy_trust/screens/Auth/log_in.dart';
 import 'package:provider/provider.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
@@ -20,12 +23,22 @@ class CustomBottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final User? user = authinstance.currentUser;
     final cartItem = Provider.of<CartProvider>(context);
     return BottomNavigationBar(
       backgroundColor:
           isDarkTheme ? Theme.of(context).canvasColor : Colors.white,
       currentIndex: currentIndex,
-      onTap: onTap,
+      onTap: (index) {
+        if (index == 3 && user == null) {
+          Navigator.of(context).pushReplacement(MaterialPageRoute(
+            builder: (context) => const LogIn(),
+          ));
+        } else {
+          // Handle other cases and profile if the user is logged in
+          onTap(index);
+        }
+      },
       selectedItemColor: isDarkTheme
           ? Colors.lightBlue.shade200
           : Theme.of(context).primaryColor,
@@ -86,15 +99,25 @@ class CustomBottomNavBar extends StatelessWidget {
           ),
           label: 'Cart',
         ),
-        BottomNavigationBarItem(
-          icon: Icon(
-            IconlyLight.user,
-            color: currentIndex == 3
-                ? Styles.themeData(false, context).primaryColor
-                : Colors.grey[500],
-          ),
-          label: 'Profile',
-        ),
+        user != null
+            ? BottomNavigationBarItem(
+                icon: Icon(
+                  IconlyLight.user,
+                  color: currentIndex == 3
+                      ? Styles.themeData(false, context).primaryColor
+                      : Colors.grey[500],
+                ),
+                label: 'Profile',
+              )
+            : BottomNavigationBarItem(
+                icon: Icon(
+                  IconlyLight.login,
+                  color: currentIndex == 3
+                      ? Styles.themeData(false, context).primaryColor
+                      : Colors.grey[500],
+                ),
+                label: 'Login',
+              )
       ],
     );
   }

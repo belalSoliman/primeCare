@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/consts/firebase_auth.dart';
+import 'package:pharnacy_trust/screens/Auth/log_in.dart';
 
 class LogOutMethod extends StatelessWidget {
   final BuildContext context;
@@ -28,7 +30,10 @@ class LogOutMethod extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            authinstance.signOut();
+            Navigator.of(context).pushReplacementNamed(LogIn.routeName);
+          },
           child: const Text(
             'Log Out',
             style: TextStyle(

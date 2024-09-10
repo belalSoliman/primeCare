@@ -1,9 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:pharnacy_trust/consts/firebase_auth.dart';
 
 import 'package:pharnacy_trust/provider/cart_provider.dart';
 import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/provider/view_product.dart';
+import 'package:pharnacy_trust/provider/whist_list_provider.dart';
 
 import 'package:pharnacy_trust/service/global_methods.dart';
 
@@ -23,12 +26,15 @@ class _ProductDetailsState extends State<ProductDetails> {
 
   @override
   Widget build(BuildContext context) {
+    final wishListProvider = Provider.of<WhistListProvider>(context);
+
     final productList = Provider.of<ProductProvider>(context);
     final productId = ModalRoute.of(context)!.settings.arguments as int;
     final getCurrentProduct = productList.findProductById(productId);
     final addToCartProvider = Provider.of<CartProvider>(context);
     final viewProductModel = Provider.of<ViewProduct1>(context);
-
+    bool? isInWishList =
+        wishListProvider.whistList.containsKey(getCurrentProduct.id.toString());
     return Scaffold(
       appBar: AppBar(
         elevation: 1,
@@ -43,10 +49,26 @@ class _ProductDetailsState extends State<ProductDetails> {
           },
         ),
         actions: [
-          IconButton(
-            icon: const Icon(IconlyLight.heart, color: Colors.black),
-            onPressed: () {},
-          ),
+          GestureDetector(
+            onTap: () {
+              final User? user = authinstance.currentUser;
+              if (user == null) {
+                GlobalMethods.errorDialog(
+                  ctx: context,
+                  subtitle: "Please login first",
+                  title: "Error",
+                );
+                return;
+              }
+              wishListProvider.addProductToWhistList(
+                  productId: getCurrentProduct.id.toString());
+            },
+            child: Icon(
+              isInWishList ? IconlyBold.heart : IconlyLight.heart,
+              color: isInWishList ? Colors.green : Colors.black,
+              size: 26,
+            ),
+          )
         ],
       ),
       body: SingleChildScrollView(
@@ -100,6 +122,15 @@ class _ProductDetailsState extends State<ProductDetails> {
                   onPressed: isAddedToCart
                       ? null
                       : () {
+                          final User? user = authinstance.currentUser;
+                          if (user == null) {
+                            GlobalMethods.errorDialog(
+                              ctx: context,
+                              subtitle: "Please login first",
+                              title: "Error",
+                            );
+                            return;
+                          }
                           addToCartProvider.addProductToCart(
                             productId: getCurrentProduct.id,
                           );

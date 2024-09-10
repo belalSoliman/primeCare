@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pharnacy_trust/consts/consts.dart';
 import 'package:pharnacy_trust/screens/Auth/auth_btn.dart';
 import 'package:pharnacy_trust/screens/Auth/divider.dart';
-import 'package:pharnacy_trust/screens/Auth/forget_password.dart';
+
 import 'package:pharnacy_trust/screens/Auth/google.btn.dart';
 
 import 'package:pharnacy_trust/screens/Auth/log_in_swiper.dart';
@@ -14,7 +14,7 @@ import 'package:pharnacy_trust/service/global_methods.dart';
 
 class LogIn extends StatefulWidget {
   const LogIn({super.key});
-
+  static const routeName = '/LogIn';
   @override
   State<LogIn> createState() => _LogInState();
 }
@@ -48,31 +48,6 @@ class _LogInState extends State<LogIn> {
                     SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                     const LoginForm(),
                     const SizedBox(height: 15),
-                    Align(
-                      alignment: Alignment.topRight,
-                      child: TextButton(
-                          onPressed: () {
-                            globalMethods.navigateTo(
-                              ctx: context,
-                              routeName: ForgetPassword.routeName,
-                            );
-                          },
-                          child: const Text(
-                            "Forgot Password?",
-                            maxLines: 1,
-                            style: TextStyle(
-                                color: Colors.lightBlueAccent,
-                                fontSize: 18,
-                                fontWeight: FontWeight.bold,
-                                fontStyle: FontStyle.italic),
-                          )),
-                    ),
-                    const SizedBox(height: 20),
-                    AuthBtn(
-                      btnText: "Sign In",
-                      fct: () {},
-                      color: Colors.white38,
-                    ),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
