@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:pharnacy_trust/pharmacy_entry_point.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Only lock orientation on mobile platforms

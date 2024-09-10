@@ -1,8 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-import 'package:pharnacy_trust/screens/Auth/auth_btn.dart';
-
 import 'package:pharnacy_trust/screens/Auth/log_in_swiper.dart';
 import 'package:pharnacy_trust/screens/Auth/sign_up_form.dart';
 
