@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:pharnacy_trust/consts/firebase_auth.dart';
+
 import 'package:pharnacy_trust/screens/btn_nav_bar.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
 
@@ -29,15 +29,19 @@ class _GooglebtnState extends State<Googlebtn> {
               accessToken: googleAuth.accessToken,
             ),
           );
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => const BtnNavBar(),
-          ));
+          if (mounted) {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => const BtnNavBar(),
+            ));
+          }
         } on FirebaseAuthException catch (e) {
-          GlobalMethods.errorDialog(
-            subtitle: e.message.toString(),
-            ctx: context,
-            title: "Error signing up",
-          );
+          if (mounted) {
+            GlobalMethods.errorDialog(
+              subtitle: e.message.toString(),
+              ctx: context,
+              title: "Error signing up",
+            );
+          }
         }
       }
     }

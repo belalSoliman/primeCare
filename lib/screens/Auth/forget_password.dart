@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/consts/firebase_auth.dart';
 import 'package:pharnacy_trust/screens/Auth/auth_btn.dart';
 import 'package:pharnacy_trust/screens/Auth/log_in_swiper.dart';
+import 'package:pharnacy_trust/service/global_methods.dart';
 
 class ForgetPassword extends StatefulWidget {
   const ForgetPassword({super.key});
@@ -17,6 +20,19 @@ class _ForgetPasswordState extends State<ForgetPassword> {
   void dispose() {
     _emailController.dispose();
     super.dispose();
+  }
+
+  void _submit() async {
+    try {
+      await authinstance.sendPasswordResetEmail(
+          email: _emailController.text.toLowerCase());
+    } on FirebaseAuthException catch (e) {
+      GlobalMethods.errorDialog(
+          subtitle: e.message.toString(), ctx: context, title: "Error");
+    } catch (e) {
+      GlobalMethods.errorDialog(
+          subtitle: e.toString(), ctx: context, title: "Error");
+    }
   }
 
   @override
@@ -53,7 +69,6 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               Form(
                   child: TextFormField(
                 controller: _emailController,
-                textInputAction: TextInputAction.done,
                 onEditingComplete: () => FocusScope.of(context).unfocus(),
                 style: const TextStyle(color: Colors.white),
                 decoration: const InputDecoration(
@@ -82,7 +97,9 @@ class _ForgetPasswordState extends State<ForgetPassword> {
               ),
               AuthBtn(
                 btnText: 'Reset Password',
-                fct: () {},
+                fct: () {
+                  _submit();
+                },
                 color: Colors.lightBlue,
               )
             ],

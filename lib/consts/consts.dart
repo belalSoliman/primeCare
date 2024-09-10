@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/inner_screens/orders_screen/order_screen_view.dart';
 import 'package:pharnacy_trust/inner_screens/viewd_screen/viewd_screen_body.dart';
 import 'package:pharnacy_trust/inner_screens/wishList_screen/wish_list.dart';
+import 'package:pharnacy_trust/screens/Auth/forget_password.dart';
 
 import 'package:pharnacy_trust/screens/cart/widget/card_screen.dart';
 import 'package:pharnacy_trust/screens/category_screen.dart';
@@ -135,6 +136,11 @@ class Constss {
         color: Colors.blue,
         size: 30,
       ),
+      'onTap': (context) {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return const ForgetPassword();
+        }));
+      }
     },
     {
       'title': 'Logout',
