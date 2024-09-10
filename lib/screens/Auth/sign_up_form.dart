@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:pharnacy_trust/consts/firebase_auth.dart';
+import 'package:pharnacy_trust/screens/Auth/auth_btn.dart';
 
 class SignUpForm extends StatefulWidget {
   const SignUpForm({super.key});
@@ -30,10 +33,32 @@ class _SignUpFormState extends State<SignUpForm> {
     super.dispose();
   }
 
-  void _submit() {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  bool isLoading = false;
+
+  void _submit() async {
     final isValid = _formKey.currentState!.validate();
     FocusScope.of(context).unfocus();
-    if (isValid) {}
+
+    if (isValid) {
+      _formKey.currentState!.save();
+
+      try {
+        await authinstance.createUserWithEmailAndPassword(
+            email: _emailController.text.toLowerCase().trim(),
+            password: _passwordController.text.toLowerCase().trim());
+        print("done");
+      } catch (e) {
+        print(e);
+        setState(() {
+          isLoading = false;
+        });
+      } finally {
+        setState(() {
+          isLoading = false;
+        });
+      }
+    }
   }
 
   @override
@@ -106,7 +131,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   return null;
                 }
               },
-              style: const  TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: "Password",
                 labelStyle: TextStyle(color: Colors.white),
@@ -140,6 +165,16 @@ class _SignUpFormState extends State<SignUpForm> {
                     borderSide: BorderSide(color: Colors.lightBlue)),
               ),
             ),
+            const SizedBox(height: 20),
+            isLoading
+                ? const CircularProgressIndicator()
+                : AuthBtn(
+                    btnText: "Sign Up",
+                    fct: () {
+                      _submit();
+                    },
+                    color: Colors.white38,
+                  ),
           ],
         ));
   }

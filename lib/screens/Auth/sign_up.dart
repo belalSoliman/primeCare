@@ -52,12 +52,6 @@ class _SignUpState extends State<SignUp> {
                   SizedBox(height: MediaQuery.of(context).size.height * 0.1),
                   const SignUpForm(),
                   const SizedBox(height: 20),
-                  AuthBtn(
-                    btnText: "Sign Up",
-                    fct: () {},
-                    color: Colors.white38,
-                  ),
-                  const SizedBox(height: 20),
                   RichText(
                       text: TextSpan(
                     text: "Already have an account?",

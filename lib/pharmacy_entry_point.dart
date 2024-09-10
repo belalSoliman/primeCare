@@ -12,6 +12,7 @@ import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/provider/view_product.dart';
 import 'package:pharnacy_trust/provider/whist_list_provider.dart';
 import 'package:pharnacy_trust/screens/Auth/forget_password.dart';
+import 'package:pharnacy_trust/screens/Auth/log_in.dart';
 
 import 'package:pharnacy_trust/screens/Auth/sign_up.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
@@ -38,26 +39,45 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
   }
 
   void getCurrentAppTheme() async {
-    darkThemeProvider.darkTheme =
-        await darkThemeProvider.darkThemePrefs.getDarkTheme();
+    final isDarkTheme = await darkThemeProvider.darkThemePrefs.getDarkTheme();
+    if (mounted) {
+      setState(() {
+        darkThemeProvider.darkTheme = isDarkTheme;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    darkThemeProvider
+        .dispose(); // This should only be called if needed and safely
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final Future<FirebaseApp> firebaseiniti = Firebase.initializeApp();
     return FutureBuilder(
-        future: firebaseiniti,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const MaterialApp(
-                home: Scaffold(
-                    body: Center(
-              child: CircularProgressIndicator(),
-            )));
-          } else if (snapshot.hasError) {
-            return const MaterialApp(
-                home: Scaffold(body: Center(child: Text('Error'))));
-          }
+      future: firebaseiniti,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: CircularProgressIndicator(),
+              ),
+            ),
+          );
+        } else if (snapshot.hasError) {
+          return const MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: Text('Error initializing Firebase'),
+              ),
+            ),
+          );
+        } else if (snapshot.connectionState == ConnectionState.done) {
+          // Firebase is initialized successfully, so build the main app
           return MultiProvider(
             providers: [
               ChangeNotifierProvider(create: (_) => darkThemeProvider),
@@ -72,7 +92,7 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
                   debugShowCheckedModeBanner: false,
                   title: 'Prime Care',
                   theme: Styles.themeData(darkThemeProvider.darkTheme, context),
-                  home: const BtnNavBar(),
+                  home: const LogIn(),
                   routes: {
                     OnSaleScreens.routeName: (ctx) => const OnSaleScreens(),
                     ProductsScreen.routeName: (ctx) => const ProductsScreen(),
@@ -91,6 +111,17 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
               },
             ),
           );
-        });
+        } else {
+          // Should never get here, but just in case
+          return const MaterialApp(
+            home: Scaffold(
+              body: Center(
+                child: Text('Unexpected state'),
+              ),
+            ),
+          );
+        }
+      },
+    );
   }
 }
