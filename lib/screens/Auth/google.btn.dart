@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -23,12 +24,27 @@ class _GooglebtnState extends State<Googlebtn> {
       final googleAuth = await googleAccount.authentication;
       if (googleAuth.accessToken != null || googleAuth.idToken != null) {
         try {
-          await FirebaseAuth.instance.signInWithCredential(
+          final userCredential =
+              await FirebaseAuth.instance.signInWithCredential(
             GoogleAuthProvider.credential(
               idToken: googleAuth.idToken,
               accessToken: googleAuth.accessToken,
             ),
           );
+          if (userCredential.additionalUserInfo!.isNewUser) {
+            await FirebaseFirestore.instance
+                .collection("users")
+                .doc(userCredential.user!.uid)
+                .set({
+              "id": userCredential.user!.uid,
+              "name": userCredential.user!.displayName,
+              "email": userCredential.user!.email,
+              "userwishlist": [],
+              "usercart": [],
+              "userCreate": Timestamp.now(),
+            });
+          }
+
           if (mounted) {
             Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (context) => const BtnNavBar(),
