@@ -65,5 +65,4 @@ class DefaultFirebaseOptions {
     storageBucket: 'primecare-13cfb.appspot.com',
     iosBundleId: 'com.example.pharnacyTrust',
   );
-
 }

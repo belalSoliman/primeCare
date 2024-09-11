@@ -70,7 +70,7 @@ class CustomBottomNavBar extends StatelessWidget {
         ),
         BottomNavigationBarItem(
           icon: badges.Badge(
-            badgeAnimation: const badges.BadgeAnimation.size(
+            badgeAnimation: const badges.BadgeAnimation.fade(
               curve: Curves.easeInCirc,
               toAnimate: true,
               animationDuration: Duration(milliseconds: 5000),

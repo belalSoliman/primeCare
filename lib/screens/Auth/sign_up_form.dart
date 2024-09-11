@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:iconly/iconly.dart';
 import 'package:pharnacy_trust/consts/firebase_auth.dart';
+
 import 'package:pharnacy_trust/consts/loading_manger.dart';
 import 'package:pharnacy_trust/screens/Auth/auth_btn.dart';
 import 'package:pharnacy_trust/screens/btn_nav_bar.dart';
@@ -53,14 +56,27 @@ class _SignUpFormState extends State<SignUpForm> {
           email: _emailController.text.toLowerCase().trim(),
           password: _passwordController.text.toLowerCase().trim(),
         );
+        final User? user = authinstance.currentUser;
+        final uid = user!.uid;
+        await FirebaseFirestore.instance.collection("users").doc(uid).set({
+          "id": uid,
+          "name": _userNameController.text,
+          "email": _emailController.text,
+          "address": _addressController.text,
+          "userwishlist": [],
+          "usercart": [],
+          "userCreate": Timestamp.now(),
+        });
 
         // If successful, show success dialog and navigate to BtnNavBar
-        GlobalMethods.errorDialog(
-          // ignore: use_build_context_synchronously
-          ctx: context,
-          subtitle: "Sign Up Successful",
-          title: "Success",
-        );
+        Fluttertoast.showToast(
+            msg: "Account created successfully",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.CENTER,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.green,
+            textColor: Colors.white,
+            fontSize: 16.0);
         // ignore: use_build_context_synchronously
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) {

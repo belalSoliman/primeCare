@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/consts/consts.dart';
 
-
-
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
-
 
 import 'package:pharnacy_trust/widget/user_info_widgets/user_info_display.dart';
 import 'package:pharnacy_trust/widget/user_info_widgets/user_info_list_item.dart';
@@ -19,10 +16,6 @@ class UserInfo extends StatefulWidget {
 
 class _UserInfoState extends State<UserInfo> {
   @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     final darkthem = Provider.of<DarkThemeProvider>(context);
