@@ -14,6 +14,7 @@ class ProductProvider with ChangeNotifier {
   }
 
   Future<void> fetchProducts() async {
+    _products.clear();
     await FirebaseFirestore.instance
         .collection("products")
         .get()

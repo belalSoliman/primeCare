@@ -11,28 +11,51 @@ class SwiperView extends StatefulWidget {
 class _SwiperViewState extends State<SwiperView> {
   final List<String> images = [
     'assets/category_assets/cat-2.png',
-    "assets/category_assets/cat-4.png",
-    "assets/category_assets/cat-6.png",
+    'assets/category_assets/cat-4.png',
+    'assets/category_assets/cat-6.png',
   ];
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       height: MediaQuery.of(context).size.height * 0.25,
-      child: Swiper(
-        itemBuilder: (BuildContext context, int index) {
-          return Image.asset(images[index], fit: BoxFit.contain);
-        },
-        autoplay: true,
-        itemCount: images.length,
-        pagination: const SwiperPagination(
-          alignment: Alignment.bottomCenter,
-          builder: DotSwiperPaginationBuilder(
-            color: Colors.grey,
-            activeSize: 10.0,
-            space: 2.0,
-            size: 5.0,
-            activeColor: Colors.lightBlue,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.2),
+            spreadRadius: 2,
+            blurRadius: 6,
+            offset: const Offset(0, 3),
+          ),
+        ],
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(12.0),
+        child: Swiper(
+          itemBuilder: (BuildContext context, int index) {
+            return Image.asset(
+              images[index],
+              fit: BoxFit.cover,
+            );
+          },
+          autoplay: true,
+          autoplayDelay: 3000, // Adjust the autoplay delay
+          itemCount: images.length,
+          pagination: const SwiperPagination(
+            alignment: Alignment.bottomCenter,
+            builder: DotSwiperPaginationBuilder(
+              color: Colors.grey,
+              activeSize: 10.0,
+              space: 2.0,
+              size: 6.0,
+              activeColor: Colors.lightBlue,
+            ),
+          ),
+          control: SwiperControl(
+            color: Colors.white,
+            size: 20.0,
+            padding: EdgeInsets.all(8.0),
           ),
         ),
       ),

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/models/product_model.dart';
-
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
-import 'package:pharnacy_trust/widget/shop_view_widget/card_icon.dart';
-import 'package:pharnacy_trust/widget/shop_view_widget/heart_widget.dart';
 import 'package:provider/provider.dart';
 
 class OnSaleWidget extends StatelessWidget {
@@ -14,6 +11,10 @@ class OnSaleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<ProductModel>(context);
+
+    // Calculate the discounted price
+    final discountedPrice =
+        product.price - (product.price * (product.discountPercentage / 100));
 
     return GestureDetector(
       onTap: () {
@@ -40,7 +41,7 @@ class OnSaleWidget extends StatelessWidget {
             // The image at the lowest level
             ClipRRect(
               borderRadius: BorderRadius.circular(12.0),
-              child: Image.asset(
+              child: Image.network(
                 product.images,
                 width: double.infinity,
                 height: double.infinity,
@@ -52,7 +53,7 @@ class OnSaleWidget extends StatelessWidget {
               width: double.infinity,
               height: double.infinity,
               decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.2),
+                color: Colors.black.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(12.0),
               ),
             ),
@@ -72,41 +73,42 @@ class OnSaleWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            // Price on a single line
+            // Discount percentage, original price, and discounted price
             Positioned(
-              bottom: 40,
+              bottom: 10,
               left: 10,
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  // Discount percentage
                   Text(
-                    '\$${product.discountPercentage}',
+                    '-${product.discountPercentage.toStringAsFixed(0)}%',
                     style: const TextStyle(
                       fontSize: 18,
-                      color: Color(0xFFFF7643),
+                      color: Colors.green,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   const SizedBox(width: 8),
+                  // Original price (strikethrough)
                   Text(
-                    '\$${product.price}',
+                    '\$${product.price.toStringAsFixed(1)}',
                     style: const TextStyle(
                       decoration: TextDecoration.lineThrough,
                       color: Colors.red,
                       fontSize: 16,
                     ),
                   ),
-                ],
-              ),
-            ),
-            // Icons on another line
-            const Positioned(
-              bottom: 10,
-              left: 10,
-              child: Row(
-                children: [
-                  HeartWidget(),
-                  SizedBox(width: 10),
-                  CardIcon(),
+                  const SizedBox(width: 8),
+                  // Discounted price
+                  Text(
+                    '\$${discountedPrice.toStringAsFixed(0)}',
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Color(0xFFFF7643),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ],
               ),
             ),

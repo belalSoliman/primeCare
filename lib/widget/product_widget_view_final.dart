@@ -31,6 +31,10 @@ class ProductCard extends StatelessWidget {
     bool? isInWishList =
         wishListProvider.whistList.containsKey(productModel.id.toString());
 
+    // Calculate the discounted price
+    final discountedPrice = productModel.price -
+        (productModel.price * (productModel.discountPercentage / 100));
+
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 4),
       color: darkThemeProvider.darkTheme ? Colors.grey[300] : Colors.white,
@@ -59,12 +63,9 @@ class ProductCard extends StatelessWidget {
                   errorWidget: Icon(Icons.error,
                       color:
                           Colors.red), // Error icon if the image fails to load
-                  shimmerBaseColor:
-                      Colors.grey[300]!, // Customize base shimmer color
-                  shimmerHighlightColor:
-                      Colors.grey[100]!, // Customize shimmer highlight color
-                  shimmerBackColor:
-                      Colors.grey[200]!, // Customize shimmer background color
+                  shimmerBaseColor: Colors.grey[300]!,
+                  shimmerHighlightColor: Colors.grey[100]!,
+                  shimmerBackColor: Colors.grey[200]!,
                 ),
               ),
             ),
@@ -72,7 +73,7 @@ class ProductCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "\$${productModel.price}",
+                  "\$${productModel.isonsale ? discountedPrice.toStringAsFixed(2) : productModel.price.toStringAsFixed(2)}",
                   style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w600,
@@ -102,7 +103,7 @@ class ProductCard extends StatelessWidget {
             ),
             Row(children: [
               productModel.isonsale
-                  ? Text("\$${productModel.discountPercentage}",
+                  ? Text("\$${productModel.price.toStringAsFixed(2)}",
                       style: Theme.of(context).textTheme.bodySmall!.copyWith(
                             color: Colors.red,
                             fontSize: 14,
