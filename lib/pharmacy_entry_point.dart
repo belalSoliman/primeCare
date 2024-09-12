@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/consts/theme_data.dart';
+import 'package:pharnacy_trust/fetch_screen.dart';
 import 'package:pharnacy_trust/inner_screens/category_filterd_Screen.dart/category_filter_screen.dart';
 import 'package:pharnacy_trust/inner_screens/feeds_screen_all_product.dart';
 import 'package:pharnacy_trust/inner_screens/on_sale_screens.dart';
@@ -85,7 +86,7 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
                   debugShowCheckedModeBanner: false,
                   title: 'Prime Care',
                   theme: Styles.themeData(darkThemeProvider.darkTheme, context),
-                  home: const BtnNavBar(),
+                  home: const FetchScreen(),
                   routes: {
                     OnSaleScreens.routeName: (ctx) => const OnSaleScreens(),
                     ProductsScreen.routeName: (ctx) => const ProductsScreen(),

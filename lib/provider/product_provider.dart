@@ -18,20 +18,39 @@ class ProductProvider with ChangeNotifier {
         .collection("products")
         .get()
         .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        _products.insert(
+      for (var doc in querySnapshot.docs) {
+        try {
+          // Check if required fields exist
+          final id = doc.get("productId");
+          final title = doc.get("title");
+          final images = doc.get("images");
+          final category = doc.get("category");
+          final price = doc.get("price");
+          final discountPercentage = doc.get("discountPercentage");
+          final description = doc.get("description");
+          final isOnSale = doc.get("isOnSale");
+          final isStrip = doc.get("isStrip");
+
+          // Insert the product into the list
+          _products.insert(
             0,
             ProductModel(
-                id: doc.get("productId"),
-                title: doc.get("title"),
-                images: doc.get("images"),
-                category: doc.get("category"),
-                price: doc.get("price"),
-                discountPercentage: doc.get("discountPercentage"),
-                description: doc.get("description"),
-                isonsale: doc.get("isOnSale"),
-                isStrip: doc.get("isStrip")));
-      });
+              id: int.tryParse(id.toString()) ?? 0,
+              title: title,
+              images: images,
+              category: category,
+              price: price,
+              discountPercentage: discountPercentage,
+              description: description,
+              isonsale: isOnSale,
+              isStrip: isStrip,
+            ),
+          );
+        } catch (e) {
+          print('Error processing document with ID ${doc.id}: $e');
+          // Handle or log the error for this specific document, but continue processing others
+        }
+      }
     });
 
     notifyListeners();

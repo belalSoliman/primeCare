@@ -4,12 +4,11 @@ import 'package:iconly/iconly.dart';
 import 'package:pharnacy_trust/consts/firebase_auth.dart';
 import 'package:pharnacy_trust/models/product_model.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
-
 import 'package:pharnacy_trust/provider/whist_list_provider.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
-
 import 'package:provider/provider.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
@@ -22,10 +21,13 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DarkThemeProvider darkThemeProvider =
-        Provider.of<DarkThemeProvider>(context);
+    // Access the providers
+    final darkThemeProvider = Provider.of<DarkThemeProvider>(context);
     final productModel = Provider.of<ProductModel>(context);
     final wishListProvider = Provider.of<WhistListProvider>(context);
+    final User? user = authinstance.currentUser;
+
+    // Check if the product is in the wishlist
     bool? isInWishList =
         wishListProvider.whistList.containsKey(productModel.id.toString());
 
@@ -42,7 +44,7 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AspectRatio(
-              aspectRatio: 1.02,
+              aspectRatio: aspectRetio,
               child: Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -51,24 +53,19 @@ class ProductCard extends StatelessWidget {
                       : const Color(0xFF979797).withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Image.asset(
-                  productModel.images,
+                child: FancyShimmerImage(
+                  imageUrl: productModel.images, // Network image URL
+                  boxFit: BoxFit.cover,
+                  errorWidget: Icon(Icons.error,
+                      color:
+                          Colors.red), // Error icon if the image fails to load
+                  shimmerBaseColor:
+                      Colors.grey[300]!, // Customize base shimmer color
+                  shimmerHighlightColor:
+                      Colors.grey[100]!, // Customize shimmer highlight color
+                  shimmerBackColor:
+                      Colors.grey[200]!, // Customize shimmer background color
                 ),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Container(
-              color:
-                  darkThemeProvider.darkTheme ? Colors.grey[300] : Colors.white,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    productModel.title,
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    maxLines: 2,
-                  ),
-                ],
               ),
             ),
             Row(
@@ -84,7 +81,6 @@ class ProductCard extends StatelessWidget {
                 ),
                 GestureDetector(
                   onTap: () {
-                    final User? user = authinstance.currentUser;
                     if (user == null) {
                       GlobalMethods.errorDialog(
                         ctx: context,
@@ -118,7 +114,7 @@ class ProductCard extends StatelessWidget {
                   : const SizedBox.shrink(),
               const Spacer(),
               Text(
-                productModel.isStrip ? "strip" : "Box",
+                productModel.isStrip ? "Strip" : "Box",
                 style: const TextStyle(
                     color: Color(0xFF979797),
                     fontSize: 12,

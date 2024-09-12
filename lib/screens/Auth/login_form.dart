@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/consts/firebase_auth.dart';
+import 'package:pharnacy_trust/fetch_screen.dart';
 import 'package:pharnacy_trust/screens/Auth/auth_btn.dart';
 import 'package:pharnacy_trust/screens/Auth/forget_password.dart';
 import 'package:pharnacy_trust/screens/btn_nav_bar.dart';
@@ -47,7 +48,7 @@ class _LoginFormState extends State<LoginForm> {
         // ignore: use_build_context_synchronously
         Navigator.of(context).pushReplacement(
           MaterialPageRoute(builder: (context) {
-            return const BtnNavBar();
+            return const FetchScreen();
           }),
         );
       } on FirebaseAuthException catch (e) {
