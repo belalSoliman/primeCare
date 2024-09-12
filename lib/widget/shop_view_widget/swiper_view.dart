@@ -52,7 +52,7 @@ class _SwiperViewState extends State<SwiperView> {
               activeColor: Colors.lightBlue,
             ),
           ),
-          control: SwiperControl(
+          control: const SwiperControl(
             color: Colors.white,
             size: 20.0,
             padding: EdgeInsets.all(8.0),

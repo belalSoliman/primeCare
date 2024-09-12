@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pharnacy_trust/screens/btn_nav_bar.dart';
-import 'package:pharnacy_trust/service/global_methods.dart';
 
 class EmptyCart extends StatelessWidget {
   const EmptyCart({super.key});
 
   @override
   Widget build(BuildContext context) {
-    GlobalMethods globalMethods = GlobalMethods();
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 

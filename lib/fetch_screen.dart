@@ -15,9 +15,11 @@ class _FetchScreenState extends State<FetchScreen> {
   void initState() {
     Future.delayed(const Duration(microseconds: 100), () async {
       final productProvider =
+          // ignore: use_build_context_synchronously
           Provider.of<ProductProvider>(context, listen: false);
 
       await productProvider.fetchProducts();
+      // ignore: use_build_context_synchronously
       Navigator.of(context)
           .pushReplacement(MaterialPageRoute(builder: (context) {
         return const BtnNavBar();

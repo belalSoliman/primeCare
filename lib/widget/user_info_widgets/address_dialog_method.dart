@@ -108,6 +108,7 @@ class _AddressDialogState extends State<AddressDialog> {
                     .collection('users')
                     .doc(currentUser!.uid)
                     .update({"address": addressController.text});
+                // ignore: use_build_context_synchronously
                 Navigator.pop(context);
               } catch (e) {
                 Fluttertoast.showToast(

@@ -37,10 +37,18 @@ class _ForgetPasswordState extends State<ForgetPassword> {
           fontSize: 16.0);
     } on FirebaseAuthException catch (e) {
       GlobalMethods.errorDialog(
-          subtitle: e.message.toString(), ctx: context, title: "Error");
+          // ignore: use_build_context_synchronously
+          subtitle: e.message.toString(),
+          // ignore: use_build_context_synchronously
+          ctx: context,
+          title: "Error");
     } catch (e) {
       GlobalMethods.errorDialog(
-          subtitle: e.toString(), ctx: context, title: "Error");
+          // ignore: use_build_context_synchronously
+          subtitle: e.toString(),
+          // ignore: use_build_context_synchronously
+          ctx: context,
+          title: "Error");
     }
   }
 

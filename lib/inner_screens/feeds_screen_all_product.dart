@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/models/product_model.dart';
 
 import 'package:pharnacy_trust/provider/product_provider.dart';
 
@@ -17,12 +18,19 @@ class ProductsScreen extends StatefulWidget {
 }
 
 class _ProductsScreenState extends State<ProductsScreen> {
+  List<ProductModel> _searchResults = [];
+  String _searchText = "";
+
   @override
   Widget build(BuildContext context) {
     DarkThemeProvider darkThemeProvider =
         Provider.of<DarkThemeProvider>(context);
 
     final productProvider = Provider.of<ProductProvider>(context);
+    final bool isSearching = _searchText.isNotEmpty;
+    final productsToShow =
+        isSearching ? _searchResults : productProvider.getProducts;
+
     return Scaffold(
       backgroundColor:
           darkThemeProvider.darkTheme ? const Color(0xff00001a) : Colors.white,
@@ -38,25 +46,53 @@ class _ProductsScreenState extends State<ProductsScreen> {
           child: Column(
             children: [
               const SizedBox(height: 16),
-              const SearchField(),
+              SearchField(
+                onSearch: (searchText, searchResults) {
+                  setState(() {
+                    _searchText = searchText;
+                    _searchResults = searchResults;
+                  });
+                },
+              ),
               const SizedBox(height: 16),
               Expanded(
-                child: GridView.builder(
-                  itemCount: productProvider.getProducts.length,
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 200,
-                    childAspectRatio: 0.7,
-                    mainAxisSpacing: 20,
-                    crossAxisSpacing: 16,
-                  ),
-                  itemBuilder: (context, index) => ChangeNotifierProvider.value(
-                    value: productProvider.getProducts[index],
-                    child: const ProductCard(),
-                  ),
-                ),
+                child: productsToShow.isEmpty
+                    ? const EmptyProdWidget()
+                    : GridView.builder(
+                        itemCount: productsToShow.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 200,
+                          childAspectRatio: 0.7,
+                          mainAxisSpacing: 20,
+                          crossAxisSpacing: 16,
+                        ),
+                        itemBuilder: (context, index) =>
+                            ChangeNotifierProvider.value(
+                          value: productsToShow[index],
+                          child: const ProductCard(),
+                        ),
+                      ),
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+class EmptyProdWidget extends StatelessWidget {
+  const EmptyProdWidget({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Text(
+        'No products match your search.',
+        style: TextStyle(
+          fontSize: 18,
+          color: Theme.of(context).textTheme.bodyLarge?.color,
         ),
       ),
     );

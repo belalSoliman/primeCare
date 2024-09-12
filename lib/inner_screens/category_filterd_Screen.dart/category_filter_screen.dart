@@ -45,7 +45,6 @@ class _CategoryFilterScreenState extends State<CategoryFilterScreen> {
                 child: Column(
                   children: [
                     const SizedBox(height: 16),
-                    const SearchField(),
                     const SizedBox(height: 16),
                     Expanded(
                       child: GridView.builder(

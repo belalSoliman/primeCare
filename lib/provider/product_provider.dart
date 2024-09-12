@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+
 import 'package:pharnacy_trust/models/product_model.dart';
 
 class ProductProvider with ChangeNotifier {
@@ -44,7 +44,10 @@ class ProductProvider with ChangeNotifier {
             ),
           );
         } catch (e) {
-          print('Error processing document with ID ${doc.id}: $e');
+          if (kDebugMode) {
+            print('Error processing document with ID ${doc.id}: $e');
+          }
+
           // Handle or log the error for this specific document, but continue processing others
         }
       }
@@ -67,5 +70,14 @@ class ProductProvider with ChangeNotifier {
 
   ProductModel findProductById(String id) {
     return _products.firstWhere((element) => element.id == id);
+  }
+
+  List<ProductModel> searchQury(String searchTExt) {
+    List<ProductModel> searchList = _products
+        .where((element) => element.title.toLowerCase().contains(
+              searchTExt.toLowerCase(),
+            ))
+        .toList();
+    return searchList;
   }
 }

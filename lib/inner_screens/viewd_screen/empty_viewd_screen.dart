@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:pharnacy_trust/screens/btn_nav_bar.dart';
-
-import 'package:pharnacy_trust/service/global_methods.dart';
 
 class EmptyViewdScreen extends StatelessWidget {
   const EmptyViewdScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    GlobalMethods globalMethods = GlobalMethods();
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.all(16),

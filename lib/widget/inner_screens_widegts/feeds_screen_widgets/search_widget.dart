@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/models/product_model.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
+import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:provider/provider.dart';
 
 class SearchField extends StatefulWidget {
-  const SearchField({super.key});
+  final Function(String, List<ProductModel>) onSearch;
+
+  const SearchField({super.key, required this.onSearch});
 
   @override
   State<SearchField> createState() => _SearchFieldState();
@@ -12,6 +16,7 @@ class SearchField extends StatefulWidget {
 class _SearchFieldState extends State<SearchField> {
   final TextEditingController _textController = TextEditingController();
   final FocusNode _focusNode = FocusNode();
+
   @override
   void dispose() {
     _textController.dispose();
@@ -23,6 +28,8 @@ class _SearchFieldState extends State<SearchField> {
   Widget build(BuildContext context) {
     DarkThemeProvider darkThemeProvider =
         Provider.of<DarkThemeProvider>(context);
+    final productProvider = Provider.of<ProductProvider>(context);
+
     return Container(
       color: darkThemeProvider.darkTheme ? Colors.grey[200] : Colors.white,
       height: MediaQuery.of(context).size.height * 0.06,
@@ -32,6 +39,8 @@ class _SearchFieldState extends State<SearchField> {
           controller: _textController,
           focusNode: _focusNode,
           onChanged: (value) {
+            final searchResults = productProvider.searchQury(value);
+            widget.onSearch(value, searchResults);
             setState(() {});
           },
           decoration: InputDecoration(
@@ -60,6 +69,7 @@ class _SearchFieldState extends State<SearchField> {
                     onPressed: () {
                       _textController.clear();
                       _focusNode.unfocus();
+                      widget.onSearch("", []); // Clear the search results
                       setState(() {});
                     },
                   ),

@@ -26,6 +26,7 @@ class CartView extends StatelessWidget {
         // Fetch the product details using the product ID in the cart item
         final product = productProvider.findProductById(cartItem.productid);
 
+        // ignore: unnecessary_null_comparison
         if (product != null) {
           final hasDiscount =
               product.isonsale && product.discountPercentage > 0;

@@ -60,7 +60,7 @@ class ProductCard extends StatelessWidget {
                 child: FancyShimmerImage(
                   imageUrl: productModel.images, // Network image URL
                   boxFit: BoxFit.cover,
-                  errorWidget: Icon(Icons.error,
+                  errorWidget: const Icon(Icons.error,
                       color:
                           Colors.red), // Error icon if the image fails to load
                   shimmerBaseColor: Colors.grey[300]!,

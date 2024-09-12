@@ -49,7 +49,8 @@ class ViewdItem extends StatelessWidget {
               child: Image.network(
                 product.images,
                 fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
+                errorBuilder: (context, error, stackTrace) =>
+                    const Icon(Icons.error),
                 loadingBuilder: (context, child, loadingProgress) {
                   if (loadingProgress == null) return child;
                   return Center(
