@@ -55,39 +55,6 @@ class EmptyCart extends StatelessWidget {
                 ),
           ),
           SizedBox(height: screenHeight * 0.02), // Dynamic vertical spacing
-          Padding(
-            padding: EdgeInsets.symmetric(
-                horizontal: screenWidth *
-                    0.1), // Adjust button padding based on screen width
-            child: ElevatedButton.icon(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: const Icon(Icons.shopping_cart_outlined, size: 24),
-              label: Text(
-                "Discover Products".toUpperCase(),
-                style: TextStyle(
-                  fontSize: screenWidth *
-                      0.045, // Dynamic text size for button based on screen width
-                  fontWeight: FontWeight.w600,
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                minimumSize: Size(
-                    double.infinity,
-                    screenHeight *
-                        0.02), // Dynamic button height based on screen height
-                padding: EdgeInsets.symmetric(
-                    vertical: screenHeight *
-                        0.02), // Adjust button padding based on screen height
-                backgroundColor: Colors.blueAccent,
-                foregroundColor: Colors.white,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                ),
-              ),
-            ),
-          ),
         ],
       ),
     );
