@@ -28,23 +28,8 @@ class _BtnNavBarState extends State<BtnNavBar> {
     final darkThemeProvider = Provider.of<DarkThemeProvider>(context);
 
     return Scaffold(
-      backgroundColor: darkThemeProvider.darkTheme
-          ? const Color(0xff00001a)
-          : Colors.grey[200],
       appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text(
-          Constss.pages[currentIndex]["title"],
-          style: TextStyle(
-              color:
-                  darkThemeProvider.darkTheme ? Colors.white : Colors.grey[600],
-              fontWeight: FontWeight.bold),
-        ),
-        centerTitle: true,
-        elevation: 60,
-        backgroundColor: darkThemeProvider.darkTheme
-            ? Theme.of(context).canvasColor
-            : Colors.white,
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       ),
       body: Constss.pages[currentIndex]["page"],
       bottomNavigationBar: CustomBottomNavBar(

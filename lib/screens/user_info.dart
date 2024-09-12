@@ -16,7 +16,6 @@ class UserInfo extends StatefulWidget {
 
 class _UserInfoState extends State<UserInfo> {
   @override
-  @override
   Widget build(BuildContext context) {
     final darkthem = Provider.of<DarkThemeProvider>(context);
     return Column(

@@ -18,6 +18,13 @@ class ProductsScreen extends StatefulWidget {
 
 class _ProductsScreenState extends State<ProductsScreen> {
   @override
+  void initState() {
+    final productProvider =
+        Provider.of<ProductProvider>(context, listen: false);
+
+    productProvider.fetchProducts();
+  }
+
   Widget build(BuildContext context) {
     DarkThemeProvider darkThemeProvider =
         Provider.of<DarkThemeProvider>(context);
