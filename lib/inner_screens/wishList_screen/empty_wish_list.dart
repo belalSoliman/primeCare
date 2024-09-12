@@ -49,10 +49,7 @@ class EmptyWishlist extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 40.0),
               child: ElevatedButton.icon(
                 onPressed: () {
-                  globalMethods.navigateTo(
-                    ctx: context,
-                    routeName: BtnNavBar.routeName,
-                  );
+                  Navigator.pop(context);
                 },
                 icon: const Icon(Icons.shopping_cart_outlined, size: 24),
                 label: Text(

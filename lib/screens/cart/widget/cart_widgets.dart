@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/models/cart_model.dart';
-
 import 'package:pharnacy_trust/provider/cart_provider.dart';
 import 'package:pharnacy_trust/provider/product_provider.dart';
-
 import 'package:pharnacy_trust/screens/cart/widget/counter_widget_cart.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 
@@ -17,7 +15,7 @@ class CartWidgets extends StatefulWidget {
 }
 
 class _CartWidgetsState extends State<CartWidgets> {
-  int count = 0;
+  int count = 1; // Initialize count to 1 to prevent it from starting at 0
 
   void incrementCounter() {
     setState(() {
@@ -28,15 +26,9 @@ class _CartWidgetsState extends State<CartWidgets> {
   void decrementCounter() {
     setState(() {
       if (count > 1) {
-        // Ensure count doesn't go below 1
         count--;
       }
     });
-  }
-
-  @override
-  void initState() {
-    super.initState();
   }
 
   @override
@@ -47,12 +39,19 @@ class _CartWidgetsState extends State<CartWidgets> {
         productItems.findProductById(cartProvider.productid);
     final cartProvider2 = Provider.of<CartProvider>(context);
 
+    final hasDiscount =
+        getcurrentProduct.isonsale && getcurrentProduct.discountPercentage > 0;
+    final discountedPrice = getcurrentProduct.price -
+        (getcurrentProduct.price * getcurrentProduct.discountPercentage / 100);
+
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 2),
       width: MediaQuery.of(context).size.width * 0.9,
       height: MediaQuery.of(context).size.height * 0.2,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20), color: Colors.white),
+        borderRadius: BorderRadius.circular(20),
+        color: Colors.white,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -70,7 +69,7 @@ class _CartWidgetsState extends State<CartWidgets> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
-                      image: AssetImage(getcurrentProduct.images),
+                      image: NetworkImage(getcurrentProduct.images),
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -100,7 +99,7 @@ class _CartWidgetsState extends State<CartWidgets> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    getcurrentProduct.isonsale
+                    hasDiscount
                         ? Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -108,15 +107,14 @@ class _CartWidgetsState extends State<CartWidgets> {
                                 "\$${getcurrentProduct.price.toStringAsFixed(2)}",
                                 style: const TextStyle(
                                   fontSize: 16,
-                                  color: Colors
-                                      .grey, // Use a neutral color for the original price
+                                  color: Colors.grey, // Original price color
                                   fontWeight: FontWeight.bold,
                                   decoration: TextDecoration
-                                      .lineThrough, // Strikethrough for original price
+                                      .lineThrough, // Strikethrough
                                 ),
                               ),
                               Text(
-                                "\$${getcurrentProduct.discountPercentage}",
+                                "\$${(discountedPrice * count).toStringAsFixed(2)}",
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.red.shade700,

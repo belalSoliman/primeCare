@@ -8,7 +8,7 @@ import 'package:pharnacy_trust/consts/firebase_auth.dart';
 import 'package:pharnacy_trust/consts/loading_manger.dart';
 import 'package:pharnacy_trust/fetch_screen.dart';
 import 'package:pharnacy_trust/screens/Auth/auth_btn.dart';
-import 'package:pharnacy_trust/screens/btn_nav_bar.dart';
+
 import 'package:pharnacy_trust/service/global_methods.dart';
 
 class SignUpForm extends StatefulWidget {

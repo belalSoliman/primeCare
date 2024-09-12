@@ -9,10 +9,6 @@ class ProductProvider with ChangeNotifier {
     return _products;
   }
 
-  List<ProductModel> get getOnSaleProducts {
-    return _products.where((element) => element.isonsale == true).toList();
-  }
-
   Future<void> fetchProducts() async {
     _products.clear();
     await FirebaseFirestore.instance
@@ -63,6 +59,10 @@ class ProductProvider with ChangeNotifier {
             element.category.toLowerCase().contains(categoryName.toLowerCase()))
         .toList();
     return categoryList;
+  }
+
+  List<ProductModel> get getOnSaleProducts {
+    return _products.where((element) => element.isonsale == true).toList();
   }
 
   ProductModel findProductById(String id) {

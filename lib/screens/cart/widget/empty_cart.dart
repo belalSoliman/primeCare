@@ -61,10 +61,7 @@ class EmptyCart extends StatelessWidget {
                     0.1), // Adjust button padding based on screen width
             child: ElevatedButton.icon(
               onPressed: () {
-                globalMethods.navigateTo(
-                  ctx: context,
-                  routeName: BtnNavBar.routeName,
-                );
+                Navigator.pop(context);
               },
               icon: const Icon(Icons.shopping_cart_outlined, size: 24),
               label: Text(

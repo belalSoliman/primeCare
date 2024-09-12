@@ -13,6 +13,11 @@ class ViewdItem extends StatelessWidget {
     final viewdItem = Provider.of<ViewdProductModel>(context);
     final productProvider = Provider.of<ProductProvider>(context);
     final product = productProvider.findProductById(viewdItem.productid);
+
+    final hasDiscount = product.isonsale && product.discountPercentage > 0;
+    final discountedPrice =
+        product.price - (product.price * product.discountPercentage / 100);
+
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, ProductDetails.routeName,
@@ -41,9 +46,21 @@ class ViewdItem extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Image.asset(
+              child: Image.network(
                 product.images,
-                fit: BoxFit.fill,
+                fit: BoxFit.contain,
+                errorBuilder: (context, error, stackTrace) => Icon(Icons.error),
+                loadingBuilder: (context, child, loadingProgress) {
+                  if (loadingProgress == null) return child;
+                  return Center(
+                    child: CircularProgressIndicator(
+                      value: loadingProgress.expectedTotalBytes != null
+                          ? loadingProgress.cumulativeBytesLoaded /
+                              (loadingProgress.expectedTotalBytes ?? 1)
+                          : null,
+                    ),
+                  );
+                },
               ),
             ),
             const SizedBox(width: 10),
@@ -58,8 +75,12 @@ class ViewdItem extends StatelessWidget {
                     style: Theme.of(context).textTheme.headlineSmall,
                   ),
                   Text(
-                    product.price.toString(),
-                    style: Theme.of(context).textTheme.headlineSmall,
+                    hasDiscount
+                        ? 'Discounted Price: \$${discountedPrice.toStringAsFixed(2)}'
+                        : 'Price: \$${product.price.toStringAsFixed(2)}',
+                    style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                          color: hasDiscount ? Colors.red : Colors.black,
+                        ),
                   ),
                 ],
               ),
