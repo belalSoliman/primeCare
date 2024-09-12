@@ -4,7 +4,6 @@ import 'package:pharnacy_trust/provider/cart_provider.dart';
 import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/screens/cart/widget/counter_widget_cart.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
-
 import 'package:provider/provider.dart';
 
 class CartWidgets extends StatefulWidget {
@@ -15,11 +14,22 @@ class CartWidgets extends StatefulWidget {
 }
 
 class _CartWidgetsState extends State<CartWidgets> {
-  int count = 1; // Initialize count to 1 to prevent it from starting at 0
+  late int count;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize count with the quantity from CartModel
+    final cartItem = Provider.of<CartModel>(context, listen: false);
+    count = cartItem.quantity; // Assuming `quantity` is part of `CartModel`
+  }
 
   void incrementCounter() {
     setState(() {
       count++;
+      final cartItem = Provider.of<CartModel>(context, listen: false);
+      final cartProvider = Provider.of<CartProvider>(context, listen: false);
+      cartProvider.addProductToCart(productId: cartItem.productid);
     });
   }
 
@@ -27,22 +37,19 @@ class _CartWidgetsState extends State<CartWidgets> {
     setState(() {
       if (count > 1) {
         count--;
+        final cartItem = Provider.of<CartModel>(context, listen: false);
+        final cartProvider = Provider.of<CartProvider>(context, listen: false);
+        cartProvider.decreaseProductQuantity(productId: cartItem.productid);
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final cartProvider = Provider.of<CartModel>(context);
+    final cartItem = Provider.of<CartModel>(context);
     final productItems = Provider.of<ProductProvider>(context);
-    final getcurrentProduct =
-        productItems.findProductById(cartProvider.productid);
-    final cartProvider2 = Provider.of<CartProvider>(context);
-
-    final hasDiscount =
-        getcurrentProduct.isonsale && getcurrentProduct.discountPercentage > 0;
-    final discountedPrice = getcurrentProduct.price -
-        (getcurrentProduct.price * getcurrentProduct.discountPercentage / 100);
+    final product = productItems.findProductById(cartItem.productid);
+    final cartProvider = Provider.of<CartProvider>(context);
 
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 2),
@@ -58,8 +65,11 @@ class _CartWidgetsState extends State<CartWidgets> {
         children: [
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, ProductDetails.routeName,
-                  arguments: getcurrentProduct.id);
+              Navigator.pushNamed(
+                context,
+                ProductDetails.routeName,
+                arguments: product.id,
+              );
             },
             child: Row(
               children: [
@@ -69,7 +79,7 @@ class _CartWidgetsState extends State<CartWidgets> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
                     image: DecorationImage(
-                      image: NetworkImage(getcurrentProduct.images),
+                      image: NetworkImage(product.images),
                       fit: BoxFit.contain,
                     ),
                   ),
@@ -80,7 +90,7 @@ class _CartWidgetsState extends State<CartWidgets> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Text(
-                      getcurrentProduct.title,
+                      product.title,
                       style: const TextStyle(
                         fontSize: 16,
                         fontWeight: FontWeight.bold,
@@ -89,7 +99,7 @@ class _CartWidgetsState extends State<CartWidgets> {
                     SizedBox(
                       width: MediaQuery.of(context).size.width * 0.3,
                       child: Text(
-                        getcurrentProduct.description,
+                        product.description,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                         style: const TextStyle(
@@ -99,22 +109,21 @@ class _CartWidgetsState extends State<CartWidgets> {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    hasDiscount
+                    product.isonsale
                         ? Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "\$${getcurrentProduct.price.toStringAsFixed(2)}",
+                                "\$${product.price.toStringAsFixed(2)}",
                                 style: const TextStyle(
                                   fontSize: 16,
-                                  color: Colors.grey, // Original price color
+                                  color: Colors.grey,
                                   fontWeight: FontWeight.bold,
-                                  decoration: TextDecoration
-                                      .lineThrough, // Strikethrough
+                                  decoration: TextDecoration.lineThrough,
                                 ),
                               ),
                               Text(
-                                "\$${(discountedPrice * count).toStringAsFixed(2)}",
+                                "\$${(product.price * (1 - product.discountPercentage / 100)).toStringAsFixed(2)}",
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.red.shade700,
@@ -126,7 +135,7 @@ class _CartWidgetsState extends State<CartWidgets> {
                         : SizedBox(
                             width: MediaQuery.of(context).size.width * 0.3,
                             child: Text(
-                              "\$${(getcurrentProduct.price * count).toStringAsFixed(2)}",
+                              "\$${(product.price * count).toStringAsFixed(2)}",
                               maxLines: 2,
                               overflow: TextOverflow.ellipsis,
                               style: TextStyle(
@@ -149,10 +158,9 @@ class _CartWidgetsState extends State<CartWidgets> {
                 padding: const EdgeInsets.only(right: 8, top: 8),
                 child: GestureDetector(
                   onTap: () {
-                    setState(() {
-                      cartProvider2.removeProductFromCart(
-                          productId: getcurrentProduct.id.toString());
-                    });
+                    cartProvider.removeProductFromCart(
+                      productId: product.id,
+                    );
                   },
                   child: const Icon(
                     Icons.close,
@@ -167,9 +175,7 @@ class _CartWidgetsState extends State<CartWidgets> {
                 onIncrement: incrementCounter,
                 onDecrement: decrementCounter,
               ),
-              const SizedBox(
-                height: 5,
-              )
+              const SizedBox(height: 5),
             ],
           ),
           const SizedBox(width: 5),

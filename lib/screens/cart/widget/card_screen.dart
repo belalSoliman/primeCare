@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:pharnacy_trust/models/cart_model.dart';
 import 'package:pharnacy_trust/provider/cart_provider.dart';
+import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/screens/cart/widget/cart_widgets.dart';
 import 'package:pharnacy_trust/screens/cart/widget/empty_cart.dart';
 import 'package:pharnacy_trust/screens/cart/widget/payment_btn.dart';
@@ -13,8 +14,48 @@ class CartView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
+    final productProvider = Provider.of<ProductProvider>(context);
     final cartItems =
         cartProvider.getCartItems.values.toList().reversed.toList();
+    Map<String, double> calculateTotalAmountAndDiscount(
+        ProductProvider productProvider, List<CartModel> cartItems) {
+      double totalAmount = 0.0;
+      double totalDiscount = 0.0;
+
+      for (var cartItem in cartItems) {
+        // Fetch the product details using the product ID in the cart item
+        final product = productProvider.findProductById(cartItem.productid);
+
+        if (product != null) {
+          final hasDiscount =
+              product.isonsale && product.discountPercentage > 0;
+          final originalPrice = product.price;
+          final discountedPrice = hasDiscount
+              ? originalPrice -
+                  (originalPrice * product.discountPercentage / 100)
+              : originalPrice;
+
+          totalAmount += discountedPrice * cartItem.quantity;
+
+          if (hasDiscount) {
+            totalDiscount +=
+                (originalPrice - discountedPrice) * cartItem.quantity;
+          }
+        }
+      }
+
+      return {
+        'totalAmount': totalAmount,
+        'totalDiscount': totalDiscount,
+      };
+    }
+
+    // Calculate the total amount and discount
+    final totals = calculateTotalAmountAndDiscount(productProvider, cartItems);
+
+    // Extract the total amount and discount from the map
+    final totalAmount = totals['totalAmount'] ?? 0.0;
+    final totalDiscount = totals['totalDiscount'] ?? 0.0;
 
     return Scaffold(
       body: cartItems.isEmpty
@@ -79,7 +120,11 @@ class CartView extends StatelessWidget {
                     },
                   ),
                 ),
-                const PaymentBtn(),
+                PaymentBtn(
+                  totalAmount: totalAmount, // Pass the extracted total amount
+                  totalDiscount:
+                      totalDiscount, // Pass the extracted total discount
+                ),
                 const SizedBox(height: 20),
               ],
             ),

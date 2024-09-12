@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/screens/cart/widget/payment_summery.dart';
 
 class PaymentBtn extends StatelessWidget {
-  const PaymentBtn({super.key});
+  final double totalAmount;
+  final double totalDiscount;
+
+  const PaymentBtn({
+    super.key,
+    required this.totalAmount,
+    required this.totalDiscount,
+  });
 
   @override
   Widget build(BuildContext context) {
-    // Get screen width
     final screenWidth = MediaQuery.of(context).size.width;
-
-    // Define responsive padding, font size, and border radius
     final double horizontalPadding = screenWidth * 0.1;
     const double verticalPadding = 15.0;
-    final double fontSize =
-        screenWidth * 0.045; // Adjust font size based on screen width
-    final double borderRadius =
-        screenWidth * 0.05; // Adjust border radius based on screen width
+    final double fontSize = screenWidth * 0.045;
+    final double borderRadius = screenWidth * 0.05;
 
     return Center(
       child: ElevatedButton(
@@ -28,16 +30,18 @@ class PaymentBtn extends StatelessWidget {
                 top: Radius.circular(20),
               ),
             ),
-            builder: (context) => const Wrap(
+            builder: (context) => Wrap(
               children: [
-                PaymentSummary(),
+                PaymentSummary(
+                  totalAmount: totalAmount,
+                  totalDiscount: totalDiscount, // Pass total discount
+                ),
               ],
             ),
           );
         },
         style: ElevatedButton.styleFrom(
-          minimumSize: Size(screenWidth * 0.8,
-              48), // Set button width relative to screen width
+          minimumSize: Size(screenWidth * 0.8, 48),
           backgroundColor: Colors.lightBlue,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(borderRadius),

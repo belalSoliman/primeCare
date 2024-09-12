@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class PaymentSummary extends StatelessWidget {
-  const PaymentSummary({super.key});
+  final double totalAmount;
+  final double totalDiscount; // Add this property
+
+  const PaymentSummary({
+    super.key,
+    required this.totalAmount,
+    required this.totalDiscount,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +37,24 @@ class PaymentSummary extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 10),
-          const PaymentRow(label: 'Order Total', value: '228.80'),
-          const PaymentRow(label: 'Items Discount', value: '- 28.80'),
-          const PaymentRow(label: 'Coupon Discount', value: '- 15.80'),
+          PaymentRow(
+            label: 'Order Total',
+            value: '\$${totalAmount.toStringAsFixed(2)}',
+          ),
+          PaymentRow(
+            label: 'Items Discount',
+            value: '- \$${totalDiscount.toStringAsFixed(2)}',
+          ),
+          const PaymentRow(
+            label: 'Coupon Discount',
+            value:
+                '- 15.80', // This can be updated based on actual coupon logic
+          ),
           const PaymentRow(label: 'Shipping', value: 'Free'),
           const Divider(),
-          const PaymentRow(
+          PaymentRow(
             label: 'Total',
-            value: 'Rs.185.00',
+            value: '\$${(totalAmount - totalDiscount).toStringAsFixed(2)}',
             isTotal: true,
           ),
           const SizedBox(height: 10),
