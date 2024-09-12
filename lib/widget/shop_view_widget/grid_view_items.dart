@@ -15,21 +15,24 @@ class _GridViewItemsState extends State<GridViewItems> {
   @override
   Widget build(BuildContext context) {
     final productProvider = Provider.of<ProductProvider>(context);
-    return GridView.count(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        crossAxisCount: 2,
-        childAspectRatio: .7,
-        crossAxisSpacing: 6,
-        mainAxisSpacing: 6,
-        children: List.generate(
-            productProvider.getProducts.length < 4
-                ? productProvider.getProducts.length
-                : 4, (index) {
-          return ChangeNotifierProvider.value(
-            value: productProvider.getProducts[index],
-            child: const  ProductCard(),
-          );
-        }));
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: GridView.count(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          childAspectRatio: 0.68,
+          mainAxisSpacing: 20,
+          crossAxisSpacing: 16,
+          crossAxisCount: 2,
+          children: List.generate(
+              productProvider.getProducts.length < 4
+                  ? productProvider.getProducts.length
+                  : 4, (index) {
+            return ChangeNotifierProvider.value(
+              value: productProvider.getProducts[index],
+              child: const ProductCard(),
+            );
+          })),
+    );
   }
 }

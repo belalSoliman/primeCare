@@ -17,16 +17,17 @@ class ProductProvider with ChangeNotifier {
         .then((QuerySnapshot querySnapshot) {
       for (var doc in querySnapshot.docs) {
         try {
-          // Check if required fields exist
-          final id = doc.get("productId");
-          final title = doc.get("title");
-          final images = doc.get("images");
-          final category = doc.get("category");
-          final price = doc.get("price");
-          final discountPercentage = doc.get("discountPercentage");
-          final description = doc.get("description");
-          final isOnSale = doc.get("isOnSale");
-          final isStrip = doc.get("isStrip");
+          // Retrieve fields and handle potential type mismatches
+          final id = doc.get("productId") as String;
+          final title = doc.get("title") as String;
+          final images = doc.get("images") as String;
+          final category = doc.get("category") as String;
+          final price = (doc.get("price") as num).toDouble();
+          final discountPercentage =
+              (doc.get("discountPercentage") as num).toDouble();
+          final description = doc.get("description") as String;
+          final isOnSale = doc.get("isOnSale") as bool;
+          final isStrip = doc.get("isStrip") as bool;
 
           // Insert the product into the list
           _products.insert(
@@ -47,7 +48,6 @@ class ProductProvider with ChangeNotifier {
           if (kDebugMode) {
             print('Error processing document with ID ${doc.id}: $e');
           }
-
           // Handle or log the error for this specific document, but continue processing others
         }
       }

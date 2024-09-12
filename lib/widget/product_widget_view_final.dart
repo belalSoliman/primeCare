@@ -1,23 +1,24 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 import 'package:iconly/iconly.dart';
+
 import 'package:pharnacy_trust/consts/firebase_auth.dart';
 import 'package:pharnacy_trust/models/product_model.dart';
 import 'package:pharnacy_trust/provider/dark_theme_provider.dart';
 import 'package:pharnacy_trust/provider/whist_list_provider.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
-import 'package:provider/provider.dart';
-import 'package:fancy_shimmer_image/fancy_shimmer_image.dart';
 
 class ProductCard extends StatelessWidget {
   const ProductCard({
     super.key,
     this.width = 140,
-    this.aspectRetio = 1.02,
+    this.aspectRatio = 1.2,
   });
 
-  final double width, aspectRetio;
+  final double width, aspectRatio;
 
   @override
   Widget build(BuildContext context) {
@@ -36,41 +37,69 @@ class ProductCard extends StatelessWidget {
         (productModel.price * (productModel.discountPercentage / 100));
 
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
-      color: darkThemeProvider.darkTheme ? Colors.grey[300] : Colors.white,
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+      decoration: BoxDecoration(
+        color: darkThemeProvider.darkTheme ? Colors.grey[300] : Colors.white,
+        borderRadius: BorderRadius.circular(12),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1),
+            spreadRadius: 2,
+            blurRadius: 4,
+            offset: const Offset(0, 2), // changes position of shadow
+          ),
+        ],
+      ),
       width: width,
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamed(context, ProductDetails.routeName,
-              arguments: productModel.id);
+          Navigator.pushNamed(
+            context,
+            ProductDetails.routeName,
+            arguments: productModel.id,
+          );
         },
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AspectRatio(
-              aspectRatio: aspectRetio,
+              aspectRatio: aspectRatio,
               child: Container(
-                padding: const EdgeInsets.all(20),
+                padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: darkThemeProvider.darkTheme
                       ? Colors.grey[300]
                       : const Color(0xFF979797).withOpacity(0.1),
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: FancyShimmerImage(
-                  imageUrl: productModel.images, // Network image URL
-                  boxFit: BoxFit.cover,
-                  errorWidget: const Icon(Icons.error,
-                      color:
-                          Colors.red), // Error icon if the image fails to load
-                  shimmerBaseColor: Colors.grey[300]!,
-                  shimmerHighlightColor: Colors.grey[100]!,
-                  shimmerBackColor: Colors.grey[200]!,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: FancyShimmerImage(
+                    imageUrl: productModel.images,
+                    boxFit: BoxFit.fill,
+                    errorWidget: const Icon(
+                      Icons.error,
+                      color: Colors.red,
+                    ),
+                    shimmerBaseColor: Colors.grey[300]!,
+                    shimmerHighlightColor: Colors.grey[100]!,
+                    shimmerBackColor: Colors.grey[200]!,
+                  ),
                 ),
               ),
             ),
+            const SizedBox(height: 8),
+            Text(
+              productModel.title,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.bold,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(height: 4),
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
                   "\$${productModel.isonsale ? discountedPrice.toStringAsFixed(2) : productModel.price.toStringAsFixed(2)}",
@@ -80,6 +109,7 @@ class ProductCard extends StatelessWidget {
                     color: Color(0xFFFF7643),
                   ),
                 ),
+                const Spacer(),
                 GestureDetector(
                   onTap: () {
                     if (user == null) {
@@ -98,30 +128,32 @@ class ProductCard extends StatelessWidget {
                     color: isInWishList ? Colors.green : Colors.black,
                     size: 26,
                   ),
-                )
+                ),
               ],
             ),
-            Row(children: [
-              productModel.isonsale
-                  ? Text("\$${productModel.price.toStringAsFixed(2)}",
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: Colors.red,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w600,
-                            decoration: TextDecoration.lineThrough,
-                            decorationThickness: 2,
-                            decorationColor: Colors.red,
-                          ))
-                  : const SizedBox.shrink(),
-              const Spacer(),
+            if (productModel.isonsale) ...[
+              const SizedBox(height: 4),
               Text(
-                productModel.isStrip ? "Strip" : "Box",
+                "\$${productModel.price.toStringAsFixed(2)}",
                 style: const TextStyle(
-                    color: Color(0xFF979797),
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600),
-              )
-            ]),
+                  color: Colors.red,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w600,
+                  decoration: TextDecoration.lineThrough,
+                  decorationThickness: 2,
+                  decorationColor: Colors.red,
+                ),
+              ),
+            ],
+            const SizedBox(height: 4),
+            Text(
+              productModel.isStrip ? "Strip" : "Box",
+              style: const TextStyle(
+                color: Color(0xFF979797),
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
           ],
         ),
       ),

@@ -63,7 +63,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 200,
-                          childAspectRatio: 0.7,
+                          childAspectRatio: 0.68,
                           mainAxisSpacing: 20,
                           crossAxisSpacing: 16,
                         ),
@@ -83,7 +83,7 @@ class _ProductsScreenState extends State<ProductsScreen> {
 }
 
 class EmptyProdWidget extends StatelessWidget {
-  const EmptyProdWidget({Key? key}) : super(key: key);
+  const EmptyProdWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
