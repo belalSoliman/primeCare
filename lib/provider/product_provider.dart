@@ -36,7 +36,7 @@ class ProductProvider with ChangeNotifier {
           _products.insert(
             0,
             ProductModel(
-              id: int.tryParse(id.toString()) ?? 0,
+              id: id,
               title: title,
               images: images,
               category: category,
@@ -65,7 +65,7 @@ class ProductProvider with ChangeNotifier {
     return categoryList;
   }
 
-  ProductModel findProductById(int id) {
+  ProductModel findProductById(String id) {
     return _products.firstWhere((element) => element.id == id);
   }
 }

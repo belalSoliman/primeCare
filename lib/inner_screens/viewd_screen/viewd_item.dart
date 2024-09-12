@@ -12,8 +12,7 @@ class ViewdItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final viewdItem = Provider.of<ViewdProductModel>(context);
     final productProvider = Provider.of<ProductProvider>(context);
-    final product =
-        productProvider.findProductById(int.parse(viewdItem.productid));
+    final product = productProvider.findProductById(viewdItem.productid);
     return GestureDetector(
       onTap: () {
         Navigator.pushNamed(context, ProductDetails.routeName,

@@ -8,7 +8,7 @@ class CartProvider with ChangeNotifier {
     return cartItems;
   }
 
-  void addProductToCart({required int productId}) {
+  void addProductToCart({required String productId}) {
     String productKey = productId.toString(); // Convert productId to String
 
     if (cartItems.containsKey(productKey)) {

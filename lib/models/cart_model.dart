@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 class CartModel with ChangeNotifier {
   final String id;
 
-  final int productid;
+  final String productid;
 
   CartModel({
     required this.id,
