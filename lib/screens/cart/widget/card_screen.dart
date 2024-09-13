@@ -122,9 +122,10 @@ class CartView extends StatelessWidget {
                   ),
                 ),
                 PaymentBtn(
-                  totalAmount: totalAmount, // Pass the extracted total amount
-                  totalDiscount:
-                      totalDiscount, // Pass the extracted total discount
+                  totalAmount: totalAmount,
+                  totalDiscount: totalDiscount,
+                  cartItems: cartItems, // Pass the list of cart items
+                  productProvider: productProvider, // Pass the product provider
                 ),
                 const SizedBox(height: 20),
               ],

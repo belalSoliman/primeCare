@@ -5,6 +5,7 @@ import 'package:pharnacy_trust/fetch_screen.dart';
 import 'package:pharnacy_trust/inner_screens/category_filterd_Screen.dart/category_filter_screen.dart';
 import 'package:pharnacy_trust/inner_screens/feeds_screen_all_product.dart';
 import 'package:pharnacy_trust/inner_screens/on_sale_screens.dart';
+import 'package:pharnacy_trust/inner_screens/orders_screen/order_details_screen.dart';
 import 'package:pharnacy_trust/inner_screens/orders_screen/order_screen_view.dart';
 import 'package:pharnacy_trust/inner_screens/wishList_screen/wish_list.dart';
 import 'package:pharnacy_trust/provider/cart_provider.dart';
@@ -88,6 +89,11 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
                   theme: Styles.themeData(darkThemeProvider.darkTheme, context),
                   home: const FetchScreen(),
                   routes: {
+                    OrderDetailsScreen.routeName: (context) {
+                      final orderId =
+                          ModalRoute.of(context)!.settings.arguments as String;
+                      return OrderDetailsScreen(orderId: orderId);
+                    },
                     OnSaleScreens.routeName: (ctx) => const OnSaleScreens(),
                     ProductsScreen.routeName: (ctx) => const ProductsScreen(),
                     ProductDetails.routeName: (ctx) => const ProductDetails(),

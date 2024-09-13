@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
 class GlobalMethods {
-  navigateTo({required BuildContext ctx, required String routeName}) {
-    Navigator.pushNamed(ctx, routeName);
+  void navigateTo({
+    required BuildContext ctx,
+    required String routeName,
+    Object? arguments, // Add this line to accept arguments
+  }) {
+    Navigator.of(ctx).pushNamed(routeName, arguments: arguments);
   }
 
   static Future<void> errorDialog({

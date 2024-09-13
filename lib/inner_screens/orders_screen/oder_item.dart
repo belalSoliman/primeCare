@@ -1,23 +1,26 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
+import 'package:pharnacy_trust/inner_screens/orders_screen/order_details_screen.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
 
-class OrderItem extends StatefulWidget {
-  const OrderItem({super.key});
+class OrderItem extends StatelessWidget {
+  final Map<String, dynamic> orderData;
 
-  @override
-  State<OrderItem> createState() => _OrderItemState();
-}
+  const OrderItem({super.key, required this.orderData});
 
-class _OrderItemState extends State<OrderItem> {
   @override
   Widget build(BuildContext context) {
     GlobalMethods globalMethods = GlobalMethods();
+    final orderId = orderData['id']; // The orderId fetched from Firestore
+    final productPrice = orderData['products'][0]['price'];
+    final productImage = orderData['products'][0]['image'];
+    final orderDate = (orderData['createdAt'] as Timestamp).toDate();
+
     return GestureDetector(
       onTap: () {
-        globalMethods.navigateTo(
-          ctx: context,
-          routeName: ProductDetails.routeName,
+        Navigator.of(context).pushNamed(
+          OrderDetailsScreen.routeName,
+          arguments: orderId, // Pass the orderId to the OrderDetailsScreen
         );
       },
       child: Container(
@@ -44,46 +47,50 @@ class _OrderItemState extends State<OrderItem> {
               ),
               height: MediaQuery.of(context).size.height * 0.12,
               width: MediaQuery.of(context).size.width * 0.25,
-              child: Image.asset(
-                "assets/category_assets/cat-2.png",
+              child: Image.network(
+                productImage,
                 fit: BoxFit.cover,
               ),
             ),
             const SizedBox(
               width: 10,
             ),
-            const Flexible(
+            Flexible(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "Product Nam  EFISLFOSAIDUFYSDAUe",
+                    orderId, // Display the order ID
                     maxLines: 1,
-                    overflow: TextOverflow.fade,
-                    style: TextStyle(
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
                     children: [
-                      Text("paid : ", style: TextStyle(color: Colors.black)),
+                      const Text("Paid: ",
+                          style: TextStyle(color: Colors.black)),
                       Text(
-                        "\$20.00",
-                        style: TextStyle(color: Colors.green, fontSize: 16),
+                        "\$$productPrice",
+                        style:
+                            const TextStyle(color: Colors.green, fontSize: 16),
                       ),
                     ],
                   ),
                 ],
               ),
             ),
-            const Text("31/12/2022",
-                style: TextStyle(color: Colors.black, fontSize: 16))
+            Text(
+              "${orderDate.day}/${orderDate.month}/${orderDate.year}",
+              style: const TextStyle(color: Colors.black, fontSize: 16),
+            )
           ],
         ),
       ),

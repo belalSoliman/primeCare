@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/models/cart_model.dart';
+import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/screens/cart/widget/payment_summery.dart';
 
 class PaymentBtn extends StatelessWidget {
   final double totalAmount;
   final double totalDiscount;
+  final List<CartModel> cartItems;
+  final ProductProvider productProvider;
 
   const PaymentBtn({
     super.key,
     required this.totalAmount,
     required this.totalDiscount,
+    required this.cartItems,
+    required this.productProvider,
   });
 
   @override
@@ -34,7 +40,10 @@ class PaymentBtn extends StatelessWidget {
               children: [
                 PaymentSummary(
                   totalAmount: totalAmount,
-                  totalDiscount: totalDiscount, // Pass total discount
+                  totalDiscount: totalDiscount,
+                  cartItems: cartItems, // Pass cart items to PaymentSummary
+                  productProvider:
+                      productProvider, // Pass product provider to PaymentSummary
                 ),
               ],
             ),
