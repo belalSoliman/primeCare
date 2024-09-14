@@ -124,7 +124,7 @@ class OrderConfirmationPage extends StatelessWidget {
               SizedBox(height: screenHeight * 0.05),
               ElevatedButton.icon(
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  Navigator.pushReplacementNamed(context, '/BtnNavBar');
                 },
                 icon: Icon(Icons.shopping_bag),
                 label: Text('Continue Shopping'),
