@@ -18,6 +18,7 @@ import 'package:pharnacy_trust/screens/Auth/log_in.dart';
 import 'package:pharnacy_trust/screens/Auth/sign_up.dart';
 import 'package:pharnacy_trust/screens/cart/product_details/product_details.dart';
 import 'package:pharnacy_trust/screens/cart/widget/card_screen.dart';
+import 'package:pharnacy_trust/stripe_payment/configer_payment.dart';
 import 'package:provider/provider.dart';
 import 'inner_screens/viewd_screen/viewd_screen_body.dart';
 import 'screens/btn_nav_bar.dart';
@@ -107,6 +108,17 @@ class _PharmacyEntryPointState extends State<PharmacyEntryPoint> {
                     CategoryFilterScreen.routeName: (ctx) =>
                         const CategoryFilterScreen(),
                     LogIn.routeName: (ctx) => const LogIn(),
+                    OrderConfirmationPage.routeName: (context) =>
+                        OrderConfirmationPage(
+                          orderId: ModalRoute.of(context)!.settings.arguments
+                              as String,
+                          totalAmount: ModalRoute.of(context)!
+                              .settings
+                              .arguments as double,
+                          paymentMethod: ModalRoute.of(context)!
+                              .settings
+                              .arguments as String,
+                        ),
                   },
                 );
               },

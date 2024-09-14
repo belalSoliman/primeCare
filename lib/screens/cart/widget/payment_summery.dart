@@ -2,9 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/models/cart_model.dart';
+import 'package:pharnacy_trust/provider/cart_provider.dart';
 import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
+import 'package:pharnacy_trust/stripe_payment/configer_payment.dart';
 import 'package:pharnacy_trust/stripe_payment/payment_manager.dart';
+import 'package:provider/provider.dart';
 import 'package:uuid/uuid.dart';
 
 class PaymentSummary extends StatelessWidget {
@@ -23,6 +26,7 @@ class PaymentSummary extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CartProvider cartProvider = Provider.of<CartProvider>(context);
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -100,9 +104,22 @@ class PaymentSummary extends StatelessWidget {
                     "createdAt": Timestamp.now(),
                     "products": products, // Include the list of products
                   });
+                  cartProvider.clearCart();
 
                   // Clear the cart after the order is successfully placed
                   // You may call the clearCart() method from the CartProvider
+
+                  // Navigate to the Order Confirmation Page
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (context) => OrderConfirmationPage(
+                        orderId: orderId,
+                        totalAmount: totalAmount - totalDiscount,
+                        paymentMethod:
+                            "Credit Card", // or retrieve from payment details
+                      ),
+                    ),
+                  );
                 } catch (e) {
                   // Handle any errors that occur during payment or order placement
                   GlobalMethods.errorDialog(
