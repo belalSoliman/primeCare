@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/consts/consts.dart';
 
 import 'package:pharnacy_trust/screens/Auth/log_in_swiper.dart';
 import 'package:pharnacy_trust/screens/Auth/sign_up_form.dart';
@@ -18,7 +19,13 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(children: [
-        const LogInSwiper(),
+        Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage(Constss.loginImages[1]),
+            fit: BoxFit.cover,
+          )),
+        ),
         Container(
           color: Colors.black.withOpacity(0.7),
         ),

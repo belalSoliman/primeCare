@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharnacy_trust/consts/consts.dart';
 import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/screens/btn_nav_bar.dart';
 import 'package:provider/provider.dart';
@@ -31,27 +32,29 @@ class _FetchScreenState extends State<FetchScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white, // Set the background color
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircularProgressIndicator(
-              valueColor:
-                  AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
+        backgroundColor: Colors.white, // Set the background color
+        body: Stack(children: [
+          Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage(Constss.loginImages[2]),
+              fit: BoxFit.cover,
+            )),
+          ),
+          Container(
+            color: Colors.black.withOpacity(0.7),
+          ),
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircularProgressIndicator(
+                  valueColor: AlwaysStoppedAnimation<Color>(
+                      Theme.of(context).primaryColor),
+                ),
+              ],
             ),
-            const SizedBox(height: 20),
-            Text(
-              'Fetching products...',
-              style: TextStyle(
-                fontSize: 16,
-                color: Theme.of(context).primaryColor,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+          ),
+        ]));
   }
 }

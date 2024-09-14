@@ -1,0 +1,124 @@
+{
+  "products": [
+    {
+      "productId": "p401",
+      "name": "Freestyle Libre Sensor Flash Glucose Monitoring System",
+      "description": "The FreeStyle Libre sensor continuously measures your glucose levels, day and night, without the need for finger pricking . This small, discreet and water-resistant2 sensor is worn on the back of your upper arm and lasts for up to 14 days whilst you shower, bathe, swim, exercise or play.",
+      "price": 6900,
+      "categoryId": "c6",
+      "categoryName": "Devices & Support",
+      "image": "https://www.dvago.pk/_next/image?url=https%3A%2F%2Fdvago-assets.s3.ap-southeast-1.amazonaws.com%2FProductsImages%2F21288.png&w=320&q=50",
+      "bestSeller": true
+    },
+    {
+      "productId": "p402",
+      "name": "Senior Digital Thermometer 1S Thermometer",
+      "description": "Buy SENIOR DIGITAL THERMOMETER 1S THERMOMETER from SENIOR and get it delivered at your door step",
+      "price": 150,
+      "categoryId": "c6",
+      "categoryName": "Devices & Support",
+      "image": "https://www.dvago.pk/_next/image?url=https%3A%2F%2Fdvago-assets.s3.ap-southeast-1.amazonaws.com%2FProductsImages%2F19140.png&w=320&q=50",
+      "bestSeller": false
+    },
+    {
+      "productId": "p403",
+      "name": "Medisign Advanced Blood Glucose Monitoring System",
+      "description": "Includes: Blood Glucose Monitor , 10 x Test Strips , 1 x Lithium Battery , Compact Carrying Device , 10 x Lancets , LIFE TIME WARRANTY .Specifications : Test Range: 20-600 Mg/Dl , Sample Size: 0.5u Capillary Whole Blood , Test Time: 5 Seconds , Memory: Stores 300 Results , Power: 3v Lithium Battery , Weight: 45g Including Battery , Dimension: 15 x 54 x 86 .",
+      "price": 700,
+      "categoryId": "c6",
+      "categoryName": "Devices & Support",
+      "image": "https://www.dvago.pk/_next/image?url=https%3A%2F%2Fdvago-assets.s3.ap-southeast-1.amazonaws.com%2FProductsImages%2F10525.webp&w=320&q=50",
+      "bestSeller": false
+    },
+    {
+      "productId": "p404",
+      "name": "Beurer Wrist Blood Pressure Monitor Bc-28",
+      "description": " Simple and easy to use ?that is what makes our wrist blood pressure monitors stand out.",
+      "price": 3000,
+      "categoryId": "c6",
+      "categoryName": "Devices & Support",
+      "image": "https://www.dvago.pk/_next/image?url=https%3A%2F%2Fdvago-assets.s3.ap-southeast-1.amazonaws.com%2FProductsImages%2F12929.jpeg&w=320&q=50",
+      "bestSeller": true
+    },
+    {
+      "productId": "p405",
+      "name": "Certeza Cr-3002 Adult Dual-Head Stethoscope",
+      "description": "Buy CR3002 STETHOSCOPE DUAL HEAD from CERTEZA and get it delivered at your door step",
+      "price": 790,
+      "categoryId": "c6",
+      "categoryName": "Devices & Support",
+      "image": "https://www.dvago.pk/_next/image?url=https%3A%2F%2Fdvago-assets.s3.ap-southeast-1.amazonaws.com%2FProductsImages%2F09275.webp&w=320&q=50",
+      "bestSeller": false
+    },
+    {
+      "productId": "p406",
+      "name": "Certeza Bm-408 Arm Blood Pressure Monitor",
+      "description": "CERETZA BM408 UPPER ARM",
+      "price": 200,
+      "categoryId": "1900",
+      "categoryName": "Devices & Support",
+      "image": "https://www.dvago.pk/_next/image?url=https%3A%2F%2Fdvago-assets.s3.ap-southeast-1.amazonaws.com%2FProductsImages%2F24126.webp&w=320&q=50",
+      "bestSeller": false
+    },
+    {
+      "productId": "p407",
+      "name": "Beurer Upper Arm Blood Pressure Monitoring Device",
+      "description": "The illuminated black display and the touch sensor buttons give the upper arm blood pressure monitor a particularly elegant appearance. Thanks to the PC interface and USB cable, the measurements can be transferred simply and conveniently to the PC and managed using the free beurer HealthManager Pro software.",
+      "price": 7500,
+      "categoryId": "c6",
+      "categoryName": "Devices & Support",
+      "image": "https://www.dvago.pk/_next/image?url=https%3A%2F%2Fdvago-assets.s3.ap-southeast-1.amazonaws.com%2FProductsImages%2F14027.jpeg&w=320&q=50",
+      "bestSeller": true
+    },
+    {
+      "productId": "p408",
+      "name": "Upper Arm Blood Pressure Monitor - Bm 27",
+      "description": "Beurer BM 27 Upper Arm Blood Pressure Monitor",
+      "price": 3500,
+      "categoryId": "c6",
+      "categoryName": "Devices & Support",
+      "image": "https://www.dvago.pk/_next/image?url=https%3A%2F%2Fdvago-assets.s3.ap-southeast-1.amazonaws.com%2FProductsImages%2F25333.webp&w=320&q=50",
+      "bestSeller": true
+    },
+    {
+      "productId": "p409",
+      "name": "Beurer Personal Bathroom Scale Ps 240",
+      "description": "The personal bathroom scale's soft-grip surface ensures you have comfortable and secure footing. The elegant stainless steel casing and the illuminated black display make the scale a real eye-catcher in your bathroom.",
+      "price": 3600,
+      "categoryId": "c6",
+      "categoryName": "Devices & Support",
+      "image": "https://www.dvago.pk/_next/image?url=https%3A%2F%2Fdvago-assets.s3.ap-southeast-1.amazonaws.com%2FProductsImages%2F14020.webp&w=320&q=50",
+      "bestSeller": false
+    },
+    {
+      "productId": "p410",
+      "name": "Safety Wheel Chair Ky809 E Blk",
+      "description": "The Safety Wheelchair KY809 is a purpose-built mobility device prioritizing both user comfort and safety.",
+      "price": 6100,
+      "categoryId": "c6",
+      "categoryName": "Devices & Support",
+      "image": "https://www.dvago.pk/_next/image?url=https%3A%2F%2Fdvago-assets.s3.ap-southeast-1.amazonaws.com%2FProductsImages%2F25356.webp&w=320&q=50",
+      "bestSeller": true
+    },
+    {
+      "productId": "p411",
+      "name": "Medicare Hearing Aid V-163",
+      "description": "Best sound amplifier adjustable tone hearing aids aid . It is a best sound amplifier adjustable tone hearing aids aid . Super mini size and light weight, not easily to be seen",
+      "price": 3100,
+      "categoryId": "c6",
+      "categoryName": "Devices & Support",
+      "image": "https://www.dvago.pk/_next/image?url=https%3A%2F%2Fdvago-assets.s3.ap-southeast-1.amazonaws.com%2Fdvago-products-images%2Fmedicare-hearing-aid-v-163.webp&w=320&q=50",
+      "bestSeller": false
+    },
+    {
+      "productId": "p412",
+      "name": "Medisign Digital Blood Pressure Monitor Bpm 36",
+      "description": "Measuring range: Pressure: 30 to 280 mmHg (in 1 mmHg increment) , Pulse: 40 to 199 beat/minute.",
+      "price": 3200,
+      "categoryId": "c6",
+      "categoryName": "Devices & Support",
+      "image": "https://www.dvago.pk/_next/image?url=https%3A%2F%2Fdvago-assets.s3.ap-southeast-1.amazonaws.com%2FProductsImages%2F18000.jpg&w=320&q=50",
+      "bestSeller": false
+    }
+  ]
+}

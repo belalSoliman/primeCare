@@ -28,7 +28,13 @@ class _LogInState extends State<LogIn> {
     return Scaffold(
       body: Stack(
         children: [
-          const LogInSwiper(),
+          Container(
+            decoration: BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage(Constss.loginImages[0]),
+              fit: BoxFit.cover,
+            )),
+          ),
           Container(
             color: Colors.black.withOpacity(0.7),
           ),
@@ -66,11 +72,6 @@ class _LogInState extends State<LogIn> {
                     const SizedBox(height: 8),
                     const Dividerb(),
                     const SizedBox(height: 8),
-                    AuthBtn(
-                      btnText: "Continue as Guest",
-                      fct: () {},
-                      color: Colors.black87,
-                    ),
                     const SizedBox(height: 8),
                     RichText(
                         text: TextSpan(
