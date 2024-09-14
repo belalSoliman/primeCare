@@ -16,7 +16,7 @@ class _GridViewItemsState extends State<GridViewItems> {
   Widget build(BuildContext context) {
     final productProvider = Provider.of<ProductProvider>(context);
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(2.0),
       child: GridView.count(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),

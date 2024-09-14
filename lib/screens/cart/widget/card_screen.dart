@@ -7,10 +7,15 @@ import 'package:pharnacy_trust/screens/cart/widget/empty_cart.dart';
 import 'package:pharnacy_trust/screens/cart/widget/payment_btn.dart';
 import 'package:provider/provider.dart';
 
-class CartView extends StatelessWidget {
+class CartView extends StatefulWidget {
   const CartView({super.key});
   static const routeName = '/CartView';
 
+  @override
+  State<CartView> createState() => _CartViewState();
+}
+
+class _CartViewState extends State<CartView> {
   @override
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);

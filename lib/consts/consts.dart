@@ -42,32 +42,32 @@ class Constss {
   static List<Map<String, dynamic>> categoryList = [
     {
       "imageUrl": "assets/category_assets/cat-1.png",
-      "title": "vitamin",
+      "title": "Devices & Support",
       "color": Colors.blue,
     },
     {
       "imageUrl": "assets/category_assets/cat-2.png",
-      "title": "insulin",
+      "title": "Cold & Flu",
       "color": Colors.red,
     },
     {
       "imageUrl": "assets/category_assets/cat-3.png",
-      "title": "cosmatics",
+      "title": "Drugs",
       "color": Colors.green,
     },
     {
       "imageUrl": "assets/category_assets/cat-4.png",
-      "title": "anti flow",
+      "title": "Baby & Mother Care",
       "color": Colors.purple,
     },
     {
       "imageUrl": "assets/category_assets/cat-5.png",
-      "title": "belal",
+      "title": "Covid-19",
       "color": Colors.orange,
     },
     {
       "imageUrl": "assets/category_assets/cat-6.png",
-      "title": "7amada",
+      "title": "Medicines",
       "color": Colors.pink,
     },
   ];

@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:pharnacy_trust/models/cart_model.dart';
-
 import 'package:pharnacy_trust/provider/product_provider.dart';
 import 'package:pharnacy_trust/service/global_methods.dart';
+import 'package:pharnacy_trust/stripe_payment/payment_manager.dart';
 import 'package:uuid/uuid.dart';
 
 class PaymentSummary extends StatelessWidget {
@@ -67,22 +67,29 @@ class PaymentSummary extends StatelessWidget {
           Center(
             child: ElevatedButton(
               onPressed: () async {
-                final orderId = Uuid().v4(); // Generate a unique order ID
-                List<Map<String, dynamic>> products = [];
-
-                // Iterate through the cart items to add them to the products list
-                cartItems.forEach((cartItem) {
-                  final product =
-                      productProvider.findProductById(cartItem.productid);
-                  products.add({
-                    "productId": cartItem.productid,
-                    "quantity": cartItem.quantity,
-                    "price": product.price, // Get the product price
-                    "image": product.images, // Get the product image
-                  });
-                });
-
                 try {
+                  // First, initiate the payment process
+                  await PaymentManager.makePayment(
+                    (totalAmount * 100).toInt(), // Convert to smallest unit
+                    "EGP",
+                  );
+
+                  // If the payment is successful, proceed to place the order
+                  final orderId = Uuid().v4(); // Generate a unique order ID
+                  List<Map<String, dynamic>> products = [];
+
+                  // Iterate through the cart items to add them to the products list
+                  cartItems.forEach((cartItem) {
+                    final product =
+                        productProvider.findProductById(cartItem.productid);
+                    products.add({
+                      "productId": cartItem.productid,
+                      "quantity": cartItem.quantity,
+                      "price": product.price, // Get the product price
+                      "image": product.images, // Get the product image
+                    });
+                  });
+
                   await FirebaseFirestore.instance
                       .collection("orders")
                       .doc(orderId)
@@ -95,12 +102,13 @@ class PaymentSummary extends StatelessWidget {
                   });
 
                   // Clear the cart after the order is successfully placed
-                  // You'll need to call the clearCart() method from the CartProvider
+                  // You may call the clearCart() method from the CartProvider
                 } catch (e) {
+                  // Handle any errors that occur during payment or order placement
                   GlobalMethods.errorDialog(
                     subtitle: e.toString(),
                     ctx: context,
-                    title: 'Error',
+                    title: 'Payment Error',
                   );
                 }
               },
